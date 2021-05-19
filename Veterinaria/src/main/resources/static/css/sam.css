@@ -1,0 +1,120 @@
+.sam-login{
+	cursor: pointer;
+	padding-right: 15px;
+	transition: 0.4s;
+}
+.sam-login:hover{
+	background-color: #00bd56;
+}
+
+/*INDEX*/
+.sam-header h1{
+	text-shadow: 2px 2px 4px #000000;
+}
+
+/*LOGIN / SIGNUP*/
+.fw-container{
+	background-image: url('../images/bg_4.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	padding-top: 5%;
+	padding-bottom: 10%;
+	min-height: 100vh;
+	position: relative;
+}
+input::placeholder{
+	/*padding-left: 10px*/; 
+}
+.fw-container .sam-form-input{
+	background: rgba(255,255,255,.8)!important;
+}
+.fw-container .sam-form-label{
+	background-color: rgba(0,0,0,.4);
+	padding: 2px 5px;
+	border-radius: 5px;
+}
+
+/*Mis Mascotas*/
+.sam-h2-white{
+	color: #000;
+	text-transform: uppercase;
+	font-family: font-family: "Montserrat", Arial, sans-serif;
+	font-weight: 700;
+	letter-spacing: 3px;
+	font-size: 2.5em;
+	margin-bottom: 2%;
+}
+.fw-container-crudmascota{
+	background-image: url('../images/bg_7.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	padding-top: 5%;
+	padding-bottom: 10%;
+	min-height: 100vh;
+	position: relative;
+}
+.fw-container-crudmascota .sam-form-input{
+	background: rgba(255,255,255,.8)!important;
+}
+.fw-container-crudmascota .sam-form-label,
+.fw-container .sam-form-label{
+	background-color: rgba(255,255,255,1);
+	padding: 2px 5px;
+	border-radius: 5px;
+}
+.sam-date-input{
+	width: 100%;
+	background: rgba(255,255,255,.8)!important;
+	border: none;
+	padding: 10px;
+}
+.sam-crudmascota-table tr,
+.sam-crudproducto-table tr{
+	background: rgba(255,255,255,.8)!important;
+	color: #000;
+}
+.sam-crudmascota-btn{
+	padding: 5px 20px;
+}
+.sam-crudmascota,
+.sam-crudproducto{
+	max-width: 50%;
+}
+.sam-modal-body{
+	margin-top: 3%!important;
+	margin-bottom: 3%!important;
+}
+.sam-modal-footer,
+.sam-modal-body{
+	width: 80%; margin: 0 auto;
+}
+.sam-crudproducto-table,
+.fw-container-crudmascota .container-fluid,
+.fw-container .container-fluid{
+	overflow-x:auto!important;
+	max-width: 90%;
+}
+.sam-crudproducto-table tbody td{
+	text-align: center;
+}
+.sam-crudproducto-table tbody td img{
+	max-width: 150px;
+	max-height: 150px;
+}
+
+/*CRUD PRODUCTO*/
+.container-crudproducto{
+	background-image: url('../images/bg_8.png');
+}
+/*CRUD SERVICIO*/
+.container-crudservicio{
+	background-image: url('../images/bg_9.png');
+}
+
+.sam-table table tbody td,
+.sam-table table thead th{
+	vertical-align: middle;
+	text-align: center;
+}
