@@ -12,11 +12,11 @@ import com.veterinaria.repository.ProveedorRepository;
 public class ProveedorServiceImpl implements ProveedorService {
 	
 	@Autowired
-	private ProveedorRepository repositoryProve;
+	private ProveedorRepository repository;
 
 	@Override
 	public List<Proveedor> listaProveedor() {
-		return repositoryProve.findAll();
+		return repository.findAll();
 	}
 
 }

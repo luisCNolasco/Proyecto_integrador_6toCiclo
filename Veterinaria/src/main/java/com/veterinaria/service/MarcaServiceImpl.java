@@ -12,11 +12,12 @@ import com.veterinaria.repository.MarcaRepository;
 public class MarcaServiceImpl implements MarcaService {
 	
 	@Autowired
-	private MarcaRepository repositoryMarc;
+	private MarcaRepository repository;
 
 	@Override
 	public List<Marca> listaMarca() {
-		return repositoryMarc.findAll();
+		return repository.findAll();
 	}
+	
 
 }

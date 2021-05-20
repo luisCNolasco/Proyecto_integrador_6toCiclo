@@ -181,7 +181,6 @@
 	  'autoclose': true
 	});
 
-	$('.appointment_time').timepicker();
 
 })(jQuery);
 

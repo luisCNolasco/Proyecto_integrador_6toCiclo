@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  	<link rel="icon" type="image/png" href="images/favicon.png">   
-        <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
@@ -21,135 +21,28 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sam.css">  
-   
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrapValidator.min.css" rel="stylesheet">
+	
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
-    
+	<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
 </head>
 <body>
-
-	<div id="fw-container" class="fw-container container-crudproducto">
-	<div class="container-fluid">
-		<form id="id_form_elimina" action="eliminaCrudProducto">
-			<input type="hidden" id="id_elimina" name="id">
-		</form>	
-		<div class="col-md-2" >
-			    <input class="form-control" id="id_txt_filtro"  name="filtro" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
-		</div>
-		<div class="col-md-2" >
-				<button type="button" class="btn btn-primary" id="id_btn_filtrar" style="width: 150px">FILTRA</button>
-		</div>
-		<div class="row d-flex justify-content-end mb-3">
-			<button type="button" class="btn btn-primary" data-toggle="modal" onclick="modalProducto();">
-			  Registrar Producto
-			</button>
-		</div>
-	</div>
-
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="id_mensaje" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered sam-crudproducto" role="document">
-	    <div class="modal-content">
-	    
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="id_mensaje">Registra un producto</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      
-	    <div class="modal-body sam-modal-body">
-	 		<div class="container sam-lisu">	        
-			  	<form  id="id_registra" action="#" method="POST" id="contactForm" name="contactForm" class="contactForm">
-			  		<input type="hidden"  id="id_codigo" name="cod_pro">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Nombre</label>
-								<input type="text" class="form-control sam-form-input" name="subject" id="subject" placeholder="Nombre del producto">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Precio</label>
-								<input type="number" class="form-control sam-form-input" name="subject" id="subject" placeholder="Ingrese su S/0.00">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Stock</label>
-								<input type="number" class="form-control sam-form-input" name="subject" id="subject" placeholder="Ingrese su Stock">
-							</div>
-						</div>	
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Marca</label><br>
-								<select class="form-control sam-form-input" id="id_marca" name="cod_mar" >
-									<option value=" ">[SELECCIONE]</option>
-												<c:forEach var="marca" items="${dataMarca}">
-										              <option value="${marca.cod_mar}" >
-														${marca.nom_mar}</option>
-										        </c:forEach>  
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Proveedor</label><br>
-								<select class="form-control sam-form-input" id="tipo">
-									<option selected disabled value="masculino"></option>
-									<option value="1">Proveedor 1</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Descripción Simple</label><br>
-								<textarea class="form-control" rows="3" id="comment" placeholder="Escribe una breve descripción aquí"></textarea>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Descripción HTML</label><br>
-								<textarea class="form-control" rows="3" id="comment" placeholder="HTML"></textarea>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Elegir imagen 1</label>
-								<input type="file" class="form-control sam-form-input" name="subject">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Elegir imagen 2</label>
-								<input type="file" class="form-control sam-form-input" name="subject">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="label sam-form-label" for="subject">Elegir imagen 3</label>
-								<input type="file" class="form-control sam-form-input" name="subject">
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-	      </div>
-	      <div class="modal-footer sam-modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-	        <button type="button" class="btn btn-primary">Registrar</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-	<div class="container-fluid sam-table sam-crudproducto-table">
-		<div id="divProducto" class="col-md-12">
-		<table id="id_table" class="table table-striped table-bordered" >
-												<thead class="thead-dark">
+	
+	<div class="container">
+	    <br>&nbsp;<br>
+	   <button type="button" data-toggle='modal' class='btn btn-primary' id="validateBtnw2" onclick="modalProducto()">Nuevo Producto</button>
+	    <br>&nbsp;<br>
+	    <div id="divProducto">
+	       <table id="id_table" class="table table-striped table-bordered" >
+												<thead>
 														<tr>
 															<th>Codigo</th>
 															<th>Nombre</th>
@@ -162,33 +55,130 @@
 															<th>Foto 1</th>
 															<th>Foto 2</th>
 															<th>Foto 3</th>
-															<th></th>
-															<th></th>
+															<th>EDITAR</th>
+															<th>ELIMINAR</th>
 														</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="producto" items="${dataProducto}">
-														<tr>
-															<td>${producto.cod_pro}</td>
-															<td>${producto.nom_pro}</td>
-															<td>${producto.pre_pro}</td>
-															<td>${producto.stock_pro}</td>
-															<td>${producto.marca.nom_mar}</td>
-															<td>${producto.proveedor.nom_prov}</td>
-															<td>${producto.desc_sim_pro}</td>
-															<td>${producto.desc_html_pro}</td>
-															<td>${producto.foto1}</td>
-															<td>${producto.foto2}</td>
-															<td>${producto.foto3}</td>
-															<td><button type="button" class="btn btn-danger" 
-															onclick="eliminarProducto'${producto.cod_pro}')">Eliminar</button></td>
-														</tr>
-													</c:forEach>												
+																																		
 												</tbody>
-											</table>	
-										</div>
-									</div>
-								</div>
+		   </table>	
+		</div>
+	</div>
+	
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="id_mensaje" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	    
+	      <div class="modal-header">
+	        <h3 class="modal-title" id="id_mensaje">Registra un producto</h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      
+	    <div class="modal-body">
+	 		<div class="container">    
+			  	<form  id="id_registra" action="saveProducto" method="POST">
+			  		<input type="hidden"  id="id_codigo" name="cod_pro">
+					<div class="row">
+						<div class="col-md-5">
+							<div class="form-group">
+								<label>Nombre</label>								
+								<input type="text" class="form-control" id="nom_pro" name="nom_pro" placeholder="Nombre del producto">
+							</div>
+						</div>
+					</div>
+					<div class="row">	
+						<div class="col-md-2">
+							<div class="form-group">
+								<label>Precio</label>
+								<input type="number" class="form-control" id="pre_pro" name="pre_pro" placeholder="Ingrese su S/0.00">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Stock</label>
+								<input type="number" class="form-control" id="stock_pro" name="stock_pro" placeholder="Ingrese su Stock">
+							</div>
+						</div>		
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<div class="form-group">
+								<label>Marca</label><br>
+								<select class="form-control" id="id_marca" name="marca" >
+									 <option value="-1" >[SELECCIONE]</option>											
+								</select>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label>Proveedor</label><br>
+								<select class="form-control" id="id_proveedor" name="proveedor" >
+									 <option value="-1" >[SELECCIONE]</option>											
+								</select>
+							</div>
+						</div>
+					</div>	
+					
+					<div class="row">
+						<div class="col-md-5">
+							<div class="form-group">
+								<label>Descripción Simple</label>
+								<textarea class="form-control" rows="3" id="desc_sim_pro" name="desc_sim_pro" placeholder="Escribe una breve descripción aquí"></textarea>
+							</div>
+						</div>
+					</div>
+						
+					<div class="row">
+						<div class="col-md-5">
+							<div class="form-group">
+								<label>Descripción HTML</label>
+								<textarea class="form-control" rows="3" id="desc_html_pro" name="desc_html_pro" placeholder="HTML"></textarea>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-5">
+						    <div class="form-group">
+								<label>Elegir imagen 1</label>
+								<input type="file" class="form-control" id="id_foto1" name="foto1">
+							</div>
+						</div>
+					</div>	
+						
+					<div class="row">
+					   <div class="col-md-5">
+						    <div class="form-group">
+								<label>Elegir imagen 2</label>
+								<input type="file" class="form-control" id="id_foto2" name="foto2">
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+					   <div class="col-md-5">
+						    <div class="form-group">
+								<label>Elegir imagen 3</label>
+								<input type="file" class="form-control" id="id_foto3" name="foto3">
+							</div>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn btn-primary" onclick="postValidarRegistra()">Registrar</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 	   $('#id_table').DataTable();
@@ -196,21 +186,171 @@
 </script>								
 								
 <script type="text/javascript">
+function tablaProducto(){
+	$("#id_table").DataTable().destroy();
+	$("#id_table tbody").empty(); 
+	$.getJSON("cargaProducto",{}, function (data){
+		$.each(data, function(index, item){
+			var editar='<button type="button" class="btn btn-success" onclick="editar('+item.cod_pro+","+
+																					"'"+item.nom_pro+"',"+
+																					"'"+item.pre_pro+"',"+
+																					"'"+item.stock_pro+"',"+																									
+																					"'"+item.marca.cod_mar+"',"+
+																					"'"+item.proveedor.cod_prov+"',"+
+																					"'"+item.desc_sim_pro+"',"+
+																					"'"+item.desc_html_pro+"',"+
+																					"'"+item.foto1+"',"+
+																					"'"+item.foto2+"',"+
+																					   +item.foto3+')">Editar</button>';
+																																										    
+																								
+																												    
+		    var eliminar='<button type="button" class="btn btn-danger" onclick="eliminar('+item.cod_pro+')">Eliminar</button>';
+																									
+																								    
+			$("#id_table").append("<tr><td>"+item.cod_pro+"</td>"+
+											  "<td>"+item.nom_pro+"</td>"+
+											  "<td>"+item.pre_pro+"</td>"+
+											  "<td>"+item.stock_pro+"</td>"+
+											  "<td>"+item.marca.cod_mar+"</td>"+
+											  "<td>"+item.proveedor.cod_prov+"</td>"+
+											  "<td>"+item.desc_sim_pro+"</td>"+
+											  "<td>"+item.desc_html_pro+"</td>"+
+											  "<td>"+item.foto1+"</td>"+
+											  "<td>"+item.foto2+"</td>"+
+											  "<td>"+item.foto3+"</td>"+
+											  "<td>"+editar+"</td>"+
+											  "<td>"+eliminar+"</td>");
+		});
+		$("#id_table").DataTable().draw();
+		$("#id_table").DataTable();
+	});
+}
 
-	function modalProducto(){
+	$.getJSON("cargaMarca", {}, function(data) {
+		$.each(data, function(index, item) {
+			$("#id_marca").append("<option value='"+item.cod_mar+"'>"+
+					 item.nom_mar+"</option>");
+			});
+		});
+
+	$.getJSON("cargaProveedor", {}, function(data) {
+		$.each(data, function(index, item) {
+			$("#id_proveedor").append("<option value='"+item.cod_prov+"'>"+
+					 item.nom_prov+"</option>");
+			});
+		});
+	
+	 function modalProducto(){
 		$('#id_registra').trigger("reset");
 		$("#id_codigo").val(0);
 		$("#id_mensaje").text("Registrar Producto");
 		$('#exampleModal').modal({backdrop: 'static', keyboard: false,show:true});  
 	}
-	function postValidarRegistra() {
-		var validator = $('#id_registra').data('bootstrapValidator');
-        validator.validate();
-        if (validator.isValid()) {
-        	registrarProducto();
-        }
-	}
-	function registrarProducto(){
+
+	 function postValidarRegistra() {
+			var validator = $('#id_registra').data('bootstrapValidator');
+	        validator.validate();
+	        if (validator.isValid()) {
+	        	saveProducto();
+	        }
+		}
+		function saveProducto(){
+
+			  var formData = new FormData();
+
+	  	        formData.append("nom_pro", $("#nom_pro").val());
+	  	        formData.append("pre_pro", $("#pre_pro").val());
+	  	        formData.append("stock_pro", $("#stock_pro").val());
+	  	        formData.append("marca", $("#id_marca").val());
+	  	     	formData.append("proveedor", $("#id_proveedor").val());
+	  	     	formData.append("desc_sim_pro", $("#desc_sim_pro").val());
+	  	        formData.append("desc_html_pro", $("#desc_html_pro").val());
+
+		  	      var file1 = $('#id_foto1')[0].files[0];	  	        
+		  	        formData.append("foto1", file1);
+		  	        
+		  	      var file2 = $('#id_foto2')[0].files[0];	  	        
+		  	        formData.append("foto2", file2);
+		  	        
+		  	      var file3 = $('#id_foto3')[0].files[0];	  	        
+		  	        formData.append("foto3", file3); 
+			
+			
+			swal({
+				  title: "¿Seguro de Guardar los datos?",
+				  text: "",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willSave) => {
+				  if (willSave) {
+			   		 $.ajax({
+			   				url:  'saveProducto',
+			   				type: "POST",
+			   				data: formData,
+				   			enctype : 'multipart/form-data',
+					        contentType : false,
+					        processData : false,
+					        cache:false,
+			   				success:function(data){
+			   					console.log(data);
+			   					if(data==1){
+									swal("Registro Guardado correctamente...","","success");
+									tablaProducto();
+									$("#exampleModal").modal("hide");
+									$('#id_registra').data('bootstrapValidator').resetForm(true);
+				   			    	$('#id_registra').trigger("reset");
+								}
+								else
+									swal("Error al guardar el registro...","","error");
+			   				},
+			   				error: function (jqXhr) { // error callback 
+			   					swal("Error ...","","error");
+			   		    	}
+			   			})
+				  } 
+				})
+		}		
+
+		/* function postValidarRegistra() {
+			var validator = $('#id_registra').data('bootstrapValidator');
+	        validator.validate();
+	        if (validator.isValid()) {
+	        	  var formData = new FormData();
+	  	        var file = $('#id_reg_foto')[0].files[0];
+	  	        
+	  	        formData.append("foto", file);
+	  	        formData.append("nombre", $("#id_reg_nombre").val());
+	  	        formData.append("dni", $("#id_reg_dni").val());
+	  	        formData.append("correo", $("#id_reg_correo").val());
+	  	        formData.append("fechaNacimiento", $("#id_reg_fecha").val());
+
+	  	        
+	  	        $.ajax({
+	  	          type: "POST",
+	  	          url: "saveProducto", 
+	  	          data: formData,
+	  	          enctype : 'multipart/form-data',
+	  	          contentType : false,
+	  	          processData : false,
+	  	          cache:false,
+	  	          success: function(data){
+	  	        	  tablaProducto();
+	  	        	  $('#id_div_modal_registra').modal("hide");
+	  	        	  mostrarMensaje(data.mensaje);
+	  	        	  limpiarFormulario();
+	  	        	  validator.resetForm();
+	  	          },
+	  	          error: function(){
+	  	        	  mostrarMensaje(MSG_ERROR);
+	  	          }
+	  	        });
+	  	        
+	  	    }
+	  	});
+	 function registrarProducto(){
 		var formData = new FormData($("#id_registra")[0]);
 		swal({
 			  title: "Seguro de Guardar?",
@@ -242,10 +382,11 @@
 			  } 
 			});
 	}
-	function eliminarProducto(cod_pro){		
+	*/
+	function eliminar(cod_pro){		
 		swal({
 			  title: "Seguro de Eliminar?",
-			  text: "Eliminar el producto con Código : "+cod_pro,
+			  text: "Se eliminará el producto con código : "+cod_pro,
 			  icon: "warning",
 			  buttons: true,
 			  dangerMode: true,
@@ -255,9 +396,9 @@
 				  $.ajax({
 						url:'deleteProducto',
 						type:'POST',
-						data:{cod_pro:cod_pro},
+						data:{cod:cod_pro},
 						success: function(data){
-							listarProducto();
+							tablaProducto();
 							swal("Sistema","Registro eliminado...","success");
 						},
 						error: function (e) { 
@@ -267,14 +408,46 @@
 			  }
 			});
 	}
-		
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		listarProducto();
+		tablaProducto();
 	} );
 </script>
-       
+<script type="text/javascript">
+$('#id_registra').bootstrapValidator({
+    message: 'This value is not valid',
+    feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+    },
+    fields: {
+    	"nom_pro":{
+            selector: "#nom_pro",
+            validators:{
+                notEmpty: {
+                     message: 'El nombre es obligatorio'
+                },
+                stringLength: {
+                    min: 3,
+                    max: 10,
+                    message: 'El nombre es de 3 a 10 caracteres'
+                },
+            }
+        },
+        "pre_pro":{
+        	 selector: "#pre_pro",
+             validators:{
+            	 notEmpty: {
+                     message: 'El precio es obligatorio'
+                }
+             }
+        }
+      
+    }   
+});
+</script>
 </body>
 
 </html>

@@ -6,6 +6,6 @@ import com.veterinaria.entity.Proveedor;
 
 public interface ProveedorService {
 		
-	public abstract List<Proveedor> listaProveedor();	
+	public List<Proveedor> listaProveedor();	
 	
 }

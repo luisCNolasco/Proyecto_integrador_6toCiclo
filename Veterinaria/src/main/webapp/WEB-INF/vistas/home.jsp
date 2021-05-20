@@ -90,12 +90,8 @@
       </nav>
          
      
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
-          <div class="col-md-11">
-          <div class="m-4" style="height:550px;">
+      <div>
 		<iframe name="miFrame" style="height:100%;width:100%; border:none;">
-			
 		</iframe>
 		
        <!--  <h3>BCP</h3>
@@ -117,10 +113,7 @@
 		            </li>
 		        </c:forEach>
 		    </ul> -->
-          </div>
-          </div>
-        </div>
-      </div>
+	 </div>
 
 		
       

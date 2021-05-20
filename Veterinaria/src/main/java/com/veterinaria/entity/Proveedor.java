@@ -1,11 +1,16 @@
 package com.veterinaria.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_proveedor")
@@ -33,6 +38,10 @@ public class Proveedor {
 	
 	@Column(name="dir_prov")
 	private String dir_prov;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "proveedor")
+	private List<Producto> productos;
 
 	public int getCod_prov() {
 		return cod_prov;
@@ -88,6 +97,14 @@ public class Proveedor {
 
 	public void setDir_prov(String dir_prov) {
 		this.dir_prov = dir_prov;
+	}
+
+	public List<Producto> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
 	
 }
