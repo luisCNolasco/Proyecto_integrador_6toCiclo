@@ -245,7 +245,7 @@ function modalServicio(){
 				    	}
 					});
 			  }
-			});
+			}); 
 	}
 	
 </script>
