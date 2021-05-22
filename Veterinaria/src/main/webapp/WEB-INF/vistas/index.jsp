@@ -56,7 +56,7 @@
 	        	<li class="nav-item active"><a href="/" class="nav-link">Inicio</a></li>
 	          <li class="nav-item"><a href="galeria.html" class="nav-link">Galería</a></li>
 	          <li class="nav-item"><a href="crud_mascota.html" class="nav-link">Mis Mascotas</a></li>
-	          <li class="nav-item"><a href="crud_producto.html" class="nav-link">Productos</a></li>
+	          <li class="nav-item"><a href="verCrudProducto" class="nav-link">Productos</a></li>
 	          <li class="nav-item"><a href="crud_servicio.html" class="nav-link">Servicios</a></li>
 	        </ul>
 	      </div>
