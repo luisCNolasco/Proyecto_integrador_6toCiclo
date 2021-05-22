@@ -108,7 +108,7 @@
 						<div class="col-md-2">
 							<div class="form-group">
 								<label>Marca</label><br>
-								<select class="form-control" id="id_marca" name="marca" >
+								<select class="form-control" id="marca" name="marca" >
 									 <option value="-1" >[SELECCIONE]</option>											
 								</select>
 							</div>
@@ -116,7 +116,7 @@
 						<div class="col-md-2">
 							<div class="form-group">
 								<label>Proveedor</label><br>
-								<select class="form-control" id="id_proveedor" name="proveedor" >
+								<select class="form-control" id="proveedor" name="proveedor" >
 									 <option value="-1" >[SELECCIONE]</option>											
 								</select>
 							</div>
@@ -212,8 +212,8 @@ function tablaProducto(){
 											  "<td>"+item.nom_pro+"</td>"+
 											  "<td>"+item.pre_pro+"</td>"+
 											  "<td>"+item.stock_pro+"</td>"+
-											  "<td>"+item.marca.cod_mar+"</td>"+
-											  "<td>"+item.proveedor.cod_prov+"</td>"+
+											  "<td>"+item.marca.nom_mar+"</td>"+
+											  "<td>"+item.proveedor.nom_prov+"</td>"+
 											  "<td>"+item.desc_sim_pro+"</td>"+
 											  "<td>"+item.desc_html_pro+"</td>"+
 											  "<td>"+item.foto1+"</td>"+
@@ -229,14 +229,14 @@ function tablaProducto(){
 
 	$.getJSON("cargaMarca", {}, function(data) {
 		$.each(data, function(index, item) {
-			$("#id_marca").append("<option value='"+item.cod_mar+"'>"+
+			$("#marca").append("<option value='"+item.cod_mar+"'>"+
 					 item.nom_mar+"</option>");
 			});
 		});
 
 	$.getJSON("cargaProveedor", {}, function(data) {
 		$.each(data, function(index, item) {
-			$("#id_proveedor").append("<option value='"+item.cod_prov+"'>"+
+			$("#proveedor").append("<option value='"+item.cod_prov+"'>"+
 					 item.nom_prov+"</option>");
 			});
 		});
@@ -262,8 +262,8 @@ function tablaProducto(){
 	  	        formData.append("nom_pro", $("#nom_pro").val());
 	  	        formData.append("pre_pro", $("#pre_pro").val());
 	  	        formData.append("stock_pro", $("#stock_pro").val());
-	  	        formData.append("marca", $("#id_marca").val());
-	  	     	formData.append("proveedor", $("#id_proveedor").val());
+	  	        formData.append("marca", $("#marca").val());
+	  	     	formData.append("proveedor", $("#proveedor").val());
 	  	     	formData.append("desc_sim_pro", $("#desc_sim_pro").val());
 	  	        formData.append("desc_html_pro", $("#desc_html_pro").val());
 
@@ -295,8 +295,8 @@ function tablaProducto(){
 					        processData : false,
 					        cache:false,
 			   				success:function(data){
-			   					console.log(data);
-			   					if(data==1){
+			   					//console.log(data);
+			   					if(data != null){
 									swal("Registro Guardado correctamente...","","success");
 									tablaProducto();
 									$("#exampleModal").modal("hide");
