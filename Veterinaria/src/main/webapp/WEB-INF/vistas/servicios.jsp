@@ -222,6 +222,32 @@ function modalServicio(){
 			})
 	}	
 	
+	function eliminar(cod_ser){		
+		swal({
+			  title: "Seguro de Eliminar?",
+			  text: "Se eliminará el servicio con código : "+cod_ser,
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				  $.ajax({
+						url:'eliminaServicio',
+						type:'POST',
+						data:{cod:cod_ser},
+						success: function(data){
+							tablaServicio();
+							swal("Sistema","Registro eliminado...","success");
+						},
+						error: function (e) { 
+							swal("Sistema", "Disculpe, existió un problema "+e, "error");
+				    	}
+					});
+			  }
+			});
+	}
+	
 </script>
 
 <script type="text/javascript">

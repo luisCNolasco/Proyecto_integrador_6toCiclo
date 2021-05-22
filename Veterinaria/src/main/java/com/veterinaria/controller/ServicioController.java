@@ -49,7 +49,11 @@ public class ServicioController {
 			servicioService.insertaServicio(serv);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			List<Servicios> lista = servicioService.listaServicio();
+			salida.put("lista", lista);
 		}
+		
 		return salida;
 		
 		
