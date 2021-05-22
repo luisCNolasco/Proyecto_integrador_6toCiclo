@@ -71,8 +71,8 @@ public class ProductoController {
 			@RequestParam("nom_pro")String nom_pro,
 			@RequestParam("pre_pro")String pre_pro,
 			@RequestParam("stock_pro")String stock_pro,
-			@RequestParam("marca")int marca,
-			@RequestParam("proveedor")int proveedor,
+			@RequestParam("marca") Marca marca,
+			@RequestParam("proveedor") Proveedor proveedor,
 			@RequestParam("desc_sim_pro")String desc_sim_pro,
 			@RequestParam("desc_html_pro")String desc_html_pro,
 			@RequestParam("foto1") MultipartFile foto1,
@@ -81,14 +81,12 @@ public class ProductoController {
 	{
 		try {
 			Producto pro = new Producto();
-			Marca mar = new Marca();
-			Proveedor prove = new Proveedor();
 			
 			pro.setNom_pro(nom_pro);
-			pro.setNom_pro(pre_pro);
-			pro.setNom_pro(stock_pro);
-			mar.setCod_mar(marca);
-			prove.setCod_prov(proveedor);
+			pro.setPre_pro(pre_pro);
+			pro.setStock_pro(stock_pro);
+			pro.setMarca(marca);
+			pro.setProveedor(proveedor);
 			pro.setDesc_sim_pro(desc_sim_pro);
 			pro.setDesc_html_pro(desc_html_pro);
 			pro.setFoto1(foto1.getBytes());
