@@ -6,21 +6,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
+
     <link rel="stylesheet" href="css/animate.css">
-    
+
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
 
+
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sam.css">
-    <link rel="stylesheet" href="css/bootstrapValidator.min.css">
-    
+    <link rel="stylesheet" href="css/bootstrapValidator.css">
+
     <style>
     .has-error .help-block {
 	  color: red;
@@ -28,7 +33,7 @@
 	  font-size: large;
 	}
     </style>
-    
+
   </head>
   <body>
 
@@ -61,7 +66,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-	        	
+
 	          <li class="nav-item"><a href="galeria.html" class="nav-link">Galería</a></li>
 	          <li class="nav-item"><a href="crud_mascota.html" class="nav-link">Mis Mascotas</a></li>
 	          <li class="nav-item"><a href="crud_producto.html" class="nav-link">Productos</a></li>
@@ -80,7 +85,7 @@
       <a  class="nav-link active" data-toggle="tab" href="#login">INICIAR SESIÓN</a>
     </li>
     <li class="nav-item">
-      <a id="sam-signup-tab" class="nav-link" data-toggle="tab" href="#signup">REGISTRARSE</a>
+      <a id="sam-signup-tab" class="nav-link" data-toggle="tab" href="#registrar">REGISTRARSE</a>
     </li>
   </ul>
 
@@ -117,7 +122,7 @@
 		</form>
    </div>
     <!-- CONTENIDO TAB 2 -->
-     <div id="signup" class="container tab-pane fade sam-tab-signup"><br>
+     <div id="registrar" class="container tab-pane fade sam-tab-signup"><br>
       <form action="" method="POST" id="contactForm" name="contactForm" class="contactForm">
 		<div class="row">
 			<div class="col-md-6">
@@ -174,19 +179,20 @@
 
 
   <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-1.4.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.easing.1.3.js"></script>
   <script src="js/jquery.waypoints.min.js"></script>
   <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>  
+  <script src="js/jquery.animateNumber.min.js"></script>
   <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/scrollax.min.js"></script> 
   <script src="js/main.js"></script> 
   <script src="js/sam.js"></script>     
-  <script src="js/bootstrapValidator.min.js"></script>
+  <script src="js/bootstrapValidator.js"></script>
 
 
 <script type="text/javascript">
@@ -225,6 +231,6 @@ $(document).ready(function() {
 });
 </script>
 
-    
+
   </body>
 </html>

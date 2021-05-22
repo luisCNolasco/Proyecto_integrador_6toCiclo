@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="tb_usuario")
 public class Usuario {
@@ -33,10 +35,12 @@ public class Usuario {
     @Column(name="correo_usu")
 	private String correo_usu;
     
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     @ManyToOne
 	@JoinColumn(name="cod_dis")
 	private Distrito distrito;
     
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     @ManyToOne
 	@JoinColumn(name="cod_tip_usu")
 	private TipoUsuario tipousuario;
