@@ -26,6 +26,11 @@ public class UsuarioServiceImp implements UsuarioService {
 		return repository.traerInterfazDeUsuario(cod_tip_usu);
 	}
 
+	@Override
+	public void registrarUsuario(Usuario usuario) {
+		 repository.save(usuario);
+	}
+
 	/*@Override
 	public List<TipoUsuario> traerTipoDeUsuario(int cod_Usu) {
 		return repository.traerTipoDeUsuario(cod_Usu);

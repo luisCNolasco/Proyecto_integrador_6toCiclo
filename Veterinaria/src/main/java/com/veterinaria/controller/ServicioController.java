@@ -42,15 +42,14 @@ public class ServicioController {
 	
 	@RequestMapping("/registraServicio")  
 	@ResponseBody
-	public Map<String, Object> insertaServicio(Servicios serv) {
-		Map<String, Object> salida = new HashMap<>();
+	public String insertaServicio(Servicios serv) {	
 		serv.setFec_ser(new Date());
 		try {
 			servicioService.insertaServicio(serv);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return salida;
+		return "servicio";
 		
 		
 	}
@@ -64,7 +63,7 @@ public class ServicioController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return salida;
+		return salida; 
 		
 		
 	}

@@ -11,5 +11,6 @@ public interface UsuarioService {
 	
 	public abstract List<Interfaz> traerInterfazDeUsuario(int cod_tip_usu);
 
+	public abstract void registrarUsuario(Usuario usuario);
 	//public abstract List<TipoUsuario> traerTipoDeUsuario(int cod_Usu);
 }
