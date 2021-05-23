@@ -68,6 +68,7 @@ public class ProductoController {
 	@PostMapping(value = "/saveProducto", consumes = "multipart/form-data")
 	@ResponseBody
 	public String registra(
+			@RequestParam("cod_pro")int cod_pro,
 			@RequestParam("nom_pro")String nom_pro,
 			@RequestParam("pre_pro")String pre_pro,
 			@RequestParam("stock_pro")String stock_pro,
@@ -82,6 +83,7 @@ public class ProductoController {
 		try {
 			Producto pro = new Producto();
 			
+			pro.setCod_pro(cod_pro);
 			pro.setNom_pro(nom_pro);
 			pro.setPre_pro(pre_pro);
 			pro.setStock_pro(stock_pro);
@@ -105,25 +107,5 @@ public class ProductoController {
 	public String elimina(Integer cod, HttpSession session) {
 		productoService.eliminaProducto(cod);
 		return "productos";
-	}
-	
-	/*@RequestMapping("/saveProducto")
-	public String saveProducto(Producto pro, HttpSession session) {
-		try {
-			Producto producto = productoService.insertaProducto(pro);
-			if (producto != null) {
-				session.setAttribute("mensaje", "¡Se registró correctamente!");
-			}else {
-				session.setAttribute("mensaje", "¡Error al registrar!");
-			}
-		} catch (Exception e) {
-			session.setAttribute("mensaje", "¡Error al registrar!");
-			e.printStackTrace();
-		}
-		return "productos";
-	}*/
-	
-	
-	
-	
+	}		
 }

@@ -66,13 +66,14 @@
 		</div>
 	</div>
 	
-
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="id_mensaje" aria-hidden="true">
+	<!--  NUEVO -->
+	
+	<div class="modal fade" id="registroModal" tabindex="-1" role="dialog" aria-labelledby="id_mensaje" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	    
 	      <div class="modal-header">
-	        <h3 class="modal-title" id="id_mensaje">Registra un producto</h3>
+	        <h3 class="modal-title" id="id_mensaje"></h3>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -94,13 +95,13 @@
 						<div class="col-md-2">
 							<div class="form-group">
 								<label>Precio</label>
-								<input type="number" class="form-control" id="pre_pro" name="pre_pro" placeholder="Ingrese su S/0.00">
+								<input type="number" class="form-control" id="pre_pro" name="pre_pro" placeholder="Ingrese S/0.00">
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label>Stock</label>
-								<input type="number" class="form-control" id="stock_pro" name="stock_pro" placeholder="Ingrese su Stock">
+								<input type="number" class="form-control" id="stock_pro" name="stock_pro" placeholder="Ingrese Stock">
 							</div>
 						</div>		
 					</div>
@@ -109,7 +110,7 @@
 							<div class="form-group">
 								<label>Marca</label><br>
 								<select class="form-control" id="marca" name="marca" >
-									 <option value="-1" >[SELECCIONE]</option>											
+									 <option selected disabled value="-1" >[SELECCIONE]</option>											
 								</select>
 							</div>
 						</div>
@@ -117,7 +118,7 @@
 							<div class="form-group">
 								<label>Proveedor</label><br>
 								<select class="form-control" id="proveedor" name="proveedor" >
-									 <option value="-1" >[SELECCIONE]</option>											
+									 <option selected disabled value="-1" >[SELECCIONE]</option>											
 								</select>
 							</div>
 						</div>
@@ -147,6 +148,9 @@
 								<label>Elegir imagen 1</label>
 								<input type="file" class="form-control" id="id_foto1" name="foto1">
 							</div>
+							<div class="col-lg-2">								
+								<img id="id_preview1" width="210" height="230">
+							</div>
 						</div>
 					</div>	
 						
@@ -154,7 +158,10 @@
 					   <div class="col-md-5">
 						    <div class="form-group">
 								<label>Elegir imagen 2</label>
-								<input type="file" class="form-control" id="id_foto2" name="foto2">
+								<input type="file" class="form-control" id="id_foto2" name="foto2">								
+							</div>
+							<div class="col-lg-2">								
+								<img id="id_preview2" width="210" height="230">
 							</div>
 						</div>
 					</div>
@@ -164,6 +171,9 @@
 						    <div class="form-group">
 								<label>Elegir imagen 3</label>
 								<input type="file" class="form-control" id="id_foto3" name="foto3">
+							</div>
+							<div class="col-lg-2">								
+								<img id="id_preview3" width="210" height="230">
 							</div>
 						</div>
 					</div>
@@ -182,7 +192,52 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 	   $('#id_table').DataTable();
-	} );
+	} );	
+
+    /* Registro*/
+    
+    setTimeout(function() {
+	    $("#id_preview1").fadeOut("fast"); }, 0);
+	
+	$("#id_foto1").change(function(event){
+		var src = URL.createObjectURL(event.target.files[0]);
+		if(src != null){
+		    setTimeout(function(){
+		      $("#id_preview1").attr("src", src).fadeIn("slow"); }, 1000);
+		    
+		    setTimeout(function() {
+		      $("#id_preview1").fadeOut("slow"); }, 10000);
+		}
+	});
+
+	setTimeout(function() {
+	    $("#id_preview2").fadeOut("fast"); }, 0);
+	
+	$("#id_foto2").change(function(event){
+		var src = URL.createObjectURL(event.target.files[0]);
+		if(src != null){
+		    setTimeout(function(){
+		      $("#id_preview2").attr("src", src).fadeIn("slow"); }, 1000);
+		    
+		    setTimeout(function() {
+		      $("#id_preview2").fadeOut("slow"); }, 10000);
+		}
+	});
+
+	setTimeout(function() {
+	    $("#id_preview3").fadeOut("fast"); }, 0);
+    
+	$("#id_foto3").change(function(event){
+		var src = URL.createObjectURL(event.target.files[0]);
+		if(src != null){
+		    setTimeout(function(){
+		      $("#id_preview3").attr("src", src).fadeIn("slow"); }, 1000);
+		    
+		    setTimeout(function() {
+		      $("#id_preview3").fadeOut("slow"); }, 10000);
+		}		
+	});	
+
 </script>								
 								
 <script type="text/javascript">
@@ -191,23 +246,22 @@ function tablaProducto(){
 	$("#id_table tbody").empty(); 
 	$.getJSON("cargaProducto",{}, function (data){
 		$.each(data, function(index, item){
-			var editar='<button type="button" class="btn btn-success" onclick="editar('+item.cod_pro+","+
+			var editar='<button type="button" class="btn btn-success" onclick="updateProducto('+item.cod_pro+","+
 																					"'"+item.nom_pro+"',"+
 																					"'"+item.pre_pro+"',"+
-																					"'"+item.stock_pro+"',"+																									
+																					"'"+item.stock_pro+"',"+
 																					"'"+item.marca.cod_mar+"',"+
 																					"'"+item.proveedor.cod_prov+"',"+
 																					"'"+item.desc_sim_pro+"',"+
 																					"'"+item.desc_html_pro+"',"+
 																					"'"+item.foto1+"',"+
 																					"'"+item.foto2+"',"+
-																					   +item.foto3+')">Editar</button>';
+																					"'"+item.foto3+"'"+')">Editar</button>';
 																																										    
 																								
 																												    
 		    var eliminar='<button type="button" class="btn btn-danger" onclick="eliminar('+item.cod_pro+')">Eliminar</button>';
-																									
-																								    
+
 			$("#id_table").append("<tr><td>"+item.cod_pro+"</td>"+
 											  "<td>"+item.nom_pro+"</td>"+
 											  "<td>"+item.pre_pro+"</td>"+
@@ -216,9 +270,9 @@ function tablaProducto(){
 											  "<td>"+item.proveedor.nom_prov+"</td>"+
 											  "<td>"+item.desc_sim_pro+"</td>"+
 											  "<td>"+item.desc_html_pro+"</td>"+
-											  "<td>"+item.foto1+"</td>"+
-											  "<td>"+item.foto2+"</td>"+
-											  "<td>"+item.foto3+"</td>"+
+											  "<td> <img src='data:image/png;base64,"+item.foto1+"' width='150px'/> </td>"+
+											  "<td> <img src='data:image/png;base64,"+item.foto2+"' width='150px'/> </td>"+
+											  "<td> <img src='data:image/png;base64,"+item.foto3+"' width='150px'/> </td>"+
 											  "<td>"+editar+"</td>"+
 											  "<td>"+eliminar+"</td>");
 		});
@@ -240,25 +294,25 @@ function tablaProducto(){
 					 item.nom_prov+"</option>");
 			});
 		});
-	
-	 function modalProducto(){
+		
+	function modalProducto(){
 		$('#id_registra').trigger("reset");
 		$("#id_codigo").val(0);
 		$("#id_mensaje").text("Registrar Producto");
-		$('#exampleModal').modal({backdrop: 'static', keyboard: false,show:true});  
+		$('#registroModal').modal({backdrop: 'static', keyboard: false,show:true});  
 	}
 
-	 function postValidarRegistra() {
+	function postValidarRegistra() {
 			var validator = $('#id_registra').data('bootstrapValidator');
 	        validator.validate();
 	        if (validator.isValid()) {
 	        	saveProducto();
 	        }
 		}
-		function saveProducto(){
+	function saveProducto(){
 
 			  var formData = new FormData();
-
+			  	formData.append("cod_pro", $("#id_codigo").val());	
 	  	        formData.append("nom_pro", $("#nom_pro").val());
 	  	        formData.append("pre_pro", $("#pre_pro").val());
 	  	        formData.append("stock_pro", $("#stock_pro").val());
@@ -299,7 +353,7 @@ function tablaProducto(){
 			   					if(data != null){
 									swal("Registro Guardado correctamente...","","success");
 									tablaProducto();
-									$("#exampleModal").modal("hide");
+									$("#registroModal").modal("hide");
 									$('#id_registra').data('bootstrapValidator').resetForm(true);
 				   			    	$('#id_registra').trigger("reset");
 								}
@@ -309,80 +363,28 @@ function tablaProducto(){
 			   				error: function (jqXhr) { // error callback 
 			   					swal("Error ...","","error");
 			   		    	}
-			   			})
+			   			});
 				  } 
-				})
-		}		
+				});
+		}	
 
-		/* function postValidarRegistra() {
-			var validator = $('#id_registra').data('bootstrapValidator');
-	        validator.validate();
-	        if (validator.isValid()) {
-	        	  var formData = new FormData();
-	  	        var file = $('#id_reg_foto')[0].files[0];
-	  	        
-	  	        formData.append("foto", file);
-	  	        formData.append("nombre", $("#id_reg_nombre").val());
-	  	        formData.append("dni", $("#id_reg_dni").val());
-	  	        formData.append("correo", $("#id_reg_correo").val());
-	  	        formData.append("fechaNacimiento", $("#id_reg_fecha").val());
+	function updateProducto(cod_pro,nom_pro,pre_pro,stock_pro, marca, proveedor, desc_sim_pro, desc_html_pro, foto1, foto2, foto3){	
+		$("#id_codigo").val(cod_pro);		
+		$("#nom_pro").val(nom_pro);
+		$("#pre_pro").val(pre_pro);
+		$("#stock_pro").val(stock_pro);
+		$("#marca").val(marca);
+		$("#proveedor").val(proveedor);
+		$("#desc_sim_pro").val(desc_sim_pro);
+		$("#desc_html_pro").val(desc_html_pro);
+		$("#foto1").val(foto1);
+		$("#foto2").val(foto2);
+		$("#foto3").val(foto3);
 
-	  	        
-	  	        $.ajax({
-	  	          type: "POST",
-	  	          url: "saveProducto", 
-	  	          data: formData,
-	  	          enctype : 'multipart/form-data',
-	  	          contentType : false,
-	  	          processData : false,
-	  	          cache:false,
-	  	          success: function(data){
-	  	        	  tablaProducto();
-	  	        	  $('#id_div_modal_registra').modal("hide");
-	  	        	  mostrarMensaje(data.mensaje);
-	  	        	  limpiarFormulario();
-	  	        	  validator.resetForm();
-	  	          },
-	  	          error: function(){
-	  	        	  mostrarMensaje(MSG_ERROR);
-	  	          }
-	  	        });
-	  	        
-	  	    }
-	  	});
-	 function registrarProducto(){
-		var formData = new FormData($("#id_registra")[0]);
-		swal({
-			  title: "Seguro de Guardar?",
-			  text: "",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willSave) => {
-			  if (willSave) {
-				  $.ajax({
-						url:  'saveProducto',
-						type: 'POST',
-						dataType: "html",
-			            data: formData,
-			            cache: false,
-			            contentType: false,
-			     		processData: false,
-						success:function(data){
-							listarProducto();
-						  	$('#id_registra').data('bootstrapValidator').resetForm(true);
-					    	swal("Sistema","Registro Guardado...","success");
-							$('#exampleModal').modal("hide");
-						},
-						error: function (e) { 
-							swal("Sistema", "Disculpe, existió un problema", "error");
-				    	}
-					})
-			  } 
-			});
-	}
-	*/
+		$("#id_mensaje").text("Actualizar Producto");
+		$('#registroModal').modal({backdrop: 'static',keyboard:false,show:true});
+		}	
+	
 	function eliminar(cod_pro){		
 		swal({
 			  title: "Seguro de Eliminar?",
@@ -443,8 +445,71 @@ $('#id_registra').bootstrapValidator({
                      message: 'El precio es obligatorio'
                 }
              }
-        }
-      
+        },
+        "stock_pro":{
+       	 selector: "#stock_pro",
+            validators:{
+           	 notEmpty: {
+                    message: 'El stock es obligatorio'
+               }
+            }
+       },
+       "marca":{
+        	 selector: "#marca",
+             validators:{
+            	 notEmpty: {
+                     message: 'Seleccionar la marca es obligatorio'
+                }
+             }
+        },
+       "proveedor":{
+         	 selector: "#proveedor",
+              validators:{
+            	  notEmpty: {
+                      message: 'Seleccionar el proveedor es obligatorio'
+                 }
+              }
+         },
+       "desc_sim_pro":{
+      	 selector: "#desc_sim_pro",
+           validators:{
+          	 notEmpty: {
+                   message: 'La descripción simple es obligatorio'
+              }
+           }
+      },
+      "desc_html_pro":{
+     	 selector: "#desc_html_pro",
+          validators:{
+         	 notEmpty: {
+                  message: 'El descripción HTML es obligatorio'
+             }
+          }
+     },
+      "foto1":{
+     	 selector: "#id_foto1",
+          validators:{
+         	 notEmpty: {
+                  message: 'Seleccionar foto 1 es obligatorio'
+             }
+          }
+     },
+      "foto2":{
+     	 selector: "#id_foto2",
+          validators:{
+         	 notEmpty: {
+                  message: 'Seleccionar foto 2 es obligatorio'
+             }
+          }
+     },
+      "foto3":{
+     	 selector: "#id_foto3",
+          validators:{
+         	 notEmpty: {
+                  message: 'Seleccionar foto 3 es obligatorio'
+             }
+          }
+     }
     }   
 });
 </script>
