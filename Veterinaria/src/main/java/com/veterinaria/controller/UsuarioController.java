@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import com.veterinaria.entity.Distrito;
 import com.veterinaria.entity.Interfaz;
+import com.veterinaria.entity.Producto;
 import com.veterinaria.entity.TipoUsuario;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.UsuarioService;

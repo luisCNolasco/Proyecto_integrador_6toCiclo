@@ -2,6 +2,7 @@ package com.veterinaria.repository;
 
 import java.util.List;
 import com.veterinaria.entity.Interfaz;
+import com.veterinaria.entity.Producto;
 import com.veterinaria.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,5 +31,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
     @Query("select i from Interfaz i where i.cod_tip_usu = :cod_tip_usu")
 	public abstract List<Interfaz> traerInterfazDeUsuario(@Param("cod_tip_usu") int cod_tip_usu);
     
+    
+    @Query("Select u from Usuario u where nom_usu like :fil")
+	public abstract List<Usuario> buscarUsuarioPorNombre(@Param("fil") String filtro);
     
 }

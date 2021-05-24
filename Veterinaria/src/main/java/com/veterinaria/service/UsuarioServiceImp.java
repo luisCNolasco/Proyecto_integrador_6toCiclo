@@ -31,6 +31,24 @@ public class UsuarioServiceImp implements UsuarioService {
 		 repository.save(usuario);
 	}
 
+	@Override
+	public void eliminaUsuario(int cod) {
+		repository.deleteById(cod);
+		
+	}
+
+	@Override
+	public List<Usuario> buscaUsuarioPorNombre(String filtro) {
+		// TODO Auto-generated method stub
+		return repository.buscarUsuarioPorNombre(filtro);
+	}
+
+	@Override
+	public List<Usuario> listaUsuarios() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
+	}
+
 	/*@Override
 	public List<TipoUsuario> traerTipoDeUsuario(int cod_Usu) {
 		return repository.traerTipoDeUsuario(cod_Usu);
