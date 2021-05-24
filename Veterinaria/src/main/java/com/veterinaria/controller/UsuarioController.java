@@ -1,29 +1,21 @@
 package com.veterinaria.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.veterinaria.entity.Distrito;
 import com.veterinaria.entity.Interfaz;
-import com.veterinaria.entity.Marca;
-import com.veterinaria.entity.Producto;
-import com.veterinaria.entity.Proveedor;
 import com.veterinaria.entity.TipoUsuario;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -55,10 +47,38 @@ public class UsuarioController {
 		}
     }
     
-    @RequestMapping(value="/registrarUsuario",  method = RequestMethod.POST)
-    public String registraCliente(Usuario bean) {
-		service.registrarUsuario(bean);
-		return "redirect:login";
+    @PostMapping(value = "/saveUsuario",  consumes = "multipart/form-data")
+	@ResponseBody
+    public String registraCliente(
+    		@RequestParam("cod_usu") int cod_usu,
+			@RequestParam("nom_usu") String nom_usu,
+			@RequestParam("ape_usu") String ape_usu,
+			@RequestParam("dni_usu") String dni_usu,
+			@RequestParam("pass_usu") String pass_usu,
+			@RequestParam("correo_usu") String correo_usu,
+			@RequestParam("distrito") Distrito distrito,
+			@RequestParam("tipousuario") TipoUsuario tipousuario)	
+    
+	{
+    	try {
+    	 Usuario usuario = new Usuario();
+    	  
+    	 usuario.setCod_Usu(cod_usu);
+    	 usuario.setNom_usu(nom_usu);
+    	 usuario.setApe_usu(ape_usu);
+    	 usuario.setDni_usu(dni_usu);
+    	 usuario.setPass_usu(pass_usu);
+    	 usuario.setCorreo_usu(correo_usu);
+    	 usuario.setDistrito(distrito);
+    	 usuario.setTipousuario(tipousuario);
+    	 
+    	 service.registrarUsuario(usuario);
+			
+		} catch (Exception e) {
+		   e.printStackTrace();
+		}
+    	
+		return "login";
 	}
 
     @RequestMapping("/home")

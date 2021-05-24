@@ -35,12 +35,10 @@ public class Usuario {
     @Column(name="correo_usu")
 	private String correo_usu;
     
-    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     @ManyToOne
 	@JoinColumn(name="cod_dis")
 	private Distrito distrito;
     
-    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     @ManyToOne
 	@JoinColumn(name="cod_tip_usu")
 	private TipoUsuario tipousuario;
@@ -104,5 +102,5 @@ public class Usuario {
 	public void setTipousuario(TipoUsuario tipousuario) {
 		this.tipousuario = tipousuario;
 	}
-	
+		
 }
