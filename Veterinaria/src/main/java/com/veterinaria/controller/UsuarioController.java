@@ -67,7 +67,7 @@ public class UsuarioController {
     	try {
     	 Usuario usuario = new Usuario();
     	  
-    	 usuario.setCod_Usu(cod_usu);
+    	 usuario.setCod_usu(cod_usu);
     	 usuario.setNom_usu(nom_usu);
     	 usuario.setApe_usu(ape_usu);
     	 usuario.setDni_usu(dni_usu);
