@@ -137,7 +137,7 @@ function tablaServicio(){
 	$("#id_table tbody").empty(); 
 	$.getJSON("listaServicio",{}, function (data){
 		$.each(data, function(index, item){
-			var editar='<button type="button" class="btn btn-success" onclick="editar('+item.cod_ser+","+
+			var editar='<button type="button" class="btn btn-success" onclick="updateServicio('+item.cod_ser+","+
 																					"'"+item.nom_ser+"',"+
 																					"'"+item.pre_serv+"',"+
 																					"'"+item.desc_serv+"',"+																									
@@ -204,7 +204,7 @@ function modalServicio(){
 				        cache:false,
 		   				success:function(data){
 		   					console.log(data);
-		   					if(data==1){
+		   					if(data!=null){
 								swal("Registro Guardado correctamente...","","success");
 								tablaServicio();
 								$("#exampleModal").modal("hide");
@@ -221,6 +221,19 @@ function modalServicio(){
 			  } 
 			})
 	}	
+	
+	function updateServicio(cod_ser,nom_ser,pre_ser,desc_ser, horio_ser){	
+		$("#id_codigo").val(cod_ser);		
+		$("#nom_ser").val(nom_ser);
+		$("#pre_ser").val(pre_ser);
+		$("#desc_ser").val(desc_ser);
+		$("#horio_ser").val(horio_ser);
+
+		$("#id_mensaje").text("Actualizar Servicio");
+		$('#registroModal').modal({backdrop: 'static',keyboard:false,show:true});
+	
+	}	
+	
 	
 	function eliminar(cod_ser){		
 		swal({
@@ -265,28 +278,44 @@ $('#id_registra').bootstrapValidator({
         validating: 'glyphicon glyphicon-refresh'
     },
     fields: {
-    	"nom_pro":{
-            selector: "#nom_pro",
+    	"nom_ser":{
+            selector: "#nom_ser",
             validators:{
                 notEmpty: {
                      message: 'El nombre es obligatorio'
                 },
                 stringLength: {
-                    min: 3,
-                    max: 10,
-                    message: 'El nombre es de 3 a 10 caracteres'
+                    min: 5,
+                    max: 30,
+                    message: 'El nombre es de 5 a 30 caracteres'
                 },
             }
         },
-        "pre_pro":{
-        	 selector: "#pre_pro",
+        "pre_ser":{
+        	 selector: "#pre_ser",
              validators:{
             	 notEmpty: {
                      message: 'El precio es obligatorio'
                 }
              }
-        }
-      
+        },
+        "desc_ser":{
+       	 selector: "#desc_ser",
+            validators:{
+           	 notEmpty: {
+                    message: 'La descripción es obligatorio'
+               }
+            }
+       },
+       "horio_ser":{
+      	 selector: "#horio_ser",
+           validators:{
+          	 notEmpty: {
+                   message: 'El horario es obligatorio'
+              }
+           }
+      }
+        
     }   
 });
 </script>
