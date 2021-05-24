@@ -132,7 +132,7 @@
 
 
 <script type="text/javascript">
-function tablaServicio(){
+function tablaServicio(){ 
 	$("#id_table").DataTable().destroy();
 	$("#id_table tbody").empty(); 
 	$.getJSON("listaServicio",{}, function (data){

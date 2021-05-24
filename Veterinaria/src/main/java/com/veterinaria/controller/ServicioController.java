@@ -23,7 +23,7 @@ public class ServicioController {
 	private ServicioService servicioService;
 
 	@RequestMapping("/verServicio")
-	public String mostrar() {
+	public String mostrar() { 
 		return "servicio";
 	}
 	

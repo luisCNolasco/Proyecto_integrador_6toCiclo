@@ -64,7 +64,7 @@ public class UsuarioController {
 			@RequestParam("tipousuario") TipoUsuario tipousuario)	
     
 	{
-    	try {
+    	try { 
     	 Usuario usuario = new Usuario();
     	  
     	 usuario.setCod_usu(cod_usu);

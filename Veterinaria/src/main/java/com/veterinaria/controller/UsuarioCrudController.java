@@ -32,7 +32,7 @@ public class UsuarioCrudController {
 	}
     
     @RequestMapping("/verUsuario")
-	public String mostrar() {
+	public String mostrar() { 
 		return "usuarios";
 	}
     

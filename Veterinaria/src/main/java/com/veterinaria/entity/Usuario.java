@@ -23,7 +23,7 @@ public class Usuario {
     @Column(name="nom_usu")
 	private String nom_usu;
     
-    @Column(name="ape_usu")
+    @Column(name="ape_usu") 
 	private String ape_usu;
     
     @Column(name="dni_usu")
