@@ -1,9 +1,9 @@
 package com.veterinaria.controller;
 
 import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -56,14 +56,14 @@ public class ServicioController {
 	
 	@RequestMapping("/actualizaServicio")  
 	@ResponseBody
-	public Map<String, Object> actualizaServicio(Servicios serv) {
-		Map<String, Object> salida = new HashMap<>();
+	public String actualizaServicio(Servicios serv) {	
+		serv.setFec_ser(new Date());
 		try {
 			servicioService.insertaServicio(serv);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return salida; 
+		return "servicio";
 		
 		
 	}
