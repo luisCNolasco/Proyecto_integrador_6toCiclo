@@ -66,7 +66,7 @@
 	    <div class="modal-content">
 	    
 	      <div class="modal-header">
-	        <h3 class="modal-title" id="id_mensaje">Registra un Servicio</h3>
+	        <h3 class="modal-title" id="id_mensaje"></h3>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -139,9 +139,9 @@ function tablaServicio(){
 		$.each(data, function(index, item){
 			var editar='<button type="button" class="btn btn-success" onclick="updateServicio('+item.cod_ser+","+
 																					"'"+item.nom_ser+"',"+
-																					"'"+item.pre_serv+"',"+
-																					"'"+item.desc_serv+"',"+																									
-																					"'"+item.horio_serv+')">Editar</button>';
+																					"'"+item.pre_ser+"',"+
+																					"'"+item.desc_ser+"',"+																									
+																					"'"+item.horio_ser+"'"+')">Editar</button>';
 																																										    
 																								
 																												    
@@ -230,7 +230,7 @@ function modalServicio(){
 		$("#horio_ser").val(horio_ser);
 
 		$("#id_mensaje").text("Actualizar Servicio");
-		$('#registroModal').modal({backdrop: 'static',keyboard:false,show:true});
+		$('#exampleModal').modal({backdrop: 'static',keyboard:false,show:true});
 	
 	}	
 	

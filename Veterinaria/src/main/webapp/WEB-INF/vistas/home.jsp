@@ -51,8 +51,14 @@
           
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
+              <!-- Control de Tipo de Usuario --> 	
+              <c:forEach var="tipoUsuario" items="${sessionScope.objTipoUsuario}">
+              
+              <!-- Tipo de Usuario ==== ADMINISTRADOR --> 	              
+              <c:if test="${tipoUsuario.cod_tip_usu == 1}">
+              
               <c:forEach var="x" items="${sessionScope.objInterfaz}">
-              <c:choose>
+              <c:choose>         
               
               <c:when test="${x.cod_int == 1}">            
               <li class="nav-item"><a href="${x.url_int}" class="nav-link">Inicio</a></li>
@@ -83,6 +89,44 @@
               </c:when>
               
               </c:choose>
+	          </c:forEach>
+	         	
+              </c:if>
+              <!-- FIN Tipo de Usuario ==== ADMINISTRADOR -->
+              
+              <!-- Tipo de Usuario ==== EMPLEADO -->
+			  <c:if test="${tipoUsuario.cod_tip_usu == 2}">
+              
+              </c:if>
+			  <!-- FIN Tipo de Usuario ==== EMPLEADO -->
+			  
+			  <!-- Tipo de Usuario ==== CLIENTE -->
+			  <c:if test="${tipoUsuario.cod_tip_usu == 3}">
+             	
+              <c:forEach var="x" items="${sessionScope.objInterfaz}">
+              <c:choose>         
+              
+              <c:when test="${x.cod_int == 8}">            
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link">Inicio</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 9}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Productos</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 10}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Servicios</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 11}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Mascotas</a></li>
+              </c:when>
+              
+              </c:choose>
+	          </c:forEach>
+             	
+              </c:if>    	
+              <!-- FIN Tipo de Usuario ==== CLIENTE -->         
 	         </c:forEach>
             </ul>
           </div>
@@ -94,14 +138,14 @@
 		<iframe name="miFrame" style="height:100%;width:100%; border:none;">
 		</iframe>
 		
-       <!--  <h3>BCP</h3>
+         <!-- <h3>BCP</h3>
 		<h4>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</h4>                
 		<h4>DNI : ${sessionScope.objUsuario.dni_usu}</h4>
 		<h4>Interfaz 	</h4>
 			<ul>
 		        <c:forEach var="x" items="${sessionScope.objInterfaz}">
 		            <li>
-		                   ${x.url_int} 
+		                   ${x.cod_int} 
 		            </li>
 		        </c:forEach>
 		    </ul>
@@ -112,8 +156,8 @@
 		                   ${y.nom_tip_usu} 
 		            </li>
 		        </c:forEach>
-		    </ul> -->
-	 </div>
+		    </ul> 
+	 </div>-->
 
 		
       

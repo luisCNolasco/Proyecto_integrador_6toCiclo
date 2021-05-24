@@ -36,9 +36,12 @@ public class UsuarioController {
 			return "login";
 		}else {			
 			List<Interfaz> interfaz = service.traerInterfazDeUsuario(bean.getTipousuario().getCod_tip_usu());
+			List<TipoUsuario> tipoUsuario = service.traerTipoDeUsuario(bean.getTipousuario().getCod_tip_usu());
 			
 			session.setAttribute("objUsuario", bean);
 			session.setAttribute("objInterfaz", interfaz);
+			session.setAttribute("objTipoUsuario", tipoUsuario);
+			
 			for (Interfaz i : interfaz) {
 				System.out.println(i.getCod_int());	
 				System.out.println(i.getUrl_int());	

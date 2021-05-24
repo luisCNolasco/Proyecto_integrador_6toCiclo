@@ -2,6 +2,7 @@ package com.veterinaria.service;
 
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.entity.Interfaz;
+import com.veterinaria.entity.TipoUsuario;
 import com.veterinaria.repository.UsuarioRepository;
 
 import java.util.List;
@@ -53,5 +54,8 @@ public class UsuarioServiceImp implements UsuarioService {
 	public List<TipoUsuario> traerTipoDeUsuario(int cod_Usu) {
 		return repository.traerTipoDeUsuario(cod_Usu);
 	}*/
+	public List<TipoUsuario> traerTipoDeUsuario(int cod_tip_usu) {
+		return repository.traerTipoDeUsuario(cod_tip_usu);
+	}
     
 }
