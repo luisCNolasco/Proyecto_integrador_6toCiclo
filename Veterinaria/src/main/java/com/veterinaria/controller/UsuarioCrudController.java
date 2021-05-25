@@ -28,11 +28,11 @@ public class UsuarioCrudController {
 	public String elimina(int cod, HttpSession session) {
     	
 		service.eliminaUsuario(cod);
-		return "usuario";
+		return "usuarios";
 	}
     
     @RequestMapping("/verUsuario")
-	public String mostrar() {
+	public String mostrar() { 
 		return "usuarios";
 	}
     
@@ -79,7 +79,7 @@ public class UsuarioCrudController {
     	try {
     	 Usuario usuario = new Usuario();
     	  
-    	 usuario.setCod_Usu(cod_usu);
+    	 usuario.setCod_usu(cod_usu);
     	 usuario.setNom_usu(nom_usu);
     	 usuario.setApe_usu(ape_usu);
     	 usuario.setDni_usu(dni_usu);

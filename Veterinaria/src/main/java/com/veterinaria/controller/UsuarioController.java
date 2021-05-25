@@ -56,6 +56,7 @@ public class UsuarioController {
 			@RequestParam("distrito") Distrito distrito, @RequestParam("tipousuario") TipoUsuario tipousuario)
 
 	{
+<<<<<<< HEAD
 		try {
 			Usuario usuario = new Usuario();
 
@@ -70,6 +71,22 @@ public class UsuarioController {
 
 			service.registrarUsuario(usuario);
 
+=======
+    	try { 
+    	 Usuario usuario = new Usuario();
+    	  
+    	 usuario.setCod_usu(cod_usu);
+    	 usuario.setNom_usu(nom_usu);
+    	 usuario.setApe_usu(ape_usu);
+    	 usuario.setDni_usu(dni_usu);
+    	 usuario.setPass_usu(pass_usu);
+    	 usuario.setCorreo_usu(correo_usu);
+    	 usuario.setDistrito(distrito);
+    	 usuario.setTipousuario(tipousuario);
+    	 
+    	 service.registrarUsuario(usuario);
+			
+>>>>>>> 9f16db9cc1a57bf4192fb563175c7811c1d9092b
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

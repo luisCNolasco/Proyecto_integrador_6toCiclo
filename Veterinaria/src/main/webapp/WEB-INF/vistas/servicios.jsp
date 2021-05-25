@@ -132,7 +132,7 @@
 
 
 <script type="text/javascript">
-function tablaServicio(){
+function tablaServicio(){ 
 	$("#id_table").DataTable().destroy();
 	$("#id_table tbody").empty(); 
 	$.getJSON("listaServicio",{}, function (data){
@@ -179,7 +179,7 @@ function modalServicio(){
 	function registraServicio(){
 
 		  var formData = new FormData();
-
+		  	formData.append("cod_ser", $("#id_codigo").val());
   	        formData.append("nom_ser", $("#nom_ser").val());
   	        formData.append("pre_ser", $("#pre_ser").val());
   	        formData.append("desc_ser", $("#desc_ser").val());
@@ -237,7 +237,7 @@ function modalServicio(){
 	
 	function eliminar(cod_ser){		
 		swal({
-			  title: "Seguro de Eliminar?",
+			  title: "¿Seguro de eliminar?",
 			  text: "Se eliminará el servicio con código : "+cod_ser,
 			  icon: "warning",
 			  buttons: true,
@@ -258,7 +258,7 @@ function modalServicio(){
 				    	}
 					});
 			  }
-			}); 
+			});
 	}
 	
 </script>
@@ -286,9 +286,13 @@ $('#id_registra').bootstrapValidator({
                 },
                 stringLength: {
                     min: 5,
-                    max: 30,
-                    message: 'El nombre es de 5 a 30 caracteres'
+                    max: 50,
+                    message: 'El nombre es de 5 a 50 caracteres'
                 },
+                regexp: {
+					regexp: /^[a-zA-Z\s]+$/,
+					message: 'El nombre contiene solo letras'
+	            }
             }
         },
         "pre_ser":{
@@ -296,7 +300,11 @@ $('#id_registra').bootstrapValidator({
              validators:{
             	 notEmpty: {
                      message: 'El precio es obligatorio'
-                }
+                },
+                regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'El precio contiene solo digitos'
+	            }
              }
         },
         "desc_ser":{
@@ -304,7 +312,16 @@ $('#id_registra').bootstrapValidator({
             validators:{
            	 notEmpty: {
                     message: 'La descripción es obligatorio'
-               }
+               },
+               stringLength: {
+                   min: 5,
+                   max: 150,
+                   message: 'La descripción es de 5 a 150 caracteres'
+               },
+               regexp: {
+					regexp: /^[a-zA-Z\s]+$/,
+					message: 'La descripción contiene solo letras'
+	            }
             }
        },
        "horio_ser":{

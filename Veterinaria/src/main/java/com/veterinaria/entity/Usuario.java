@@ -18,12 +18,12 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_usu")
-    private int cod_Usu;
+    private int cod_usu;
     
     @Column(name="nom_usu")
 	private String nom_usu;
     
-    @Column(name="ape_usu")
+    @Column(name="ape_usu") 
 	private String ape_usu;
     
     @Column(name="dni_usu")
@@ -54,11 +54,12 @@ public class Usuario {
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
 	}
-	public int getCod_Usu() {
-		return cod_Usu;
+	
+	public int getCod_usu() {
+		return cod_usu;
 	}
-	public void setCod_Usu(int cod_Usu) {
-		this.cod_Usu = cod_Usu;
+	public void setCod_usu(int cod_usu) {
+		this.cod_usu = cod_usu;
 	}
 	public String getNom_usu() {
 		return nom_usu;

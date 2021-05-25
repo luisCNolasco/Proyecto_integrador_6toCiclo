@@ -23,7 +23,7 @@ public class ServicioController {
 	private ServicioService servicioService;
 
 	@RequestMapping("/verServicio")
-	public String mostrar() {
+	public String mostrar() { 
 		return "servicio";
 	}
 	
@@ -51,23 +51,8 @@ public class ServicioController {
 		}
 		return "servicio";
 		
-		
 	}
 	
-	@RequestMapping("/actualizaServicio")  
-	@ResponseBody
-	public String actualizaServicio(Servicios serv) {	
-		serv.setFec_ser(new Date());
-		try {
-			servicioService.insertaServicio(serv);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "servicio";
-		
-		
-	}
-
 	@RequestMapping("/eliminaServicio")
 	public String elimina(Integer cod, HttpSession session) {
 		servicioService.eliminaServicio(cod);
