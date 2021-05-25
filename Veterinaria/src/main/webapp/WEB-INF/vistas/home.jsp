@@ -138,26 +138,7 @@
 		<iframe name="miFrame" style="height:100%;width:100%; border:none;">
 		</iframe>
 		
-         <!-- <h3>BCP</h3>
-		<h4>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</h4>                
-		<h4>DNI : ${sessionScope.objUsuario.dni_usu}</h4>
-		<h4>Interfaz 	</h4>
-			<ul>
-		        <c:forEach var="x" items="${sessionScope.objInterfaz}">
-		            <li>
-		                   ${x.cod_int} 
-		            </li>
-		        </c:forEach>
-		    </ul>
-		 <h4>Tipo de Usuario 	</h4>
-			<ul>
-		        <c:forEach var="y" items="${sessionScope.objTipoUsuario}">
-		            <li>
-		                   ${y.nom_tip_usu} 
-		            </li>
-		        </c:forEach>
-		    </ul> 
-	 </div>-->
+       
 
 		
       
