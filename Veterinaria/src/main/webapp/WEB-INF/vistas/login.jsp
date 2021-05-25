@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Iniciar Sesión</title>
+    <title>Iniciar SesiÃ³n</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="images/favicon.png">
@@ -46,7 +46,7 @@
 						<div class="social-media">
 			    		<p id="sam-login" class="mb-0 d-flex align-items-center text-light sam-login">
                 <a href="/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
-                <span>Iniciar Sesión</span>
+                <span>Iniciar SesiÃ³n</span>
 			    		</p>
 		        </div>
 					</div>
@@ -63,7 +63,7 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
 
-	          <li class="nav-item"><a href="galeria.html" class="nav-link">Galería</a></li>
+	          <li class="nav-item"><a href="galeria.html" class="nav-link">GalerÃ­a</a></li>
 	          <li class="nav-item"><a href="crud_mascota.html" class="nav-link">Mis Mascotas</a></li>
 	          <li class="nav-item"><a href="crud_producto.html" class="nav-link">Productos</a></li>
 	          <li class="nav-item"><a href="crud_servicio.html" class="nav-link">Servicios</a></li>
@@ -77,8 +77,8 @@
 	<div class="container sam-lisu">
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li id="sam-login-tab" class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#login">INICIAR SESIÓN</a>
+    <li id="sam-login-tab" class="nav-item active">
+      <a class="nav-link" data-toggle="tab" href="#login">INICIAR SESIÃ“N</a>
     </li>
     <li>
       <a class="nav-link" data-toggle="tab" href="#registrar" onclick="modalUsuario()">REGISTRARSE</a>
@@ -106,7 +106,7 @@
 				<div class="col-md-12">
 					<div class="form-group w-50">
 						<label class="label sam-form-label" for="form-passwordLogin">Clave</label>
-						<input type="password" class="form-control sam-form-input" name="pass_usu" placeholder="Ingrese su Contraseña">
+						<input type="password" class="form-control sam-form-input" name="pass_usu" placeholder="Ingrese su ContraseÃ±a">
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -137,13 +137,13 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label class="label sam-form-label" for="subject">DNI</label>
-					<input class="form-control" id="dni_usu" name="dni_usu" placeholder="Ingrese su número de DNI" type="text" maxlength="8"/>
+					<input class="form-control" id="dni_usu" name="dni_usu" placeholder="Ingrese su nÃºmero de DNI" type="text" maxlength="8"/>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label class="label sam-form-label" for="subject">Clave</label>
-					<input class="form-control" id="pass_usu" name="pass_usu" placeholder="Ingrese su contraseña" type="password" />
+					<input class="form-control" id="pass_usu" name="pass_usu" placeholder="Ingrese su contraseÃ±a" type="password" />
 				</div>
 			</div>	
 			<div class="col-md-6">
@@ -270,7 +270,7 @@ function saveUsuario(){
 						$('#registrar').modal("hide");
 					},
 					error: function (e) { 
-						swal("Sistema", "Disculpe, existió un problema", "error");
+						swal("Sistema", "Disculpe, existiÃ³ un problema", "error");
 			    	}
 				})
 		  } 
@@ -299,7 +299,7 @@ $(document).ready(function() {
             pass_usu: {
                 validators: {
                     notEmpty: {
-                        message: 'La contraseña es un campo obligatorio.'
+                        message: 'La contraseÃ±a es un campo obligatorio.'
                     }
                 }
             }
@@ -348,11 +348,11 @@ $(document).ready(function() {
         		selector : '#dni_usu',
                 validators: {
                 	notEmpty: {
-                        message: 'El número de DNI es un campo obligatorio'
+                        message: 'El nÃºmero de DNI es un campo obligatorio'
                     },
                     regexp: {
 						regexp: /[0-9]{8}$/,
-						message: 'El DNI tiene 8 dígitos'
+						message: 'El DNI tiene 8 dÃ­gitos'
 		            }        
                 }
             },
@@ -360,7 +360,7 @@ $(document).ready(function() {
         		selector : '#pass_usu',
                 validators: {
                 	notEmpty: {
-                        message: 'La contraseña es un campo obligatorio'
+                        message: 'La contraseÃ±a es un campo obligatorio'
                     },
                     
                 }
