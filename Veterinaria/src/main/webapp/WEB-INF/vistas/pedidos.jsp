@@ -1,80 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="esS" >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pedidos</title>
-
-    </head>
-
-    <body>
-
-        <jsp:include page="cliente.jsp" />
-        <br>
-        <div class="container">
-            <br><br>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">CÃ³d. pedido</th>
-                        <th scope="col">DescripciÃ³n</th>
-
-                        <th scope="col">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>COD-245128</td>
-                        <td>Cama para perro miserable</td>
-
-                        <td>
-                            <a class="btn btn-warning" href="">Detalles</a>
-                            <a class="btn btn-primary" href="">Estado</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>COD-245128</td>
-                        <td>Cama para perro miserable</td>
-
-                        <td>
-                            <a class="btn btn-warning" href="">Detalles</a>
-                            <a class="btn btn-primary" href="">Estado</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>COD-245128</td>
-                        <td>Cama para perro miserable</td>
-
-                        <td>
-                            <a class="btn btn-warning" href="">Detalles</a>
-                            <a class="btn btn-primary" href="">Estado</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>COD-245128</td>
-                        <td>Cama para perro miserable</td>
-
-                        <td>
-                            <a class="btn btn-warning" href="">Detalles</a>
-                            <a class="btn btn-primary" href="">Estado</a>
-                        </td>
-                    </tr>
-
-
-                </tbody>
-            </table>
-
-        </div>
-
-
-
-    </body>
-
-    </html>
+<link rel="stylesheet" href="css/bootstrap.css"/>
+<link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
+<link rel="stylesheet" href="css/bootstrapValidator.css"/>
+<title>Pedidos </title>
+</head>
+<body>
+<div class="container">
+ <h1>LLEGASTE MUY LEJOS AMIGO, ESTO AÚN ESTA EN UN AMBIENTE DESARROLLO POR FAVOR QUE NO PANDA EL CÚNICO.</h1>
+</div>
+</body>
+</html> 

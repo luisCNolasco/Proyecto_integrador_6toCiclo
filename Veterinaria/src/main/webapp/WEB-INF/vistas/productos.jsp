@@ -95,13 +95,13 @@
 						<div class="col-md-2">
 							<div class="form-group">
 								<label>Precio</label>
-								<input type="number" class="form-control" id="pre_pro" name="pre_pro" placeholder="Ingrese S/0.00">
+								<input type="text" class="form-control" id="pre_pro" name="pre_pro" placeholder="Ingrese S/0.00">
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label>Stock</label>
-								<input type="number" class="form-control" id="stock_pro" name="stock_pro" placeholder="Ingrese Stock">
+								<input type="text" class="form-control" id="stock_pro" name="stock_pro" placeholder="Ingrese Stock">
 							</div>
 						</div>		
 					</div>
@@ -148,7 +148,7 @@
 								<label>Elegir imagen 1</label>
 								<input type="file" class="form-control" id="id_foto1" name="foto1">
 							</div>
-							<div class="col-lg-2">								
+							<div class="col-lg-2 d-flex">								
 								<img id="id_preview1" width="210" height="230">
 							</div>
 						</div>
@@ -160,7 +160,7 @@
 								<label>Elegir imagen 2</label>
 								<input type="file" class="form-control" id="id_foto2" name="foto2">								
 							</div>
-							<div class="col-lg-2">								
+							<div class="col-lg-2 d-flex">								
 								<img id="id_preview2" width="210" height="230">
 							</div>
 						</div>
@@ -172,7 +172,7 @@
 								<label>Elegir imagen 3</label>
 								<input type="file" class="form-control" id="id_foto3" name="foto3">
 							</div>
-							<div class="col-lg-2">								
+							<div class="col-lg-2 d-flex">								
 								<img id="id_preview3" width="210" height="230">
 							</div>
 						</div>
@@ -183,20 +183,23 @@
 	      </div>
 	      <div class="modal-footer">
 	      	<button type="button" class="btn btn-primary" onclick="postValidarRegistra()">Registrar</button>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>	        
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetBtn">Cerrar</button>	        
 	      </div>
 	    </div>
 	  </div>
 	</div>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+$(document).ready(function() {
 	   $('#id_table').DataTable();
+	   $('#resetBtn').click(function() {
+	        $('#id_registra').data('bootstrapValidator').resetForm(true);
+	        $('#registroModal').modal("hide");
+	    });   
 	} );	
-
-    /* Registro*/
-    
-    setTimeout(function() {
+ /* Registro*/
+ 
+ setTimeout(function() {
 	    $("#id_preview1").fadeOut("fast"); }, 0);
 	
 	$("#id_foto1").change(function(event){
@@ -209,7 +212,6 @@
 		      $("#id_preview1").fadeOut("slow"); }, 10000);
 		}
 	});
-
 	setTimeout(function() {
 	    $("#id_preview2").fadeOut("fast"); }, 0);
 	
@@ -223,10 +225,9 @@
 		      $("#id_preview2").fadeOut("slow"); }, 10000);
 		}
 	});
-
 	setTimeout(function() {
 	    $("#id_preview3").fadeOut("fast"); }, 0);
-    
+ 
 	$("#id_foto3").change(function(event){
 		var src = URL.createObjectURL(event.target.files[0]);
 		if(src != null){
@@ -237,7 +238,6 @@
 		      $("#id_preview3").fadeOut("slow"); }, 10000);
 		}		
 	});	
-
 </script>								
 								
 <script type="text/javascript">
@@ -261,13 +261,12 @@ function tablaProducto(){
 																								
 																												    
 		    var eliminar='<button type="button" class="btn btn-danger" onclick="eliminar('+item.cod_pro+')">Eliminar</button>';
-
 			$("#id_table").append("<tr><td>"+item.cod_pro+"</td>"+
 											  "<td>"+item.nom_pro+"</td>"+
 											  "<td>"+item.pre_pro+"</td>"+
 											  "<td>"+item.stock_pro+"</td>"+
 											  "<td>"+item.marca.nom_mar+"</td>"+
-											  "<td>"+item.proveedor.nom_prov+"</td>"+
+											  "<td>"+item.proveedor.razon_prov+"</td>"+
 											  "<td>"+item.desc_sim_pro+"</td>"+
 											  "<td>"+item.desc_html_pro+"</td>"+
 											  "<td> <img src='data:image/png;base64,"+item.foto1+"' width='150px'/> </td>"+
@@ -280,18 +279,16 @@ function tablaProducto(){
 		$("#id_table").DataTable();
 	});
 }
-
 	$.getJSON("cargaMarca", {}, function(data) {
 		$.each(data, function(index, item) {
 			$("#marca").append("<option value='"+item.cod_mar+"'>"+
 					 item.nom_mar+"</option>");
 			});
 		});
-
 	$.getJSON("cargaProveedor", {}, function(data) {
 		$.each(data, function(index, item) {
 			$("#proveedor").append("<option value='"+item.cod_prov+"'>"+
-					 item.nom_prov+"</option>");
+					 item.razon_prov+"</option>");
 			});
 		});
 		
@@ -301,7 +298,6 @@ function tablaProducto(){
 		$("#id_mensaje").text("Registrar Producto");
 		$('#registroModal').modal({backdrop: 'static', keyboard: false,show:true});  
 	}
-
 	function postValidarRegistra() {
 			var validator = $('#id_registra').data('bootstrapValidator');
 	        validator.validate();
@@ -310,7 +306,6 @@ function tablaProducto(){
 	        }
 		}
 	function saveProducto(){
-
 			  var formData = new FormData();
 			  	formData.append("cod_pro", $("#id_codigo").val());	
 	  	        formData.append("nom_pro", $("#nom_pro").val());
@@ -320,7 +315,6 @@ function tablaProducto(){
 	  	     	formData.append("proveedor", $("#proveedor").val());
 	  	     	formData.append("desc_sim_pro", $("#desc_sim_pro").val());
 	  	        formData.append("desc_html_pro", $("#desc_html_pro").val());
-
 		  	      var file1 = $('#id_foto1')[0].files[0];	  	        
 		  	        formData.append("foto1", file1);
 		  	        
@@ -367,7 +361,6 @@ function tablaProducto(){
 				  } 
 				});
 		}	
-
 	function updateProducto(cod_pro,nom_pro,pre_pro,stock_pro, marca, proveedor, desc_sim_pro, desc_html_pro, foto1, foto2, foto3){	
 		$("#id_codigo").val(cod_pro);		
 		$("#nom_pro").val(nom_pro);
@@ -380,7 +373,6 @@ function tablaProducto(){
 		$("#foto1").val(foto1);
 		$("#foto2").val(foto2);
 		$("#foto3").val(foto3);
-
 		$("#id_mensaje").text("Actualizar Producto");
 		$('#registroModal').modal({backdrop: 'static',keyboard:false,show:true});
 		}	
@@ -418,99 +410,111 @@ function tablaProducto(){
 </script>
 <script type="text/javascript">
 $('#id_registra').bootstrapValidator({
-    message: 'This value is not valid',
-    feedbackIcons: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
+ message: 'This value is not valid',
+ feedbackIcons: {
+     valid: 'glyphicon glyphicon-ok',
+     invalid: 'glyphicon glyphicon-remove',
+     validating: 'glyphicon glyphicon-refresh'
+ },
+ fields: {
+ 	"nom_pro":{
+         selector: "#nom_pro",
+         validators:{
+             notEmpty: {
+                  message: 'El nombre es obligatorio'
+             },
+             stringLength: {
+                 min: 3,
+                 max: 30,
+                 message: 'El nombre es de 3 a 30 caracteres'
+             },
+             regexp : {
+					regexp : /^[a-zA-Z ]{2,30}$/,
+					message : 'El nombre solamente debe contener caracteres'
+			 }
+         }
+     },
+     "pre_pro":{
+     	 selector: "#pre_pro",
+          validators:{
+         	 notEmpty: {
+                  message: 'El precio es obligatorio'
+             },
+             regexp : {
+					regexp : /^[0-9]+([.][0-9]{2})$/,
+					message : 'El Precio debe ser 0.00 dígitos'
+			 }
+          }
+     },
+     "stock_pro":{
+    	 selector: "#stock_pro",
+         validators:{
+        	 notEmpty: {
+                 message: 'El stock es obligatorio'
+            },
+            regexp : {
+				regexp : /^[0-9]+$/,
+				message : 'El stock solo puede contener dígitos'
+			}
+         }
     },
-    fields: {
-    	"nom_pro":{
-            selector: "#nom_pro",
-            validators:{
-                notEmpty: {
-                     message: 'El nombre es obligatorio'
-                },
-                stringLength: {
-                    min: 3,
-                    max: 10,
-                    message: 'El nombre es de 3 a 10 caracteres'
-                },
-            }
-        },
-        "pre_pro":{
-        	 selector: "#pre_pro",
-             validators:{
-            	 notEmpty: {
-                     message: 'El precio es obligatorio'
-                }
+    "marca":{
+     	 selector: "#marca",
+          validators:{
+         	 notEmpty: {
+                  message: 'Seleccionar la marca es obligatorio'
              }
-        },
-        "stock_pro":{
-       	 selector: "#stock_pro",
-            validators:{
-           	 notEmpty: {
-                    message: 'El stock es obligatorio'
-               }
-            }
-       },
-       "marca":{
-        	 selector: "#marca",
-             validators:{
-            	 notEmpty: {
-                     message: 'Seleccionar la marca es obligatorio'
-                }
-             }
-        },
-       "proveedor":{
-         	 selector: "#proveedor",
-              validators:{
-            	  notEmpty: {
-                      message: 'Seleccionar el proveedor es obligatorio'
-                 }
-              }
-         },
-       "desc_sim_pro":{
-      	 selector: "#desc_sim_pro",
+          }
+     },
+    "proveedor":{
+      	 selector: "#proveedor",
            validators:{
-          	 notEmpty: {
-                   message: 'La descripción simple es obligatorio'
+         	  notEmpty: {
+                   message: 'Seleccionar el proveedor es obligatorio'
               }
            }
       },
-      "desc_html_pro":{
-     	 selector: "#desc_html_pro",
-          validators:{
-         	 notEmpty: {
-                  message: 'El descripción HTML es obligatorio'
-             }
+    "desc_sim_pro":{
+   	 selector: "#desc_sim_pro",
+        validators:{
+       	 notEmpty: {
+                message: 'La descripción simple es obligatorio'
+           }
+        }
+   },
+   "desc_html_pro":{
+  	 selector: "#desc_html_pro",
+       validators:{
+      	 notEmpty: {
+               message: 'El descripción HTML es obligatorio'
           }
-     },
-      "foto1":{
-     	 selector: "#id_foto1",
-          validators:{
-         	 notEmpty: {
-                  message: 'Seleccionar foto 1 es obligatorio'
-             }
+       }
+  },
+   "foto1":{
+  	 selector: "#id_foto1",
+       validators:{
+      	 notEmpty: {
+               message: 'Seleccionar foto 1 es obligatorio'
           }
-     },
-      "foto2":{
-     	 selector: "#id_foto2",
-          validators:{
-         	 notEmpty: {
-                  message: 'Seleccionar foto 2 es obligatorio'
-             }
+       }
+  },
+   "foto2":{
+  	 selector: "#id_foto2",
+       validators:{
+      	 notEmpty: {
+               message: 'Seleccionar foto 2 es obligatorio'
           }
-     },
-      "foto3":{
-     	 selector: "#id_foto3",
-          validators:{
-         	 notEmpty: {
-                  message: 'Seleccionar foto 3 es obligatorio'
-             }
+       }
+  },
+   "foto3":{
+  	 selector: "#id_foto3",
+       validators:{
+      	 notEmpty: {
+               message: 'Seleccionar foto 3 es obligatorio'
           }
-     }
-    }   
+       }
+  }
+ }   
 });
 </script>
 </body>

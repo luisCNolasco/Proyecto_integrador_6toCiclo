@@ -140,7 +140,7 @@
 	      </div>
 	      <div class="modal-footer">
 	      	<button type="button" class="btn btn-primary" onclick="postValidarRegistra()">Registrar</button>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>	        
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetBtn">Cerrar</button>	        
 	      </div>
 	    </div>
 	  </div>
@@ -301,6 +301,10 @@ function tablaUsuario(){
 <script type="text/javascript">
 	$(document).ready(function() {
 		tablaUsuario();
+		 $('#resetBtn').click(function() {
+		        $('#id_registra').data('bootstrapValidator').resetForm(true);
+		        $('#registroModal').modal("hide");
+		    }); 
 	} );
 </script>
 <script type="text/javascript">
@@ -319,10 +323,14 @@ $('#id_registra').bootstrapValidator({
                      message: 'El nombre es obligatorio'
                 },
                 stringLength: {
-                    min: 3,
+                    min: 2,
                     max: 40,
                     message: 'El nombre es de 3 a 40 caracteres'
                 },
+	            regexp : {
+						regexp : /^[a-zA-Z ]{2,40}$/,
+						message : 'El nombre solamente debe contener 2 a 40 caracteres'
+				}
             }
         },
         "ape_usu":{
@@ -332,10 +340,14 @@ $('#id_registra').bootstrapValidator({
                      message: 'El apellido es obligatorio'
                 },
                 stringLength: {
-                    min: 3,
+                    min: 2,
                     max: 40,
                     message: 'El apellido es de 3 a 40 caracteres'
                 },
+	            regexp : {
+					regexp : /^[a-zA-Z ]{2,40}$/,
+					message : 'El nombre solamente debe contener 2 a 40 caracteres'
+			  }
             }
         },
         "dni_usu":{
@@ -344,8 +356,11 @@ $('#id_registra').bootstrapValidator({
            	 notEmpty: {
                     message: 'El DNI es obligatorio'
                },
+               stringLength: {
+                   max: 8
+               },
                regexp: {
-					regexp: /[0-9]{8}$/,
+					regexp: /^[0-9]{8}$/,
 					message: 'El DNI tiene 8 dígitos'
 	            }
             }
@@ -363,7 +378,11 @@ $('#id_registra').bootstrapValidator({
               validators:{
             	  notEmpty: {
                       message: 'El correo es obligatorio'
-                 }
+                 },
+                 regexp: {
+                     regexp: /\S+@\S+\.\S+$/,
+                     message: 'El correo debe ser como similar ejemplo prueba@correo.com'
+                   }
               }
          },
 

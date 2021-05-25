@@ -24,28 +24,36 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService service;
 
-	@RequestMapping("/login")
+	@RequestMapping("iniciarSesion")
 	public String iniciarSesion(Usuario usu, HttpSession session, HttpServletRequest request) {
+		System.out.println("aca toy");
+		try {
+			Usuario bean = service.iniciarSesion(usu);
+			if (bean == null) {
+				request.setAttribute("mensaje", "¡El usuario no existe!");
+				System.out.println("MIRALO VEEEE");
+				return "login";
+			} else {
+				List<Interfaz> interfaz = service.traerInterfazDeUsuario(bean.getTipousuario().getCod_tip_usu());
+				List<TipoUsuario> tipoUsuario = service.traerTipoDeUsuario(bean.getTipousuario().getCod_tip_usu());
+				System.out.println("aca toyaaaa");
+				session.setAttribute("objUsuario", bean);
+				session.setAttribute("objInterfaz", interfaz);
+				session.setAttribute("objTipoUsuario", tipoUsuario);
 
-		Usuario bean = service.iniciarSesion(usu);
-		if (bean == null) {
-			request.setAttribute("mensaje", "¡El usuario no existe!");
-			return "login";
-		} else {
-			List<Interfaz> interfaz = service.traerInterfazDeUsuario(bean.getTipousuario().getCod_tip_usu());
-			List<TipoUsuario> tipoUsuario = service.traerTipoDeUsuario(bean.getTipousuario().getCod_tip_usu());
+				/*for (Interfaz i : interfaz) {
+				 * 
+				 * IMPRIMIR 
+					System.out.println(i.getCod_int());
+					System.out.println(i.getUrl_int());
+				}*/
 
-			session.setAttribute("objUsuario", bean);
-			session.setAttribute("objInterfaz", interfaz);
-			session.setAttribute("objTipoUsuario", tipoUsuario);
-
-			for (Interfaz i : interfaz) {
-				System.out.println(i.getCod_int());
-				System.out.println(i.getUrl_int());
 			}
-
-			return "redirect:home";
-		}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "redirect:home";	
 	}
 
 	@PostMapping(value = "/saveUsuario", consumes = "multipart/form-data")
@@ -56,23 +64,7 @@ public class UsuarioController {
 			@RequestParam("distrito") Distrito distrito, @RequestParam("tipousuario") TipoUsuario tipousuario)
 
 	{
-<<<<<<< HEAD
-		try {
-			Usuario usuario = new Usuario();
-
-			usuario.setCod_Usu(cod_usu);
-			usuario.setNom_usu(nom_usu);
-			usuario.setApe_usu(ape_usu);
-			usuario.setDni_usu(dni_usu);
-			usuario.setPass_usu(pass_usu);
-			usuario.setCorreo_usu(correo_usu);
-			usuario.setDistrito(distrito);
-			usuario.setTipousuario(tipousuario);
-
-			service.registrarUsuario(usuario);
-
-=======
-    	try { 
+	try { 
     	 Usuario usuario = new Usuario();
     	  
     	 usuario.setCod_usu(cod_usu);
@@ -84,9 +76,8 @@ public class UsuarioController {
     	 usuario.setDistrito(distrito);
     	 usuario.setTipousuario(tipousuario);
     	 
-    	 service.registrarUsuario(usuario);
-			
->>>>>>> 9f16db9cc1a57bf4192fb563175c7811c1d9092b
+    	 service.registrarUsuario(usuario);			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,6 +93,11 @@ public class UsuarioController {
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
 	}
 
 	@RequestMapping("/verCrudProducto")

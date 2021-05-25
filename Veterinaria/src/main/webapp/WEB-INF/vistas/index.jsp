@@ -37,7 +37,7 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 			    		<p id="sam-login" class="mb-0 d-flex align-items-center text-light sam-login">
-                <a href="/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
+                <a href="login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
                 <span>Iniciar Sesión</span>
 			    		</p>
 		        </div>

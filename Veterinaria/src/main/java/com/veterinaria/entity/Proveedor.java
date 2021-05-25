@@ -21,18 +21,9 @@ public class Proveedor {
 	@Column(name = "cod_prov")
 	private int cod_prov;
 	
-	@Column(name="nom_prov")
-	private String nom_prov;
-	 
-	@Column(name="pat_prov")
-	private String pat_prov;
-	
-	@Column(name="mat_prov")
-	private String mat_prov;
-	
-	@Column(name="sexo_prov")
-	private String sexo_prov;
-	
+	@Column(name="razon_prov")
+	private String razon_prov;
+		
 	@Column(name="ruc_prov")
 	private String ruc_prov;
 	
@@ -51,36 +42,12 @@ public class Proveedor {
 		this.cod_prov = cod_prov;
 	}
 
-	public String getNom_prov() {
-		return nom_prov;
+	public String getRazon_prov() {
+		return razon_prov;
 	}
 
-	public void setNom_prov(String nom_prov) {
-		this.nom_prov = nom_prov;
-	}
-
-	public String getPat_prov() {
-		return pat_prov;
-	}
-
-	public void setPat_prov(String pat_prov) {
-		this.pat_prov = pat_prov;
-	}
-
-	public String getMat_prov() {
-		return mat_prov;
-	}
-
-	public void setMat_prov(String mat_prov) {
-		this.mat_prov = mat_prov;
-	}
-
-	public String getSexo_prov() {
-		return sexo_prov;
-	}
-
-	public void setSexo_prov(String sexo_prov) {
-		this.sexo_prov = sexo_prov;
+	public void setRazon_prov(String razon_prov) {
+		this.razon_prov = razon_prov;
 	}
 
 	public String getRuc_prov() {

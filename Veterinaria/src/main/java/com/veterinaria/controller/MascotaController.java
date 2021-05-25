@@ -2,6 +2,8 @@ package com.veterinaria.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +20,7 @@ import com.veterinaria.service.MascotaService;
 public class MascotaController {
 
 	@Autowired
-	MascotaService service;
-	
+	MascotaService service;	
 	
 	@RequestMapping("/cargarMascotas")
 	@ResponseBody
@@ -52,6 +53,12 @@ public class MascotaController {
 			e.printStackTrace();
 		}
 		
+		return "mascotas";
+	}
+	
+	@RequestMapping("/deleteMascota")
+	public String elimina(Integer cod, HttpSession session) {
+		service.eliminaMascota(cod);
 		return "mascotas";
 	}
 }

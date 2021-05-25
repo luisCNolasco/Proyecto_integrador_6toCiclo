@@ -8,11 +8,19 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="css/animate.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>    
+        
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
@@ -25,11 +33,18 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sam.css">
 	    
-	<link rel="stylesheet" href="css/bootstrap.css"/>
+	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"/>-->
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
 	<script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
-
+	
+	<style type="text/css">
+	 
+	 .text-tabs {
+	  color: black;
+	  font-weight: bold;
+	 }
+	</style>
   </head>
   <body>
 
@@ -45,7 +60,7 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 			    		<p id="sam-login" class="mb-0 d-flex align-items-center text-light sam-login">
-                <a href="/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
+                <a href="login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
                 <span>Iniciar Sesión</span>
 			    		</p>
 		        </div>
@@ -61,7 +76,7 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+	        	<li class="nav-item"><a href="/" class="nav-link">Inicio</a></li>
 
 	          <li class="nav-item"><a href="galeria.html" class="nav-link">Galería</a></li>
 	          <li class="nav-item"><a href="crud_mascota.html" class="nav-link">Mis Mascotas</a></li>
@@ -74,19 +89,17 @@
     <!-- END nav -->
 
 <div id="fw-container" class="fw-container">
-	<div class="container sam-lisu">
+  <div class="container sam-lisu">
   <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li id="sam-login-tab" class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#login">INICIAR SESIÓN</a>
-    </li>
-    <li>
-      <a class="nav-link" data-toggle="tab" href="#registrar" onclick="modalUsuario()">REGISTRARSE</a>
-    </li>
+  
+  <ul id="tabs" class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><a id="resetBtn1" class="nav-link active text-tabs" role="tab" data-toggle="tab" href="#login">INICIAR SESIÓN</a></li>
+    <li class="nav-item"><a id="resetBtn2" class="nav-link text-tabs" role="tab" data-toggle="tab" href="#registrar" onclick="modalUsuario()">REGISTRARSE</a></li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
+  
   	<!-- CONTENIDO TAB 1 -->
   	<c:if test="${requestScope.mensaje != null}">
                		<div class="alert alert-danger fade in" id="success-alert">
@@ -94,13 +107,14 @@
 				        <strong>${requestScope.mensaje}</strong>
 				    </div>
 	</c:if> 
-    <div id="login" class="container tab-pane active"><br>
-    	<form action="login" method="POST" id="contactForm" name="contactForm" class="contactForm">
+	
+    <div id="login" class="tab-pane fade show active"><br>
+    	<form action="iniciarSesion" method="POST" id="id_login" name="contactForm" class="contactForm">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group w-50">
 						<label class="label sam-form-label" for="form-dniLogin">DNI</label>
-						<input type="text" class="form-control sam-form-input" name="dni_usu" placeholder="Ingrese su DNI">
+						<input type="text" class="form-control sam-form-input" name="dni_usu" maxlength="8" placeholder="Ingrese su DNI">
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -116,11 +130,16 @@
 				</div>
 			</div>
 		</form>
-   </div>
+    </div>
+    
+    
+    
+    
     <!-- CONTENIDO TAB 2 -->
-     <div id="registrar" class="container tab-pane"><br>
+    <div id="registrar" class="tab-pane fade"><br>
      	  <form action="saveUsuario" method="POST" id="id_registrar" name="contactForm" class="contactForm">
-			<input type="hidden" id="cod_usu" name="cod_usu">     	  
+			<input type="hidden" id="cod_usu" name="cod_usu">     
+			<input type="hidden" id="tipousuario" name="tipousuario">     	  
 			<div class="row">
 				<div class="col-md-6">
 				<div class="form-group">
@@ -160,14 +179,6 @@
 					</select>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="label sam-form-label" for="subject">Tipo de Usuario</label><br>
-					<select id="tipousuario" name="tipousuario" class='form-control'>
-							<option value=" ">[Seleccione]</option>    
-					</select>
-				</div>
-			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<button type="button" class="btn btn-primary" id="id_btn_registra">Registrarse</button>
@@ -175,8 +186,10 @@
 			</div>	
 			</div>
 		  </form>
-	  </div>
+	</div>
+    
     </div>
+    
   </div>
  </div>
 
@@ -206,6 +219,23 @@
 $("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
     $("#success-alert").slideUp(500);
 });
+
+$(document).ready(function(){
+	 $('#resetBtn1').click(function() {
+	        $('#id_registrar').data('bootstrapValidator').resetForm(true);
+	        $('#registrar').modal("hide");
+	  }); 
+	    
+	 $('#resetBtn2').click(function() {
+	        $('#id_login').data('bootstrapValidator').resetForm(true);
+	        $('#login').modal("hide");
+	    }); 
+	
+    $("#tabs a").click(function(e){
+        e.preventDefault();
+        $(this).tab('show');
+    });
+});
 </script>
 
 
@@ -213,17 +243,12 @@ $("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
 function modalUsuario(){
 	$('#id_registrar').trigger("reset");
 	$("#cod_usu").val(0);
+	$("#tipousuario").val(3);
 }
 
 $.getJSON("listaDistrito", {}, function(data){
 	$.each(data, function(i,item){
 		$("#distrito").append("<option value="+item.cod_dis +">"+ item.nom_dis +"</option>");
-	});
-});
-
-$.getJSON("listaTipoUsuario", {}, function(data){
-	$.each(data, function(i,item){
-		$("#tipousuario").append("<option value="+item.cod_tip_usu +">"+ item.nom_tip_usu +"</option>");
 	});
 });
 
@@ -234,6 +259,18 @@ $("#id_btn_registra").click(function(){
         saveUsuario();
     }
 });
+
+function limpiarformulario(){
+	$("#cod_usu").val("");
+	$("#nom_usu").val("");
+	$("#ape_usu").val("");
+	$("#dni_usu").val("");
+	$("#pass_usu").val("");
+	$("#correo_usu").val("");
+	$("#distrito").val("");
+	$("#tipousuario").val("");
+	
+}
 
 function saveUsuario(){
 	 var formData = new FormData();
@@ -267,7 +304,9 @@ function saveUsuario(){
 					success:function(data){
 						//console.log(data);						
 				    	swal("Sistema","Registro Guardado...","success");
-						$('#registrar').modal("hide");
+				    	limpiarformulario();
+				    	location. reload();
+						//$('#registrar').modal("hide");
 					},
 					error: function (e) { 
 						swal("Sistema", "Disculpe, existió un problema", "error");
@@ -281,7 +320,7 @@ function saveUsuario(){
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#login').bootstrapValidator({
+    $('#id_login').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -293,7 +332,15 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: 'El DNI es un campo obligatorio.'
-                    }
+                    },
+                    stringLength: {
+                        max: 8,
+                        message: 'El DNI tiene maximo 8 dígitos'
+                    },
+                    regexp: {
+     					regexp: /^[0-9]{8}$/,
+     					message: 'Ejemplo 12345678 DNI tiene 8 dígitos'
+     	            }
                 }
             },
             pass_usu: {
@@ -324,11 +371,15 @@ $(document).ready(function() {
                     notEmpty: {
                         message: 'El nombre es un campo obligatorio'
                     },
-                    stringLength :{
-                    	message:'El nombre es de 3 a 40 caracteres',
-                    	min : 3,
-                    	max : 40
-                    }
+                    stringLength: {
+                        min: 3,
+                        max: 40,
+                        message: 'El nombre es de 3 a 40 caracteres'
+                    },
+    	            regexp : {
+    						regexp : /^[a-zA-Z ]{2,40}$/,
+    						message : 'El nombre solamente debe contener 2 a 40 caracteres'
+    				}
                 }
             },
             "ape_usu": {
@@ -337,11 +388,15 @@ $(document).ready(function() {
                     notEmpty: {
                         message: 'El apellido es un campo obligatorio'
                     },
-                    stringLength :{
-                    	message:'El apellido es de 3 a 60 caracteres',
-                    	min : 3,
-                    	max : 60
-                    }
+                    stringLength: {
+                        min: 3,
+                        max: 40,
+                        message: 'El apellido es de 3 a 40 caracteres'
+                    },
+    	            regexp : {
+    					regexp : /^[a-zA-Z ]{2,40}$/,
+    					message : 'El nombre solamente debe contener 2 a 40 caracteres'
+    			  }
                 }
             },
             "dni_usu": {
@@ -371,6 +426,10 @@ $(document).ready(function() {
                 	notEmpty: {
                         message: 'El correo es un campo obligatorio'
                     },
+                    regexp: {
+                        regexp: /\S+@\S+\.\S+$/,
+                        message: 'El correo debe ser como similar ejemplo prueba@correo.com'
+                     }
                 }
             },
             "distrito.cod_dis": {
@@ -380,15 +439,7 @@ $(document).ready(function() {
                         message: 'El distrito un campo obligatorio'
                     },
                 }
-            },
-            "tipousuario.cod_tip_usu": {
-        		selector : '#tipousuario',
-                validators: {
-                	notEmpty: {
-                        message: 'El tipo de usuario es un campo obligatorio'
-                    },
-                }
-            },
+            }
         	
         }   
     });

@@ -116,21 +116,13 @@
 	      </div>
 	      <div class="modal-footer">
 	      	<button type="button" class="btn btn-primary" onclick="postValidarRegistra()">Registrar</button>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>	        
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetBtn">Cerrar</button>	        
 	      </div>
 	    </div>
 	  </div>
 	</div>
 	
 	
-
-<script type="text/javascript">
-	$(document).ready(function() {
-	   $('#id_table').DataTable();
-	} );
-</script>			
-
-
 <script type="text/javascript">
 function tablaServicio(){ 
 	$("#id_table").DataTable().destroy();
@@ -235,10 +227,10 @@ function modalServicio(){
 	}	
 	
 	
-	function eliminar(cod_ser){		
+	function eliminar(cod){		
 		swal({
 			  title: "¿Seguro de eliminar?",
-			  text: "Se eliminará el servicio con código : "+cod_ser,
+			  text: "Se eliminará el servicio con código : "+cod,
 			  icon: "warning",
 			  buttons: true,
 			  dangerMode: true,
@@ -248,7 +240,7 @@ function modalServicio(){
 				  $.ajax({
 						url:'eliminaServicio',
 						type:'POST',
-						data:{cod:cod_ser},
+						data:{cod:cod},
 						success: function(data){
 							tablaServicio();
 							swal("Sistema","Registro eliminado...","success");
@@ -266,6 +258,10 @@ function modalServicio(){
 <script type="text/javascript">
 	$(document).ready(function() {
 		tablaServicio();
+		 $('#resetBtn').click(function() {
+		        $('#id_registra').data('bootstrapValidator').resetForm(true);
+		        $('#exampleModal').modal("hide");
+		 }); 
 	} );
 </script>
 
@@ -302,8 +298,8 @@ $('#id_registra').bootstrapValidator({
                      message: 'El precio es obligatorio'
                 },
                 regexp: {
-					regexp: /^[0-9]+$/,
-					message: 'El precio contiene solo digitos'
+                	regexp : /^[0-9]+([.][0-9]{2})$/,
+					message : 'El Precio debe ser 0.00 dígitos'
 	            }
              }
         },

@@ -21,11 +21,6 @@ public class ServicioController {
 
 	@Autowired
 	private ServicioService servicioService;
-
-	@RequestMapping("/verServicio")
-	public String mostrar() { 
-		return "servicio";
-	}
 	
 	@RequestMapping("/listaServicio")
 	@ResponseBody
@@ -37,7 +32,7 @@ public class ServicioController {
 	public String consulta(String filtro, HttpSession session) {
 		List<Servicios> data = servicioService.buscaPorNombre(filtro +"%");
 		session.setAttribute("servicio", data);
-		return "servicio";
+		return "servicios";
 	}
 	
 	@RequestMapping("/registraServicio")  
@@ -49,13 +44,13 @@ public class ServicioController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "servicio";
+		return "servicios";
 		
 	}
 	
 	@RequestMapping("/eliminaServicio")
 	public String elimina(Integer cod, HttpSession session) {
 		servicioService.eliminaServicio(cod);
-		return "servicio";
+		return "servicios";
 	}
 }

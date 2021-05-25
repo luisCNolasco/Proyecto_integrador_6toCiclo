@@ -30,7 +30,7 @@
 <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrapValidator.min.css" rel="stylesheet">
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -41,16 +41,14 @@
 
 	<div class="container">
 		<br>&nbsp;<br>
-		<button type="button" data-toggle='modal' class='btn btn-primary'
-			id="validateBtnw2" onclick="modalMascota()">Registrar
-			mascota</button>
+		<button type="button" data-toggle='modal' class='btn btn-primary'id="validateBtnw2" onclick="modalMascota()">Registrar mascota</button>
 		<br>&nbsp;<br>
-		<div id="divProducto">
+		<div id="divMascota">
 			<table id="id_table" class="table table-striped table-bordered">
 				<thead>
 					<tr>
 						<th>Codigo</th>
-						<th>Nombre</th>
+						<th>Nombre Mascota</th>
 						<th>Tipo</th>
 						<th>Foto</th>
 						<th>EDITAR</th>
@@ -66,38 +64,34 @@
 
 	<!--  NUEVO -->
 
-	<div class="modal fade" id="registroModal" tabindex="-1" role="dialog"
-		aria-labelledby="id_mensaje" aria-hidden="true">
+	<div class="modal fade" id="registroModal" tabindex="-1" role="dialog" aria-labelledby="id_mensaje" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
 					<h3 class="modal-title" id="id_mensaje"></h3>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal"aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-					<input type="hidden" class="form-control" id="usuarioCodigo"
-									name="usuarioCodigo" value="${ objUsuario.cod_Usu}">
+				
+				<input type="hidden" class="form-control" id="usuarioCodigo" name="usuarioCodigo" value="${objUsuario.cod_usu}">
+				
 				<div class="modal-body">
 					<div class="container">
-
-						<form>
-							<input type="hidden" id="codigo" name="codigo">
-							
+						<form id="id_registra" action="saveMascota" method="POST" class="form-horizontal" data-toggle="validator" role="form">
+							<input type="hidden" id="codigo" name="codigo">							
 							<div class="row">
 								<div class="form-group col-md-5">
 									<label for="full_name_id" class="control-label">Nombre</label>
-									<input type="text" id="nombre" class="form-control"
-										name="nombre">
+									<input type="text" id="nombre" class="form-control" name="nombre">
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-md-5">
-									<label>Tipo de Mascota</label><br> <select
-										class="form-control" id="tipo" name="tipo">
+									<label>Tipo de Mascota</label><br> 
+									<select	class="form-control" id="tipo" name="tipo">
 										<option selected disabled value="-1">[SELECCIONE]</option>
 									</select>
 								</div>
@@ -105,14 +99,14 @@
 							</div>
 
 							<div class="form-group col-12">
-								<input type="hidden" class="form-control" id="usuario"
-									name="usuario" value="${ objUsuario.cod_Usu}">
+								<input type="hidden" class="form-control" id="usuario" name="usuario">
 							</div>
+							
 							<div class="row">
 								<div class="col-md-5">
 									<div class="form-group">
-										<label>Elegir imagen 2</label> <input type="file"
-											class="form-control" id="foto" name="foto">
+										<label>Elegir imagen 1</label> 
+										<input type="file" class="form-control" id="foto" name="foto">
 									</div>
 									<div class="col-lg-2">
 										<img id="id_preview" width="210" height="230">
@@ -125,8 +119,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" onclick="saveMascota()">Registrar</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" onclick="postValidarRegistra()">Registrar</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetBtn">Cerrar</button>
 				</div>
 			</div>
 		</div>
@@ -135,19 +129,19 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 	   $('#id_table').DataTable();
-
+	   tablaMascota();
+	   $('#resetBtn').click(function() {
+	        $('#id_registra').data('bootstrapValidator').resetForm(true);
+	        $('#registroModal').modal("hide");
+	    });   
+	   
 	   $.getJSON("listarTipoMascota", {}, function(data) {
 			$.each(data, function(index, item) {
 				$("#tipo").append(
-						"<option value='"+item.tipoMascota+"'>"
-								+ item.nombreMascota + "</option>");
+						"<option value='"+item.tipoMascota+"'>"+ item.nombreMascota + "</option>");
 			});
 		});
-
-	   tablaProducto();
 	});	
-
-
 
     /* Registro*/
 
@@ -170,16 +164,16 @@
 
 <script type="text/javascript">
 
-function tablaProducto(){
+function tablaMascota(){
 	$("#id_table").DataTable().destroy();
 	$("#id_table tbody").empty(); 
 
-	var codigoUsuario =parseInt($("#usuarioCodigo").val());
+	var codigoUsuario = $("#usuarioCodigo").val();
 	$.getJSON("cargarMascotas",{"codigoUsuario":codigoUsuario}, function (data){
 		$.each(data, function(index, item){
 			var editar='<button type="button" class="btn btn-success" onclick="updateMascota('+item.codigoMascota+","+
 																					"'"+item.nombreMascota+"',"+
-																					"'"+item.tipoMascota.nombreMascota+"',"+
+																					"'"+item.tipoMascota.tipoMascota+"',"+
 																					"'"+item.codigoUsuario+"',"+
 																					"'"+item.foto1+"'"+')">Editar</button>';
 																																										    
@@ -200,23 +194,21 @@ function tablaProducto(){
 	});
 }
 
-	
-		
 	function modalMascota(){
 		$('#id_registra').trigger("reset");
-		$("#codigo").val(0);
-		
+		$("#codigo").val(0);		
 		$("#id_mensaje").text("Registrar Mascota");
 		$('#registroModal').modal({backdrop: 'static', keyboard: false,show:true});  
 	}
-
-	function registrar() {
-			//var validator = $('#id_registra').data('bootstrapValidator');
-	        //validator.validate();
-	        //if (validator.isValid()) {
-	        	//saveMascota();
-	       // }
+	
+	function postValidarRegistra() {
+		var validator = $('#id_registra').data('bootstrapValidator');		  
+	       validator.validate();	       
+	       if (validator.isValid()) {
+	        	saveMascota();
+	       }
 		}
+	
 	function saveMascota(){
 
 			  var formData = new FormData();
@@ -246,10 +238,9 @@ function tablaProducto(){
 					        processData : false,
 					        cache:false,
 			   				success:function(data){
-			   					//console.log(data);
 			   					if(data != null){
 									swal("Registro Guardado correctamente...","","success");
-									tablaProducto();
+									tablaMascota();
 									$("#registroModal").modal("hide");
 									$('#id_registra').data('bootstrapValidator').resetForm(true);
 				   			    	$('#id_registra').trigger("reset");
@@ -265,26 +256,23 @@ function tablaProducto(){
 				});
 		}	
 
-	function updateMascota(cod,nom,tipoMascota,codUsu,foto1){	
-
-		console.log(cod,nom,tipoMascota,codUsu,foto1);
-
+	function updateMascota(cod,nom,tipoMascota,codUsu){	
+		
 		$("#codigo").val(cod);		
 		$("#nombre").val(nom);
 		$("#tipo").val(tipoMascota);
 		$("#usuario").val(codUsu);
-		$("#foto").val(foto1);
+		$("#foto").val("");
 		
-		$("#id_mensaje").text("Actualizar Producto");
+		$("#id_mensaje").text("Actualizar Mascota");
 		$('#registroModal').modal({backdrop: 'static',keyboard:false,show:true});
-
-	
+		
 		}	
 	
-	/*function eliminar(cod_pro){		
+	function eliminar(cod){		
 		swal({
 			  title: "Seguro de Eliminar?",
-			  text: "Se eliminará el producto con código : "+cod_pro,
+			  text: "Se eliminará el producto con código : "+cod,
 			  icon: "warning",
 			  buttons: true,
 			  dangerMode: true,
@@ -292,11 +280,11 @@ function tablaProducto(){
 			.then((willDelete) => {
 			  if (willDelete) {
 				  $.ajax({
-						url:'deleteProducto',
+						url:'deleteMascota',
 						type:'POST',
-						data:{cod:cod_pro},
+						data:{cod:cod},
 						success: function(data){
-							tablaProducto();
+							tablaMascota();
 							swal("Sistema","Registro eliminado...","success");
 						},
 						error: function (e) { 
@@ -305,10 +293,50 @@ function tablaProducto(){
 					});
 			  }
 			});
-	}*/
+	}
 	
 </script>
-
+<script type="text/javascript">
+$('#id_registra').bootstrapValidator({
+    message: 'This value is not valid',
+    feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+    },
+    fields: {
+    	"nombre":{
+            selector: "#nombre",
+            validators:{
+                notEmpty: {
+                     message: 'El nombre es obligatorio'
+                },
+                stringLength: {
+                    min: 2,
+                    max: 30,
+                    message: 'El nombre es de 2 a 30 caracteres'
+                },
+            }
+        },
+       "tipo":{
+        	 selector: "#tipo",
+             validators:{
+            	 notEmpty: {
+                     message: 'Seleccionar la marca es obligatorio'
+                }
+             }
+      },
+      "foto":{
+     	 selector: "#foto",
+          validators:{
+         	 notEmpty: {
+                  message: 'Seleccionar foto 1 es obligatorio'
+             }
+          }
+     }
+    }   
+});
+</script>
 	
 </body>
 
