@@ -60,9 +60,11 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 			    		<p id="sam-login" class="mb-0 d-flex align-items-center text-light sam-login">
+
                 <a href="login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
                 <span>Iniciar Sesión</span>
-			    		</p>
+
+                  		</p>
 		        </div>
 					</div>
 				</div>
@@ -95,7 +97,7 @@
   <ul id="tabs" class="nav nav-tabs" role="tablist">
     <li class="nav-item"><a id="resetBtn1" class="nav-link active text-tabs" role="tab" data-toggle="tab" href="#login">INICIAR SESIÓN</a></li>
     <li class="nav-item"><a id="resetBtn2" class="nav-link text-tabs" role="tab" data-toggle="tab" href="#registrar" onclick="modalUsuario()">REGISTRARSE</a></li>
-  </ul>
+ </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
@@ -309,7 +311,7 @@ function saveUsuario(){
 						//$('#registrar').modal("hide");
 					},
 					error: function (e) { 
-						swal("Sistema", "Disculpe, existió un problema", "error");
+						swal("Sistema", "Disculpe, existiÃ³ un problema", "error");
 			    	}
 				})
 		  } 
@@ -321,7 +323,7 @@ function saveUsuario(){
 <script type="text/javascript">
 $(document).ready(function() {
     $('#id_login').bootstrapValidator({
-        message: 'This value is not valid',
+        message:'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -346,7 +348,7 @@ $(document).ready(function() {
             pass_usu: {
                 validators: {
                     notEmpty: {
-                        message: 'La contraseña es un campo obligatorio.'
+                        message: 'La contraseÃ±a es un campo obligatorio.'
                     }
                 }
             }
@@ -403,11 +405,11 @@ $(document).ready(function() {
         		selector : '#dni_usu',
                 validators: {
                 	notEmpty: {
-                        message: 'El número de DNI es un campo obligatorio'
+                        message: 'El nÃºmero de DNI es un campo obligatorio'
                     },
                     regexp: {
 						regexp: /[0-9]{8}$/,
-						message: 'El DNI tiene 8 dígitos'
+						message: 'El DNI tiene 8 dÃ­gitos'
 		            }        
                 }
             },
@@ -415,7 +417,7 @@ $(document).ready(function() {
         		selector : '#pass_usu',
                 validators: {
                 	notEmpty: {
-                        message: 'La contraseña es un campo obligatorio'
+                        message: 'La contraseÃ±a es un campo obligatorio'
                     },
                     
                 }
