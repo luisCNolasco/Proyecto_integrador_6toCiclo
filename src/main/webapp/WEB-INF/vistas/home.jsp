@@ -7,7 +7,8 @@
 	<title>Home 4 patitas</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <script src="https://kit.fontawesome.com/804e7cdc14.js" crossorigin="anonymous"></script>
  	<link rel="icon" type="image/png" href="images/favicon.png">   
         <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -19,30 +20,35 @@
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
     <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sam.css">    
+    <link rel="stylesheet" href="css/style.css">        
+    <link rel="stylesheet" href="css/sam.css">
 
 </head>
 <body>
      <div class="wrap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 d-flex align-items-center">
-                        <p class="mb-0 phone pl-md-2">
-                            <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +51 971 893 196</a> 
-                            <a href="#"><span class="fa fa-paper-plane mr-1"></span> contacto@4patitas.com</a>
-                        </p>
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-md-end">
-                        <div class="social-media">
-                        <p id="sam-login" class="mb-0 d-flex align-items-center text-light sam-login">
-                <a href="login.html" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
-                <span>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</span>
-                        </p>
-                </div>
-                    </div>
-                </div>
-            </div>
+     		<div class="container">
+			<div class="row">
+				<div class="col-md-6 d-flex align-items-center">
+					<p class="mb-0 phone pl-md-2">
+						<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +51 971 893 196</a> 
+						<a href="#"><span class="fa fa-paper-plane mr-1"></span> contacto@4patitas.com</a>
+					</p>
+				</div>
+				<div class="col-md-6 d-flex justify-content-md-end"  style="position: relative">
+					<div class="social-media" style="position: relative">
+			    		<p id="sam-login" class="mb-0 d-flex align-items-center text-light sam-login">
+			                <a href="/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
+			                <span>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</span>
+			                <span id="left-lout" class="ml-3"><i class="fas fa-caret-right"></i></span>
+						 </p>
+						
+	        		</div>
+	        		 <div id="option-lout" class="text-danger mt-1 pt-1 px-3 sam-lout" style="position: absolute; right: -120px; cursor: pointer; visibility: hidden;">
+	        			<span class=""><a class="text-light" href="/logout">Cerrar Sesión</a></span>
+	        		</div>
+				</div>
+			</div>
+		</div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
@@ -139,14 +145,16 @@
 		</iframe>
 	  </div>
 		
-      
+  
       
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>    
+    <script src="js/sam.js"></script>    
+    
 </body>
 
 </html>

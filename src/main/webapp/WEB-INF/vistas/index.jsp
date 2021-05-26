@@ -49,15 +49,15 @@
 	    <div class="container">
 	    	<a class="navbar-brand" href="/"><span class="flaticon-pawprint-1 mr-2"></span>4 PATITAS</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> MenÃº
+	        <span class="fa fa-bars"></span> Menú
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item active"><a href="/" class="nav-link">Inicio</a></li>
-	          <li class="nav-item"><a href="galeria.html" class="nav-link">Galería</a></li>
-	          <li class="nav-item"><a href="crud_mascota.html" class="nav-link">Mis Mascotas</a></li>
-	          <li class="nav-item"><a href="crud_producto.html" class="nav-link">Productos</a></li>
-	          <li class="nav-item"><a href="crud_servicio.html" class="nav-link">Servicios</a></li>
+	          <li class="nav-item"><a href="/galeria" class="nav-link">Galería</a></li>
+	          <li class="nav-item"><a href="/mascota" class="nav-link">Mascotas</a></li>
+	          <li class="nav-item"><a href="/producto" class="nav-link">Productos</a></li>
+	          <li class="nav-item"><a href="/servicio" class="nav-link">Servicios</a></li>
 	        </ul>
 	      </div>
 	    </div>

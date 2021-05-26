@@ -80,10 +80,10 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="/" class="nav-link">Inicio</a></li>
 
-	          <li class="nav-item"><a href="galeria.html" class="nav-link">Galería</a></li>
-	          <li class="nav-item"><a href="crud_mascota.html" class="nav-link">Mis Mascotas</a></li>
-	          <li class="nav-item"><a href="crud_producto.html" class="nav-link">Productos</a></li>
-	          <li class="nav-item"><a href="crud_servicio.html" class="nav-link">Servicios</a></li>
+	          <li class="nav-item"><a href="/galeria" class="nav-link">Galería</a></li>
+	          <li class="nav-item"><a href="/mascota" class="nav-link">Mascotas</a></li>
+	          <li class="nav-item"><a href="/producto" class="nav-link">Productos</a></li>
+	          <li class="nav-item"><a href="/servicio" class="nav-link">Servicios</a></li>
 	        </ul>
 	      </div>
 	    </div>

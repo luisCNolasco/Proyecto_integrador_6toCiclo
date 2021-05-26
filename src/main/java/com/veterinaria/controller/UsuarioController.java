@@ -88,10 +88,36 @@ public class UsuarioController {
 	public String home() {
 		return "home";
 	}
-
+	
+	
+	@RequestMapping("/logout")
+	public String logout() {
+		return "login";
+	}	
+	
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
+	}	
+	
+	@RequestMapping("/galeria")
+	public String galeria() {
+		return "galeria";
+	}
+	
+	@RequestMapping("/mascota")
+	public String mascota() {
+		return "mascota";
+	}
+	
+	@RequestMapping("/producto")
+	public String producto() {
+		return "producto";
+	}
+	
+	@RequestMapping("/servicio")
+	public String servicio() {
+		return "servicio";
 	}
 	
 	@RequestMapping("/login")
