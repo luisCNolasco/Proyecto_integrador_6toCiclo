@@ -137,9 +137,7 @@
       <div>
 		<iframe name="miFrame" style="height:100%;width:100%; border:none;">
 		</iframe>
-		
-       
-
+	  </div>
 		
       
       

@@ -41,12 +41,11 @@ public class UsuarioController {
 				session.setAttribute("objInterfaz", interfaz);
 				session.setAttribute("objTipoUsuario", tipoUsuario);
 
-				/*for (Interfaz i : interfaz) {
-				 * 
-				 * IMPRIMIR 
-					System.out.println(i.getCod_int());
-					System.out.println(i.getUrl_int());
-				}*/
+				//for (Interfaz i : interfaz) {
+				 
+				 
+					System.out.println(bean.getTipousuario().getCod_tip_usu());
+				//}
 
 			}
 			

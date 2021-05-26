@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.veterinaria.entity.Mascota;
+import com.veterinaria.entity.Producto;
 import com.veterinaria.entity.TipoMascota;
 import com.veterinaria.service.MascotaService;
 
@@ -22,10 +23,16 @@ public class MascotaController {
 	@Autowired
 	MascotaService service;	
 	
-	@RequestMapping("/cargarMascotas")
+	@RequestMapping("/cargarMascotasxUsuario")
 	@ResponseBody
 	public List<Mascota> listarMascotaXUsuario(@RequestParam("codigoUsuario") int codiUsuario){
 		return service.listarMascotasDeUsuario(codiUsuario);
+	}
+	
+	@RequestMapping("/cargarMascotas")
+	@ResponseBody
+	public List<Mascota> listarMascota(){
+		return service.listaMascota();
 	}
 	
 	@PostMapping(value = "/saveMascota", consumes = "multipart/form-data")

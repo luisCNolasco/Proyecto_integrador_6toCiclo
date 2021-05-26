@@ -39,12 +39,14 @@
 </head>
 <body>
 
-	<div class="container">
+	<div class="container">		
+		<input type="hidden" class="form-control" id="tipoUsuario" name="tipoUsuario" value="${objUsuario.tipousuario.cod_tip_usu}">
 		<br>&nbsp;<br>
 		<button type="button" data-toggle='modal' class='btn btn-primary'id="validateBtnw2" onclick="modalMascota()">Registrar mascota</button>
-		<br>&nbsp;<br>
-		<div id="divMascota">
+		<br>&nbsp;<br>		
+		<div id="divMascota">		
 			<table id="id_table" class="table table-striped table-bordered">
+			
 				<thead>
 					<tr>
 						<th>Codigo</th>
@@ -73,8 +75,7 @@
 					<button type="button" class="close" data-dismiss="modal"aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-				</div>
-				
+				</div>						
 				<input type="hidden" class="form-control" id="usuarioCodigo" name="usuarioCodigo" value="${objUsuario.cod_usu}">
 				
 				<div class="modal-body">
@@ -168,8 +169,10 @@ function tablaMascota(){
 	$("#id_table").DataTable().destroy();
 	$("#id_table tbody").empty(); 
 
+	var tipoUsuario = $("#tipoUsuario").val();
 	var codigoUsuario = $("#usuarioCodigo").val();
-	$.getJSON("cargarMascotas",{"codigoUsuario":codigoUsuario}, function (data){
+	if(tipoUsuario == 3){
+	$.getJSON("cargarMascotasxUsuario",{"codigoUsuario":codigoUsuario}, function (data){
 		$.each(data, function(index, item){
 			var editar='<button type="button" class="btn btn-success" onclick="updateMascota('+item.codigoMascota+","+
 																					"'"+item.nombreMascota+"',"+
@@ -192,6 +195,31 @@ function tablaMascota(){
 		$("#id_table").DataTable().draw();
 		$("#id_table").DataTable();
 	});
+	}else if (tipoUsuario == 1) {
+		$.getJSON("cargarMascotas",{}, function (data){
+			$.each(data, function(index, item){
+				var editar='<button type="button" class="btn btn-success" onclick="updateMascota('+item.codigoMascota+","+
+																						"'"+item.nombreMascota+"',"+
+																						"'"+item.tipoMascota.tipoMascota+"',"+
+																						"'"+item.codigoUsuario+"',"+
+																						"'"+item.foto1+"'"+')">Editar</button>';
+																																											    
+																									
+																													    
+			    var eliminar='<button type="button" class="btn btn-danger" onclick="eliminar('+item.codigoMascota+')">Eliminar</button>';
+
+				$("#id_table").append("<tr><td>"+item.codigoMascota+"</td>"+
+												  "<td>"+item.nombreMascota+"</td>"+
+												  "<td>"+item.tipoMascota.nombreMascota+"</td>"+										  
+												  "<td> <img src='data:image/png;base64,"+item.foto1+"' width='150px'/> </td>"+
+												  
+												  "<td>"+editar+"</td>"+
+												  "<td>"+eliminar+"</td>");
+			});
+			$("#id_table").DataTable().draw();
+			$("#id_table").DataTable();
+		});
+	}
 }
 
 	function modalMascota(){
@@ -210,16 +238,16 @@ function tablaMascota(){
 		}
 	
 	function saveMascota(){
-
+		
 			  var formData = new FormData();
 			  	formData.append("codigo", $("#codigo").val());	
 	  	        formData.append("nombre", $("#nombre").val());
 	  	        formData.append("tipo", $("#tipo").val());
-	  	        formData.append("usuario", $("#usuario").val());
+	  	        formData.append("usuario", $("#usuarioCodigo").val());
 	  	        
 		  	      var file = $('#foto')[0].files[0];	  	        
 		  	        formData.append("foto", file);
-		  	        
+		  	      
 			swal({
 				  title: "¿Seguro de Guardar los datos?",
 				  text: "",
@@ -228,7 +256,7 @@ function tablaMascota(){
 				  dangerMode: true,
 				})
 				.then((willSave) => {
-				  if (willSave) {
+				  if (willSave) {			  
 			   		 $.ajax({
 			   				url:  'saveMascota',
 			   				type: "POST",
