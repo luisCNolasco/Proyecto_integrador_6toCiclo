@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.veterinaria.entity.Interfaz;
 import com.veterinaria.entity.Marca;
 import com.veterinaria.entity.Producto;
 import com.veterinaria.entity.Proveedor;
@@ -52,6 +53,12 @@ public class ProductoController {
 	@RequestMapping("/cargaProducto")
 	@ResponseBody
 	public List<Producto> listaProducto() {
+		return productoService.listaProducto();
+	}
+	
+	@RequestMapping("/cargaProductoCliente")
+	@ResponseBody
+	public List<Producto> listaProductoCliente() {
 		return productoService.listaProducto();
 	}
 	

@@ -10,6 +10,7 @@ import com.veterinaria.entity.Interfaz;
 import com.veterinaria.entity.Producto;
 import com.veterinaria.entity.TipoUsuario;
 import com.veterinaria.entity.Usuario;
+import com.veterinaria.service.ProductoService;
 import com.veterinaria.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,30 +24,25 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioService service;
+	
+	@Autowired
+	ProductoService productoService;
 
 	@RequestMapping("iniciarSesion")
 	public String iniciarSesion(Usuario usu, HttpSession session, HttpServletRequest request) {
-		System.out.println("aca toy");
+		
 		try {
 			Usuario bean = service.iniciarSesion(usu);
 			if (bean == null) {
 				request.setAttribute("mensaje", "¡El usuario no existe!");
-				System.out.println("MIRALO VEEEE");
 				return "login";
 			} else {
 				List<Interfaz> interfaz = service.traerInterfazDeUsuario(bean.getTipousuario().getCod_tip_usu());
 				List<TipoUsuario> tipoUsuario = service.traerTipoDeUsuario(bean.getTipousuario().getCod_tip_usu());
-				System.out.println("aca toyaaaa");
+				
 				session.setAttribute("objUsuario", bean);
 				session.setAttribute("objInterfaz", interfaz);
 				session.setAttribute("objTipoUsuario", tipoUsuario);
-
-				//for (Interfaz i : interfaz) {
-				 
-				 
-					System.out.println(bean.getTipousuario().getCod_tip_usu());
-				//}
-
 			}
 			
 		} catch (Exception e) {
@@ -153,6 +149,11 @@ public class UsuarioController {
 	@RequestMapping("/verCrudIncidencias")
 	public String verCrudIncidencias() {
 		return "incidencias";
+	}
+	
+	@RequestMapping("/listProducto")
+	public String listProducto() {
+		return "listProducto";
 	}
 
 	@RequestMapping("/cliente/cerrarSesion")
