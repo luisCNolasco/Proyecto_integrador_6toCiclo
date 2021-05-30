@@ -34,18 +34,20 @@
 						<a href="#"><span class="fa fa-paper-plane mr-1"></span> contacto@4patitas.com</a>
 					</p>
 				</div>
-				<div class="col-md-6 d-flex justify-content-md-end"  style="position: relative">
-					<div class="social-media" style="position: relative">
-			    		<p id="sam-login" class="mb-0 d-flex align-items-center text-light sam-login">
-			                <a href="/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>
-			                <span>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</span>
-			                <span id="left-lout" class="ml-3"><i class="fas fa-caret-right"></i></span>
-						 </p>
-						
-	        		</div>
-	        		 <div id="option-lout" class="text-danger mt-1 pt-1 px-3 sam-lout" style="position: absolute; right: -120px; cursor: pointer; visibility: hidden;">
-	        			<span class=""><a class="text-light" href="/logout">Cerrar Sesión</a></span>
-	        		</div>
+				<div id="dropright" class="col-md-6 d-flex justify-content-md-end social-media"  style="position: relative">
+					<div class="drop-list">
+				    <div id="dropdown" class="dropdown dropright">
+				   <p class="mb-0 d-flex align-items-center text-light sam-login dropdown-toggle" data-toggle="dropdown">
+				   <a href="/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>        
+				    <span>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</span>
+				  </p>
+				      <div class="dropdown-menu">
+				        <a class="dropdown-item" href="#">Mi Perfil</a>
+				        <a class="dropdown-item" href="#">Mis pedidos</a>
+				        <a class="dropdown-item" href="#">Cerrar Sesión</a>
+				      </div>
+				    </div>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -152,7 +154,11 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>    
+        crossorigin="anonymous"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>  
     <script src="js/sam.js"></script>    
     
 </body>

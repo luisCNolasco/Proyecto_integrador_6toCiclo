@@ -9,11 +9,10 @@ $(document).ready(function() {
 		document.getElementById("fw-container").style.backgroundImage="url(./images/bg_5.png)";
 	});
 	
-	$("#left-lout").mouseenter(function(){
-		document.getElementById("option-lout").style.visibility="visible";
-	});
-	$("#left-lout").mouseleave(function(){
-		setTimeout(function(){ document.getElementById("option-lout").style.visibility="hidden"; }, 2000);
-		
-	});
+	$('#dropright #dropdown').hover(function () {
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
+    }, function () {
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
+    });
+	
 });

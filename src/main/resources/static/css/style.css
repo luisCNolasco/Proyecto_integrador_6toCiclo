@@ -2643,7 +2643,9 @@ input[type="button"].btn-block {
   margin-left: 0; }
 
 .dropright .dropdown-toggle::after {
-  vertical-align: 0; }
+  vertical-align: 0; 
+  margin-left: 15px;
+  }
 
 .dropleft .dropdown-menu {
   top: 0;
