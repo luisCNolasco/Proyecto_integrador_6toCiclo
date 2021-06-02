@@ -26,7 +26,13 @@ public class UsuarioServiceImp implements UsuarioService {
 	public List<Interfaz> traerInterfazDeUsuario(int cod_tip_usu) {
 		return repository.traerInterfazDeUsuario(cod_tip_usu);
 	}
+    /*
+    @Override
+	public Usuario registrarUsuario(Usuario usuario) {
+		 return repository.save(usuario);
+	}*/
 
+    
 	@Override
 	public void registrarUsuario(Usuario usuario) {
 		 repository.save(usuario);
@@ -57,5 +63,17 @@ public class UsuarioServiceImp implements UsuarioService {
 	public List<TipoUsuario> traerTipoDeUsuario(int cod_tip_usu) {
 		return repository.traerTipoDeUsuario(cod_tip_usu);
 	}
+
+	//@Override
+	//public List<Usuario> buscaXDniAndIdUsuarioNot(String dni_usu, int cod_usu) {
+		
+		//return  repository.findByDni_usuAndCod_usuNot(dni_usu, cod_usu);
+	//}
+
+	//@Override
+	//public List<Usuario> buscaXDni(String dni_usu) {
+		
+		//return repository.findByDni_usu(dni_usu);
+	//}
     
 }

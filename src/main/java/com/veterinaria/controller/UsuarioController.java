@@ -1,19 +1,22 @@
 package com.veterinaria.controller;
 
+
 import java.util.List;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.veterinaria.entity.Distrito;
 import com.veterinaria.entity.Interfaz;
-import com.veterinaria.entity.Producto;
+
 import com.veterinaria.entity.TipoUsuario;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.ProductoService;
 import com.veterinaria.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,6 +63,7 @@ public class UsuarioController {
 
 	{
 	try { 
+		 
     	 Usuario usuario = new Usuario();
     	  
     	 usuario.setCod_usu(cod_usu);
@@ -71,6 +75,7 @@ public class UsuarioController {
     	 usuario.setDistrito(distrito);
     	 usuario.setTipousuario(tipousuario);
     	 
+    	 
     	 service.registrarUsuario(usuario);			
 
 		} catch (Exception e) {
@@ -79,7 +84,26 @@ public class UsuarioController {
 
 		return "login";
 	}
+	
+	
 
+/*	@PostMapping(value = "/saveUsuario", consumes = "multipart/form-data")
+	@ResponseBody
+	public String registraCliente(Usuario usuario) {	
+		
+		try {
+			List<Usuario> lstUsuario=service.buscaXDni(usuario.getDni_usu());
+			CollectionUtils.isEmpty(lstUsuario);
+			Usuario obj=service.registrarUsuario(usuario);
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return "login";
+		
+	} */
+	
 	@RequestMapping("/home")
 	public String home() {
 		return "home";

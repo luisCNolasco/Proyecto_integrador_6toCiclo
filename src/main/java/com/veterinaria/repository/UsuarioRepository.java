@@ -3,7 +3,7 @@ package com.veterinaria.repository;
 import java.util.List;
 
 import com.veterinaria.entity.Interfaz;
-import com.veterinaria.entity.Producto;
+
 import com.veterinaria.entity.TipoUsuario;
 
 import com.veterinaria.entity.Usuario;
@@ -35,5 +35,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
     
     @Query("Select u from Usuario u where nom_usu like :fil")
 	public abstract List<Usuario> buscarUsuarioPorNombre(@Param("fil") String filtro);
+    
+    //public List<Usuario> findByDni_usu(String dni_usu);
+	//public List<Usuario> findByDni_usuAndCod_usuNot(String dni_usu, int cod_usu);
     
 }

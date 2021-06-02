@@ -374,9 +374,9 @@ $(document).ready(function() {
                         message: 'El nombre es un campo obligatorio'
                     },
                     stringLength: {
-                        min: 3,
+                        min: 2,
                         max: 40,
-                        message: 'El nombre es de 3 a 40 caracteres'
+                        message: 'El nombre es de 2 a 40 caracteres'
                     },
     	            regexp : {
     						regexp : /^[a-zA-Z ]{2,40}$/,
@@ -391,9 +391,9 @@ $(document).ready(function() {
                         message: 'El apellido es un campo obligatorio'
                     },
                     stringLength: {
-                        min: 3,
+                        min: 2,
                         max: 40,
-                        message: 'El apellido es de 3 a 40 caracteres'
+                        message: 'El apellido es de 2 a 40 caracteres'
                     },
     	            regexp : {
     					regexp : /^[a-zA-Z ]{2,40}$/,
