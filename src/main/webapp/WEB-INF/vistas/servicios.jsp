@@ -286,7 +286,7 @@ $('#id_registra').bootstrapValidator({
                     message: 'El nombre es de 5 a 50 caracteres'
                 },
                 regexp: {
-					regexp: /^[a-zA-Z\s]+$/,
+					regexp: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/,
 					message: 'El nombre contiene solo letras'
 	            }
             }
@@ -315,7 +315,7 @@ $('#id_registra').bootstrapValidator({
                    message: 'La descripción es de 5 a 150 caracteres'
                },
                regexp: {
-					regexp: /^[a-zA-Z\s]+$/,
+					regexp: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/,
 					message: 'La descripción contiene solo letras'
 	            }
             }

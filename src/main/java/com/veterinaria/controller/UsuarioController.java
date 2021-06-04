@@ -1,8 +1,9 @@
 package com.veterinaria.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,9 +15,11 @@ import com.veterinaria.entity.TipoUsuario;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.ProductoService;
 import com.veterinaria.service.UsuarioService;
+import com.veterinaria.util.Constantes;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +57,7 @@ public class UsuarioController {
 		return "redirect:home";	
 	}
 
-	@PostMapping(value = "/saveUsuario", consumes = "multipart/form-data")
+	/*@PostMapping(value = "/saveUsuario", consumes = "multipart/form-data")
 	@ResponseBody
 	public String registraCliente(@RequestParam("cod_usu") int cod_usu, @RequestParam("nom_usu") String nom_usu,
 			@RequestParam("ape_usu") String ape_usu, @RequestParam("dni_usu") String dni_usu,
@@ -83,16 +86,38 @@ public class UsuarioController {
 		}
 
 		return "login";
-	}
+	}*/
 	
-	
+	@PostMapping(value = "/saveUsuario", consumes = "multipart/form-data")
+	@ResponseBody
+	public Map<String, Object> registraCliente(Usuario usuario){
+	Map<String, Object> salida = new HashMap<>();
+	try {     	 
+    	 List<Usuario> lstUsuario = service.buscaXDni_usu(usuario.getDni_usu());
+    	 if(CollectionUtils.isEmpty(lstUsuario)) {
+    		 Usuario objS = service.registrarUsuario(usuario);
+    		 if(objS==null) {
+    			 salida.put("mensaje", Constantes.MENSAJE_REG_ERROR);
+    		 }else {
+    			 salida.put("mensaje", Constantes.MENSAJE_REG_EXITOSO);	
+    		 }
+    	 }else {
+    		 salida.put("mensaje", Constantes.MENSAJE_REG_DNI_YA_EXISTE + usuario.getDni_usu());
+    	 }
 
-/*	@PostMapping(value = "/saveUsuario", consumes = "multipart/form-data")
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return salida;
+	}
+
+	/*@PostMapping(value = "/saveUsuario", consumes = "multipart/form-data")
 	@ResponseBody
 	public String registraCliente(Usuario usuario) {	
 		
 		try {
-			List<Usuario> lstUsuario=service.buscaXDni(usuario.getDni_usu());
+			List<Usuario> lstUsuario=service.buscaXDni_usu(usuario.getDni_usu());
 			CollectionUtils.isEmpty(lstUsuario);
 			Usuario obj=service.registrarUsuario(usuario);
 				

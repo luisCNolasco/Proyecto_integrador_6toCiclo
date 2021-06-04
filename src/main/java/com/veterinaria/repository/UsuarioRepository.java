@@ -36,7 +36,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
     @Query("Select u from Usuario u where nom_usu like :fil")
 	public abstract List<Usuario> buscarUsuarioPorNombre(@Param("fil") String filtro);
     
-    //public List<Usuario> findByDni_usu(String dni_usu);
-	//public List<Usuario> findByDni_usuAndCod_usuNot(String dni_usu, int cod_usu);
+    public List<Usuario> findByDni_usu(String dni_usu);
+	public List<Usuario> findByDni_usuAndCod_usuNot(String dni_usu, int cod_usu);
     
 }
