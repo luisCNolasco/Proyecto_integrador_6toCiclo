@@ -146,10 +146,10 @@
 
     /* Registro*/
 
-	setTimeout(function() {
+		/*setTimeout(function() {
 	    $("#id_preview").fadeOut("fast"); }, 0);
     
-	$("#foto").change(function(event){
+			$("#foto").change(function(event){
 		var src = URL.createObjectURL(event.target.files[0]);
 		if(src != null){
 		    setTimeout(function(){
@@ -159,7 +159,19 @@
 		      $("#id_preview").fadeOut("slow"); }, 10000);
 		}		
 	});	
+*/
 
+$("#foto").change(function(event){
+	var file=$("#foto").val();
+	var extension=file.split('.').pop().toLowerCase();
+	
+	
+	if(extension=='jpg'||extension =='png'){
+		var src=URL.createObjectURL(event.target.files[0]);	
+		$("#id_preview").attr("src",src);
+	}
+	
+});
 
 </script>
 
@@ -355,13 +367,32 @@ $('#id_registra').bootstrapValidator({
              }
       },
       "foto":{
-     	 selector: "#foto",
-          validators:{
-         	 notEmpty: {
-                  message: 'Seleccionar foto 1 es obligatorio'
-             }
+
+      	 selector: "#foto",
+
+        validators:{
+
+        	 	notEmpty: {
+
+            message: 'La foto es obligatorio'
+
+          },
+
+          file: {
+
+            extension: 'jpeg,png,jpg',
+
+            type: 'image/jpeg,image/png',
+
+            maxSize: 3*1024*1024,
+
+            message: 'La foto debe ser JPG p PNG de tamaño 3MB como máximo'
+
           }
-     }
+
+        }
+
+      }
     }   
 });
 </script>
