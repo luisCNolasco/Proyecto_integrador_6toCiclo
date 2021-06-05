@@ -424,12 +424,12 @@ $('#id_registra').bootstrapValidator({
                   message: 'El nombre es obligatorio'
              },
              stringLength: {
-                 min: 3,
-                 max: 30,
-                 message: 'El nombre es de 3 a 30 caracteres'
+                 min: 2,
+                 max: 80,
+                 message: 'El nombre es de 2 a 80 caracteres'
              },
              regexp : {
-					regexp : /^[a-zA-Z ]{2,30}$/,
+					regexp : /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{2,80}$/,
 					message : 'El nombre solamente debe contener caracteres'
 			 }
          }

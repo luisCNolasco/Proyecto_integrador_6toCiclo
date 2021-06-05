@@ -98,7 +98,7 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label>DNI</label>
-								<input type="number" class="form-control" id="dni_usu" name="dni_usu" placeholder="Ingrese número de DNI" maxlength="8">
+								<input type="text" class="form-control" id="dni_usu" name="dni_usu" placeholder="Ingrese número de DNI" maxlength="8">
 							</div>
 						</div>		
 					</div>
@@ -228,7 +228,7 @@ function tablaUsuario(){
 				  buttons: true,
 				  dangerMode: true,
 				})
-				.then((willSave) => {
+				.then(	(willSave) => {
 				  if (willSave) {
 			   		 $.ajax({
 			   				url:  'guardarUsuario',
@@ -324,12 +324,12 @@ $('#id_registra').bootstrapValidator({
                 },
                 stringLength: {
                     min: 2,
-                    max: 40,
-                    message: 'El nombre es de 3 a 40 caracteres'
+                    max: 50,
+                    message: 'El nombre es de 2 a 50 caracteres'
                 },
 	            regexp : {
-						regexp : /^[a-zA-Z ]{2,40}$/,
-						message : 'El nombre solamente debe contener 2 a 40 caracteres'
+						regexp : /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{2,50}$/,
+						message : 'El nombre solamente debe contener 2 a 50 caracteres'
 				}
             }
         },
@@ -341,12 +341,12 @@ $('#id_registra').bootstrapValidator({
                 },
                 stringLength: {
                     min: 2,
-                    max: 40,
-                    message: 'El apellido es de 3 a 40 caracteres'
+                    max: 70,
+                    message: 'El apellido es de 2 a 70 caracteres'
                 },
 	            regexp : {
-					regexp : /^[a-zA-Z ]{2,40}$/,
-					message : 'El nombre solamente debe contener 2 a 40 caracteres'
+					regexp : /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{2,70}$/,
+					message : 'El nombre solamente debe contener 2 a 70 caracteres'
 			  }
             }
         },
