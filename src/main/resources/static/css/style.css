@@ -3439,7 +3439,6 @@ input[type="button"].btn-block {
   display: block; }
 
 .navbar {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

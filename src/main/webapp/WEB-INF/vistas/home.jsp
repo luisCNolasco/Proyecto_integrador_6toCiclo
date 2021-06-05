@@ -42,9 +42,9 @@
 				    <span>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</span>
 				  </p>
 				      <div class="dropdown-menu">
-				        <a class="dropdown-item" href="#">Mi Perfil</a>
-				        <a class="dropdown-item" href="#">Mis pedidos</a>
-				        <a class="dropdown-item" href="#">Cerrar Sesión</a>
+				        <a class="dropdown-item" target="miFrame" href="#">Mi Perfil</a>
+				        <a class="dropdown-item" target="miFrame" href="carrito">Mis pedidos</a>
+				        <a class="dropdown-item" target="miFrame" href="logout">Cerrar Sesión</a>
 				      </div>
 				    </div>
 				</div>
