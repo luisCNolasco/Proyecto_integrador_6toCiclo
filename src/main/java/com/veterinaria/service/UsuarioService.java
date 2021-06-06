@@ -24,8 +24,8 @@ public interface UsuarioService {
 
 	public abstract List<Usuario> listaUsuarios();
 	
-	public List<Usuario> buscaXDni_usuAndCod_usuNot(String dni_usu, int cod_usu);
-	public List<Usuario> buscaXDni_usu(String dni_usu);
+	public List<Usuario> buscaXDni_usuAndCod_usuNot(String dni_usu, String pass_usu);
+	public Usuario buscaXDni_usu(String dni_usu);
 
 
 }

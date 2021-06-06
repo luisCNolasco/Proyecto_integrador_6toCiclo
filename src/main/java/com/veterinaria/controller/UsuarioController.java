@@ -93,8 +93,8 @@ public class UsuarioController {
 	public Map<String, Object> registraCliente(Usuario usuario){
 	Map<String, Object> salida = new HashMap<>();
 	try {     	 
-    	 List<Usuario> lstUsuario = service.buscaXDni_usu(usuario.getDni_usu());
-    	 if(CollectionUtils.isEmpty(lstUsuario)) {
+    	 Usuario lstUsuario = service.buscaXDni_usu(usuario.getDni_usu());
+    	 if(lstUsuario == null) {
     		 Usuario objS = service.registrarUsuario(usuario);
     		 if(objS==null) {
     			 salida.put("mensaje", Constantes.MENSAJE_REG_ERROR);

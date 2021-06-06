@@ -45,6 +45,15 @@
 </style>
 </head>
 <body>
+	<c:if test="${mensaje_stock!=null}">
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  <strong>${mensaje_stock}</strong>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+	</c:if>		
+	
 	<div class="container">
 		<div class="modal fade" id="registroModal" tabindex="-1" role="dialog"
 			aria-labelledby="id_mensaje" aria-hidden="true">
@@ -199,5 +208,6 @@
 		});
 
 	}
+	
 </script>
 </html>

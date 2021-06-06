@@ -9,8 +9,8 @@ import com.veterinaria.entity.*;
 
 public interface ProductoHasBoletaRepository extends JpaRepository<ProductoHasBoleta, Integer> {
 
-/*	@Modifying
-	@Query("update Producto x set x.stock = x.stock - :can where x.idProducto = :pro")
-	public abstract void actualizaStock(@Param("can")int cantidad, @Param("pro") int cod_pro);*/
+	@Modifying
+	@Query("update Producto x set x.stock_pro = x.stock_pro - :can where x.cod_pro = :pro")
+	public abstract void actualizaStock(@Param("can")int cantidad, @Param("pro") int cod_pro);
 	
 }

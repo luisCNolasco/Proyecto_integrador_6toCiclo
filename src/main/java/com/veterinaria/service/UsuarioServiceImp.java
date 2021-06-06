@@ -65,12 +65,12 @@ public class UsuarioServiceImp implements UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> buscaXDni_usuAndCod_usuNot(String dni_usu, int cod_usu) {
-		return repository.findByDni_usuAndCod_usuNot(dni_usu, cod_usu);
+	public List<Usuario> buscaXDni_usuAndCod_usuNot(String dni_usu, String pass_usu) {
+		return repository.findByDni_usuAndCod_usuNot(dni_usu, pass_usu);
 	}
 
 	@Override
-	public List<Usuario> buscaXDni_usu(String dni_usu) {
+	public Usuario buscaXDni_usu(String dni_usu) {
 		return repository.findByDni_usu(dni_usu);
 	}
 

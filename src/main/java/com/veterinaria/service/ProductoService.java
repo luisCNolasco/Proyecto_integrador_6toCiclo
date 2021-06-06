@@ -10,5 +10,6 @@ public interface ProductoService {
 	public abstract void insertaProducto(Producto pro);
 	public abstract void eliminaProducto(int cod);
 	public abstract List<Producto> buscaPorNombre(String filtro);
+	public abstract Producto buscaPorCodigo(int cod);
 	
 }

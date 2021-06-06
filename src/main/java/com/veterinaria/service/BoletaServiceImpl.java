@@ -15,14 +15,8 @@ public class BoletaServiceImpl implements BoletaService{
 	
 	@Autowired
 	private ProductoHasBoletaRepository detalleRepository;
-
-	@Override
-	public Boleta insertaBoleta(Boleta obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	/*@Override
+    @Override
 	@Transactional
 	public Boleta insertaBoleta(Boleta obj) {
 		Boleta cabecera = boletaRepository.save(obj);
@@ -32,6 +26,6 @@ public class BoletaServiceImpl implements BoletaService{
 			detalleRepository.save(d);
 		}
 		return cabecera;
-	}*/
+	}
 
 }

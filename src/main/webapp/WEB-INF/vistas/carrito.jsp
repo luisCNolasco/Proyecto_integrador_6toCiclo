@@ -21,6 +21,7 @@
 						<div class="panel-body">							
 							<div class="form-group">
 								<div class="col-lg-12">
+									<input type="hidden" id="id_cliente_dni" value="${sessionScope.objUsuario.dni_usu}">
 									<table id="id_table_boleta" class="table table-striped table-bordered">
 										<thead>
 											<tr>
@@ -58,6 +59,60 @@ $(document).ready(function() {
 		});
 	});
 	
+});
+
+function f_elimina_seleccion(id){	
+	//limpiar la tabla
+	$("#id_table_boleta_body").empty();
+		
+	//Se añade los clientes a la tabla
+	$.getJSON("eliminaSeleccion",{"cod_pro":id}, function (data){
+		$.each(data, function(index, item){
+			$('#id_table_boleta_body').append("<tr><td>" +item.cod_pro + "</td><td>" +item.nombre + "</td><td>" +item.precio + "</td><td>" +item.cantidad + "</td><td>" +item.totalParcial + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.cod_pro +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td><tr>");
+		});
+	});
+}
+
+$("#id_btnRegistrar").click(function (){
+	var var_dni_usu = $("#id_cliente_dni").val();
+	
+	var var_count = 0;
+	$("#id_table_boleta_body tr").each(function() {
+		var_count = var_count + 1;
+	});
+	
+	if (var_count < 1){
+		$("#idMensajeTexto").text("Seleccione un producto");
+		$("#idMensaje").modal("show");
+	}else{
+
+		var jsonParam = {"dni_usu":var_dni_usu};
+		console.log(jsonParam);
+		$.ajax({
+			url:  'registraBoleta',
+			type: 'POST',
+			dataType:'json',
+			data: jsonParam,
+			success:function(data){
+				console.log(data);
+				if(data.texto != "-1"){
+					console.log(data.texto);
+					/*$("#idMensajeTexto").html(data.texto);
+					$("#idMensaje").modal("show");
+					$("#id_table_boleta_body").empty();
+					$("#id_cliente_id").val("-1");
+					$("#id_cliente_nombre").val("");
+					$("#id_cliente_apellido").val("");*/
+				}else
+					swal("Error al agregar la Boleta","","error");
+					return false;
+				},
+			error: function (jqXhr) { 
+				swal("Error en la conexión","","error");
+			}
+	   });	
+		   
+	}
 });
 </script>
 </body>

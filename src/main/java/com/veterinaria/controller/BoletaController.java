@@ -1,17 +1,23 @@
 package com.veterinaria.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.veterinaria.entity.*;
 import com.veterinaria.service.*;
+import com.veterinaria.util.Constantes;
 
 @Controller
 public class BoletaController {
@@ -37,58 +43,76 @@ public class BoletaController {
 	@RequestMapping("/agregarSeleccion")
 	@ResponseBody
 	public List<Seleccion> agregar(Seleccion obj) {
-		if(seleccionados.isEmpty()) {
-			seleccionados.add(obj);
-		}else {
-			for (Seleccion x : seleccionados) {
-				if (x.getCod_pro() == obj.getCod_pro()) {
-					x.setCantidad(x.getCantidad()+obj.getCantidad());
-				}	
+		
+		/*Producto pro = new Producto();  
+		Map<String, Object> salida = new HashMap<>();*/
+		for (Seleccion x : seleccionados) {
+			if (x.getCod_pro() == obj.getCod_pro()) {
+				x.setCantidad(x.getCantidad()+obj.getCantidad());
+				/*int cant = x.getCantidad();
+				pro = productoService.buscaPorCodigo(obj.getCod_pro());
+				int stock_actual = Integer.parseInt(pro.getStock_pro());
+				System.out.println("50:"+stock_actual);
+				if(cant > stock_actual) {
+					System.out.println("52:"+cant);
+					salida.put("mensaje_stock", Constantes.MENSAJE_REG_ERROR_STOCK);
+					break;
+				}
+				*/
+				return seleccionados;
 			}
+			
 		}
+			
+		seleccionados.add(obj);
 		return seleccionados;
 	}
-	
+		
 	@RequestMapping("/listaSeleccion")
 	@ResponseBody
 	public List<Seleccion> lista(){
 		return seleccionados;
 	}
 	
-	/*@RequestMapping("/eliminaSeleccion")
+	@RequestMapping("/eliminaSeleccion")
 	@ResponseBody
-	public List<Seleccion> eliminar(int idProducto) {
+	public List<Seleccion> eliminar(int cod_pro) {
 		for (Seleccion x : seleccionados) {
-			if (x.getIdProducto() == idProducto) {
+			if (x.getCod_pro() == cod_pro) {
 				seleccionados.remove(x);
 				break;
 			}
 		}
 		return seleccionados;
-	}*/
+	}
 	
-	
-	/*@RequestMapping("/registraBoleta")
+	@RequestMapping("/registraBoleta")
 	@ResponseBody
-	public Mensaje registra(Usuario objCliente) {
-		Usuario objUsuario = new Usuario();
-		objUsuario.setCod_usu(1);
+	public Mensaje registra(@RequestParam String dni_usu) {
+		Usuario objUsuario = usuarioService.buscaXDni_usu(dni_usu);
+		
 
 		List<ProductoHasBoleta> detalles = new ArrayList<ProductoHasBoleta>();
 		for (Seleccion x : seleccionados) {
 			ProductoHasBoletaPK pk = new ProductoHasBoletaPK();
 			pk.setCod_pro(x.getCod_pro());
-
 			ProductoHasBoleta phb = new ProductoHasBoleta();
-			phb.setCantidad(x.getCantidad());
 			phb.setPrecio(x.getPrecio());
-			phb.setProductoHasBoletaPK(pk);
-
+			phb.setCantidad(x.getCantidad());
+			phb.setProductoHasBoletaPK(pk);//num_boleta y cod_pro
+			
+			
+			System.out.println("Price: "+phb.getPrecio());
+			System.out.println("Cantidad: "+phb.getCantidad());
+			System.out.println("Detalle Num: "+phb.getProductoHasBoletaPK().getNum_boleta());
+			System.out.println("Detalle Cod_pro: "+phb.getProductoHasBoletaPK().getCod_pro());
+			
+			
 			detalles.add(phb);
+			
 		}
-
+		
 		Boleta objBoleta = new Boleta();
-		objBoleta.set(objCliente);
 		objBoleta.setUsuario(objUsuario);
 		objBoleta.setDetallesBoleta(detalles);
 
@@ -116,7 +140,7 @@ public class BoletaController {
 
 		return objMensaje;
 	}
-	*/
+	
 	/*@RequestMapping("/cargaCliente")
 	@ResponseBody
 	public List<Cliente> listaCliente(String filtro){

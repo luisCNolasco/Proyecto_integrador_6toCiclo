@@ -36,6 +36,11 @@ public class ProductoServiceImp implements ProductoService {
 		return repository.buscarPorNombre(filtro);
 	}
 
+	@Override
+	public Producto buscaPorCodigo(int cod) {
+		return repository.findById(cod).get();
+	}
+
 
 
 }
