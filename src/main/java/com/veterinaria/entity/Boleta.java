@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_boleta")
 public class Boleta {
@@ -29,12 +31,15 @@ public class Boleta {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date fecha = new Date();
+	private Date fecha = new Date(); 
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "cod_usu", nullable = false)
-	private Usuario usuario;
-
+	@Column(name = "estado")	
+	private int estado;
+	
+	@Column(name = "cod_usu")
+	private int usuario;
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boleta")
 	private List<ProductoHasBoleta> detallesBoleta;
 
@@ -53,12 +58,20 @@ public class Boleta {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+	
+	public int getEstado() {
+		return estado;
+	}
 
-	public Usuario getUsuario() {
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}	
+
+	public int getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(int usuario) {
 		this.usuario = usuario;
 	}
 

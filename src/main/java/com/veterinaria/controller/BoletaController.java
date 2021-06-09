@@ -1,15 +1,9 @@
 package com.veterinaria.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.veterinaria.entity.*;
 import com.veterinaria.service.*;
-import com.veterinaria.util.Constantes;
 
 @Controller
 public class BoletaController {
@@ -90,17 +83,19 @@ public class BoletaController {
 	@ResponseBody
 	public Mensaje registra(@RequestParam String dni_usu) {
 		Usuario objUsuario = usuarioService.buscaXDni_usu(dni_usu);
-		
+		int estadoBoleta = 1;
 
 		List<ProductoHasBoleta> detalles = new ArrayList<ProductoHasBoleta>();
 		for (Seleccion x : seleccionados) {
 			ProductoHasBoletaPK pk = new ProductoHasBoletaPK();
+			
 			pk.setCod_pro(x.getCod_pro());
+			
 			ProductoHasBoleta phb = new ProductoHasBoleta();
+			
 			phb.setPrecio(x.getPrecio());
 			phb.setCantidad(x.getCantidad());
 			phb.setProductoHasBoletaPK(pk);//num_boleta y cod_pro
-			
 			
 			System.out.println("Price: "+phb.getPrecio());
 			System.out.println("Cantidad: "+phb.getCantidad());
@@ -113,7 +108,8 @@ public class BoletaController {
 		}
 		
 		Boleta objBoleta = new Boleta();
-		objBoleta.setUsuario(objUsuario);
+		objBoleta.setUsuario(objUsuario.getCod_usu());
+		objBoleta.setEstado(estadoBoleta);
 		objBoleta.setDetallesBoleta(detalles);
 
 		Boleta objIns = boletaService.insertaBoleta(objBoleta);
@@ -121,7 +117,7 @@ public class BoletaController {
 
 		if (objIns != null) {
 			salida = "Se generó la boleta con código N° : " + objIns.getNum_boleta() + "<br><br>";
-			salida += "Cliente: " + objIns.getUsuario().getNom_usu() + "<br><br>";
+			salida += "Cliente: " + objUsuario.getNombreCompleto() + "<br><br>";
 			salida += "<table class=\"table\"><tr><td>Producto</td><td>Precio</td><td>Cantidad</td><td>Subtotal</td></tr>";
 			double monto = 0;
 			for (Seleccion x : seleccionados) {
@@ -160,6 +156,11 @@ public class BoletaController {
 		return productoService.listaproducto(filtro+"%", paginacion);
 	}*/
 	
+	@RequestMapping("/cargarPedidosxCodUsuario")
+	@ResponseBody
+	public List<Boleta> cargarPedidosxCodUsuario(@RequestParam int cod_usu) {
+		return boletaService.buscarPorCodUsuario(cod_usu);
+	}
 	
 	
 }

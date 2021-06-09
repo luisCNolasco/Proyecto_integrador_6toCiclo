@@ -34,16 +34,20 @@
 						<a href="#"><span class="fa fa-paper-plane mr-1"></span> contacto@4patitas.com</a>
 					</p>
 				</div>
+				
 				<div id="dropright" class="col-md-6 d-flex justify-content-md-end social-media"  style="position: relative">
+				<p class="mb-0 d-flex align-items-center text-light">
+				<a href="carrito" target="miFrame" class="d-flex align-items-center justify-content-center"><span class="fa fa-shopping-cart"><i class="sr-only"></i></span></a>
+				</p>
 					<div class="drop-list">
-				    <div id="dropdown" class="dropdown dropright">
-				   <p class="mb-0 d-flex align-items-center text-light sam-login dropdown-toggle" data-toggle="dropdown">
+				    <div id="dropdown" class="dropdown dropright">				    
+				   <p class="mb-0 d-flex align-items-center text-light sam-login dropdown-toggle" data-toggle="dropdown">				   
 				   <a href="/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-user"><i class="sr-only"></i></span></a>        
 				    <span>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</span>
 				  </p>
 				      <div class="dropdown-menu">
 				        <a class="dropdown-item" target="miFrame" href="#">Mi Perfil</a>
-				        <a class="dropdown-item" target="miFrame" href="carrito">Mis pedidos</a>
+				        <a class="dropdown-item" target="miFrame" href="verCrudPedido">Mis pedidos</a>
 				        <a class="dropdown-item" target="miFrame" href="logout">Cerrar Sesión</a>
 				      </div>
 				    </div>

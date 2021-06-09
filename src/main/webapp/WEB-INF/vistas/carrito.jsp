@@ -16,6 +16,7 @@
 </head>
 <body style="margin-top: 10px;">
 	<div class ="container">
+		<h2 class="text-center text-success" style="text-decoration:underline;">Cesta</h2>	
 		<div class="panel panel-default">
 					<div class="panel-heading">Boleta</div>
 						<div class="panel-body">							
@@ -42,9 +43,25 @@
 							</div>
 							<div class="form-group">
 								<div class="col-lg-9 col-lg-offset-5">
-									<button type="button" id="id_btnRegistrar"  class="btn btn-primary">REGISTRA BOLETA</button>
+									<button type="button" id="id_btnRegistrar"  class="btn btn-primary">REGISTRAR PEDIDO</button>
 								</div>
 							</div>
+					</div>
+				</div>
+				
+				<!-- Modal Mensaje -->	
+				  <div class="modal fade" id="idMensaje" >
+					<div class="modal-dialog" style="width: 60%">
+		
+						<div class="modal-content">
+						<div class="modal-header" style="padding: 20px 20px">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4><span class="glyphicon glyphicon-ok-sign"></span> Mensaje</h4>
+						</div>
+						<div  id="idMensajeTexto" class="modal-body" style="padding: 30px 30px;align-content: center;">
+							
+					    </div>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -54,9 +71,14 @@ $(document).ready(function() {
 
 	//Se añade los clientes a la tabla
 	$.getJSON("listaSeleccion",{}, function (data){
-		$.each(data, function(index, item){
-			$('#id_table_boleta_body').append("<tr><td>" +item.cod_pro + "</td><td>" +item.nombre + "</td><td>" +item.precio + "</td><td>" +item.cantidad + "</td><td>" +item.totalParcial + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.cod_pro +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>");                     
-		});
+		console.log(data);
+			if(data != ''){
+				$.each(data, function(index, item){
+					$('#id_table_boleta_body').append("<tr><td>" +item.cod_pro + "</td><td>" +item.nombre + "</td><td>" +item.precio + "</td><td>" +item.cantidad + "</td><td>" +item.totalParcial + "</td><td><button type='button' onclick='f_elimina_seleccion(" + item.cod_pro +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>");
+				});
+			}else{
+				$('#id_table_boleta_body').append("<tr><td colspan='6' class='text-center'>No hay productos seleccionados para efectuar el pedido.</td></tr>");
+			}   
 	});
 	
 });
@@ -96,13 +118,9 @@ $("#id_btnRegistrar").click(function (){
 			success:function(data){
 				console.log(data);
 				if(data.texto != "-1"){
-					console.log(data.texto);
-					/*$("#idMensajeTexto").html(data.texto);
+					$("#idMensajeTexto").html(data.texto);
 					$("#idMensaje").modal("show");
 					$("#id_table_boleta_body").empty();
-					$("#id_cliente_id").val("-1");
-					$("#id_cliente_nombre").val("");
-					$("#id_cliente_apellido").val("");*/
 				}else
 					swal("Error al agregar la Boleta","","error");
 					return false;

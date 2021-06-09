@@ -75,8 +75,8 @@ public class ProductoController {
 	public String registra(
 			@RequestParam("cod_pro")int cod_pro,
 			@RequestParam("nom_pro")String nom_pro,
-			@RequestParam("pre_pro")String pre_pro,
-			@RequestParam("stock_pro")String stock_pro,
+			@RequestParam("pre_pro")double pre_pro,
+			@RequestParam("stock_pro")int stock_pro,
 			@RequestParam("marca") Marca marca,
 			@RequestParam("proveedor") Proveedor proveedor,
 			@RequestParam("desc_sim_pro")String desc_sim_pro,

@@ -46,15 +46,10 @@ public class Usuario {
     
     @ManyToOne
 	@JoinColumn(name="cod_tip_usu")
-	private TipoUsuario tipousuario;
-    
-    @JsonIgnore
-	@OneToMany(mappedBy = "usuario")
-	private List<Boleta> boletas;
+	private TipoUsuario tipousuario;   
     
     @Transient 
 	private String nombreCompleto;
-	
 
 	public String getNombreCompleto() {
 		return nom_usu.concat(" ").concat(ape_usu);

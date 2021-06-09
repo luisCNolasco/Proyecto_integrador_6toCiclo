@@ -1,5 +1,7 @@
 package com.veterinaria.service; 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,11 @@ public class BoletaServiceImpl implements BoletaService{
 			detalleRepository.save(d);
 		}
 		return cabecera;
+	}
+
+	@Override
+	public List<Boleta> buscarPorCodUsuario(int cod_usu) {
+		return boletaRepository.buscarPorCodUsuario(cod_usu);
 	}
 
 }

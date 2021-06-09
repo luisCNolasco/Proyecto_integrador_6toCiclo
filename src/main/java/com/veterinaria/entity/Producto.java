@@ -23,10 +23,10 @@ public class Producto {
 	private String nom_pro;
 	
 	@Column(name="pre_pro")
-	private String pre_pro;
+	private double pre_pro;
 	
 	@Column(name="stock_pro")
-	private String stock_pro;
+	private int stock_pro;
 	
     @ManyToOne
 	@JoinColumn(name="cod_mar")
@@ -54,7 +54,6 @@ public class Producto {
     @Column(name="foto3")
 	private byte[] foto3;
 
-    
 	public int getCod_pro() {
 		return cod_pro;
 	}
@@ -71,19 +70,19 @@ public class Producto {
 		this.nom_pro = nom_pro;
 	}
 
-	public String getPre_pro() {
+	public double getPre_pro() {
 		return pre_pro;
 	}
 
-	public void setPre_pro(String pre_pro) {
+	public void setPre_pro(double pre_pro) {
 		this.pre_pro = pre_pro;
 	}
 
-	public String getStock_pro() {
+	public int getStock_pro() {
 		return stock_pro;
 	}
 
-	public void setStock_pro(String stock_pro) {
+	public void setStock_pro(int stock_pro) {
 		this.stock_pro = stock_pro;
 	}
 
