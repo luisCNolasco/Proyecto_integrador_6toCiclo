@@ -121,8 +121,8 @@ function detalleReserva (num_reserva){
 	$('#registroModal').modal({backdrop: 'static', keyboard: false,show:true});  
 	 $ .getJSON("detalleReserva",{'num_reserva' : num_reserva},
 	        function(data) {
-		        console.log(data[0].boleta.num_boleta);
-		        $("#modal-header").append("<h3> Nro de reserva "+data[0].boleta.num_reserva+"</h3>");
+		        console.log(data[0].reserva.num_reserva);
+		        $("#modal-header").append("<h3> Nro de reserva "+data[0].reserva.num_reserva+"</h3>");
 	            $ .each(data,function(index,item) {
 							
 	            	$('#id_table_detallereserva_body').append("<tr><td>"
