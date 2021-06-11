@@ -21,13 +21,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tb_boleta")
-public class Boleta {
+@Table(name = "tb_reserva")
+public class Reserva {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "num_boleta")	
-	private int num_boleta;
+    @Column(name = "num_reserva")	
+	private int num_reserva;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -40,16 +40,15 @@ public class Boleta {
 	private int usuario;
 	
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boleta")
-	private List<ProductoHasBoleta> detallesBoleta;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reserva")
+	private List<ServicioHasReserva> detallesReserva;
 
-	
-	public int getNum_boleta() {
-		return num_boleta;
+	public int getNum_reserva() {
+		return num_reserva;
 	}
 
-	public void setNum_boleta(int num_boleta) {
-		this.num_boleta = num_boleta;
+	public void setNum_reserva(int num_reserva) {
+		this.num_reserva = num_reserva;
 	}
 
 	public Date getFecha() {
@@ -59,14 +58,14 @@ public class Boleta {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
+
 	public int getEstado() {
 		return estado;
 	}
 
 	public void setEstado(int estado) {
 		this.estado = estado;
-	}	
+	}
 
 	public int getUsuario() {
 		return usuario;
@@ -76,15 +75,17 @@ public class Boleta {
 		this.usuario = usuario;
 	}
 
-	public List<ProductoHasBoleta> getDetallesBoleta() {
-		return detallesBoleta;
+	public List<ServicioHasReserva> getDetallesReserva() {
+		return detallesReserva;
 	}
 
-	public void setDetallesBoleta(List<ProductoHasBoleta> detallesBoleta) {
-		this.detallesBoleta = detallesBoleta;
+	public void setDetallesReserva(List<ServicioHasReserva> detallesReserva) {
+		this.detallesReserva = detallesReserva;
 	}
 
-
+	
+	
+	
 	
 	
 }

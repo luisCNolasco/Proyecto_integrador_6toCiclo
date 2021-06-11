@@ -7,33 +7,34 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="tb_servicio_has_boleta")
-public class ServicioHasBoleta {
-	
+@Table(name = "tb_servicio_has_reserva")
+public class ServicioHasReserva {
+
 	@EmbeddedId
-	private ServicioHasBoletaPK servicioHasBoletaPK;
-	
+	private ServicioHasReservaPK servicioHasReservaPK;
+
 	@Column(precision = 22)
 	private double precio;
-	
+
 	@Column(length = 10)
-	private int cantidad;
-	
+	private String fecha;
+
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "num_boleta", nullable = false, insertable = false, updatable = false)
-	private Boleta boleta;
+	@JoinColumn(name = "num_reserva", nullable = false, insertable = false, updatable = false)
+	private Reserva reserva;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "cod_ser", nullable = false, insertable = false, updatable = false)
 	private Servicios servicio;
 
-	public ServicioHasBoletaPK getServicioHasBoletaPK() {
-		return servicioHasBoletaPK;
+	public ServicioHasReservaPK getServicioHasReservaPK() {
+		return servicioHasReservaPK;
 	}
 
-	public void setServicioHasBoletaPK(ServicioHasBoletaPK servicioHasBoletaPK) {
-		this.servicioHasBoletaPK = servicioHasBoletaPK;
+	public void setServicioHasReservaPK(ServicioHasReservaPK servicioHasReservaPK) {
+		this.servicioHasReservaPK = servicioHasReservaPK;
 	}
 
 	public double getPrecio() {
@@ -44,20 +45,20 @@ public class ServicioHasBoleta {
 		this.precio = precio;
 	}
 
-	public int getCantidad() {
-		return cantidad;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
-	public Boleta getBoleta() {
-		return boleta;
+	public Reserva getReserva() {
+		return reserva;
 	}
 
-	public void setBoleta(Boleta boleta) {
-		this.boleta = boleta;
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
 	}
 
 	public Servicios getServicio() {
@@ -67,6 +68,8 @@ public class ServicioHasBoleta {
 	public void setServicio(Servicios servicio) {
 		this.servicio = servicio;
 	}
+
+	
 	
 	
 }

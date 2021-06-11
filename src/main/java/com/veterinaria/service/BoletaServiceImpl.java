@@ -18,8 +18,7 @@ public class BoletaServiceImpl implements BoletaService{
 	@Autowired
 	private ProductoHasBoletaRepository detalleRepository;
 	
-	@Autowired
-	private ServicioHasBoletaRepository servicioRepository;
+
 	
     @Override
 	@Transactional
@@ -32,7 +31,7 @@ public class BoletaServiceImpl implements BoletaService{
 		}
 		return cabecera;
 	}
-	@Override
+	/*@Override
 	@Transactional
 	public Boleta insertaBoletaServicio(Boleta obj) {
 		Boleta cabecera = boletaRepository.save(obj);
@@ -43,7 +42,7 @@ public class BoletaServiceImpl implements BoletaService{
 		}
 		
 		return cabecera;
-	}
+	}*/
 
 	@Override
 	public List<Boleta> buscarPorCodUsuario(int cod_usu) {
