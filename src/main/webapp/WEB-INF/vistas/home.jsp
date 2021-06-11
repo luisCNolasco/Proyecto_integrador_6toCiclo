@@ -48,6 +48,7 @@
 				      <div class="dropdown-menu">
 				        <a class="dropdown-item" target="miFrame" href="#">Mi Perfil</a>
 				        <a class="dropdown-item" target="miFrame" href="verCrudPedido">Mis pedidos</a>
+				        <a class="dropdown-item" target="miFrame" href="verCrudReserva">Mis reservas</a>
 				        <a class="dropdown-item" target="miFrame" href="logout">Cerrar Sesión</a>
 				      </div>
 				    </div>

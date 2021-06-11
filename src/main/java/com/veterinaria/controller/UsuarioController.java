@@ -194,6 +194,11 @@ public class UsuarioController {
 	public String verCrudPedido() {
 		return "pedidos";
 	}
+	
+	@RequestMapping("/verCrudReserva")
+	public String verCrudReserva() {
+		return "reservas";
+	}
 
 	@RequestMapping("/verCrudIncidencias")
 	public String verCrudIncidencias() {
@@ -203,6 +208,11 @@ public class UsuarioController {
 	@RequestMapping("/listProducto")
 	public String listProducto() {
 		return "listProducto";
+	}
+	
+	@RequestMapping("/listServicio")
+	public String listServicio() {
+		return "listServicio";
 	}
 
 	@RequestMapping("/cliente/cerrarSesion")
