@@ -43,6 +43,10 @@ public class Boleta {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boleta")
 	private List<ProductoHasBoleta> detallesBoleta;
 
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boleta")
+	private List<ServicioHasBoleta> servicioBoleta;
+	
 	public int getNum_boleta() {
 		return num_boleta;
 	}
@@ -83,4 +87,13 @@ public class Boleta {
 		this.detallesBoleta = detallesBoleta;
 	}
 
+	public List<ServicioHasBoleta> getServicioBoleta() {
+		return servicioBoleta;
+	}
+
+	public void setServicioBoleta(List<ServicioHasBoleta> servicioBoleta) {
+		this.servicioBoleta = servicioBoleta;
+	}
+	
+	
 }

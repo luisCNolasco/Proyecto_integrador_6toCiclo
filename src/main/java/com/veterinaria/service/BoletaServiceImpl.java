@@ -18,6 +18,9 @@ public class BoletaServiceImpl implements BoletaService{
 	@Autowired
 	private ProductoHasBoletaRepository detalleRepository;
 	
+	@Autowired
+	private ServicioHasBoletaRepository servicioRepository;
+	
     @Override
 	@Transactional
 	public Boleta insertaBoleta(Boleta obj) {
@@ -27,6 +30,18 @@ public class BoletaServiceImpl implements BoletaService{
 			detalleRepository.actualizaStock(d.getCantidad(), d.getProductoHasBoletaPK().getCod_pro());
 			detalleRepository.save(d);
 		}
+		return cabecera;
+	}
+	@Override
+	@Transactional
+	public Boleta insertaBoletaServicio(Boleta obj) {
+		Boleta cabecera = boletaRepository.save(obj);
+		for (ServicioHasBoleta s : cabecera.getServicioBoleta()) {
+			s.getServicioHasBoletaPK().setNum_boleta(cabecera.getNum_boleta());
+			servicioRepository.save(s);
+			
+		}
+		
 		return cabecera;
 	}
 
