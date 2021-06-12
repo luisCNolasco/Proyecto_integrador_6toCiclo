@@ -28,6 +28,12 @@ public class ServicioController {
 		return servicioService.listaServicio();
 	}
 	
+	@RequestMapping("/cargaClienteServicio")
+	@ResponseBody
+	public List<Servicios> listaClienteServicio(){
+		return servicioService.listaServicio();
+	}
+	
 	@RequestMapping("/consultaCrudServicio")
 	public String consulta(String filtro, HttpSession session) {
 		List<Servicios> data = servicioService.buscaPorNombre(filtro +"%");
