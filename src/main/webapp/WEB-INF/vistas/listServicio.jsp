@@ -91,7 +91,7 @@
 						</div>
 						<div class="row">
 							<div class="form-group col-md-5">
-								<label for="full_name_id" class="control-label">Ingrese el horario deseado</label> 
+								<label for="full_name_id" class="control-label">Ingrese el horario deseado (día/mes/año hh:mm)</label> 
 								<input type="text" id="ho_ser" class="form-control" name="ho_ser">
 							</div>
 						</div>
@@ -104,24 +104,7 @@
 			</div>
 		</div>
 		<div id="card-columns" class="product_list"></div>
-	</div>
-	
-	<!-- Modal Mensaje -->	
-				  <div class="modal fade" id="idMensaje" >
-					<div class="modal-dialog" style="width: 60%">
-		
-						<div class="modal-content">
-						<div class="modal-header" style="padding: 20px 20px">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4><span class="glyphicon glyphicon-ok-sign"></span> Mensaje</h4>
-						</div>
-						<div  id="idMensajeTexto" class="modal-body" style="padding: 30px 30px;align-content: center;">
-							
-					    </div>
-					</div>
-					</div>
-				</div>
-	
+	</div>	
 	
 </body>
 <script type="text/javascript">
@@ -172,33 +155,36 @@
 										});
 					});
 
-	$("#id_btnRegistrar").click(function (){
-		var var_dni_usu = $("#id_cliente_dni").val();
+function agregarReserva(){
 
-			var jsonParam = {"dni_usu":var_dni_usu};
-			console.log(jsonParam);
-			$.ajax({
-				url:  'registraReserva',
-				type: 'POST',
-				dataType:'json',
-				data: jsonParam,
-				success:function(data){
-					console.log(data);
-					if(data.texto != "-1"){
-						$("#idMensajeTexto").html(data.texto);
-						$("#idMensaje").modal("show");
-					}else
-						swal("Error al agregar la Boleta","","error");
-						return false;
-					},
-				error: function (jqXhr) { 
-					swal("Error en la conexión","","error");
-				}
-		   });	
-			   
-		
-	});
-	
+		var cod_ser = $("#cod_ser").val();		
+		var nom_ser = $("#nom_ser").val();
+		var pre_ser = $("#pre_ser").val();
+		var ho_ser = $("#ho_ser").val();
+
+		var jsonParam = {"cod_ser":cod_ser,"nombre":nom_ser,"precio":pre_ser,"fecha":ho_ser};
+		console.log(jsonParam);
+
+		$.ajax({
+			url:  'agregarSeleccionReserva',
+			type: 'POST',
+			dataType:'json',
+			data: jsonParam,
+			success:function(data){
+				console.log(data);
+				if(data != null){				
+					swal("Servicio agregado","","success");
+					return true;
+				}else
+					swal("Error al agregar la selección del servicio","","error");
+					return false;
+				},
+			error: function (jqXhr) { 
+				swal("Error en la conexión","","error");
+			}
+		});
+
+}
 
 	function agregarServicioModal(cod_ser, nom_ser, pre_ser, desc_ser, horio_ser) {
 		
@@ -207,7 +193,7 @@
 		$("#pre_ser").val(pre_ser);
 		$("#desc_ser").val(desc_ser);	
 		$("#horio_ser").val(horio_ser);
-		$("#id_mensaje").text("Descripción de Producto");	
+		$("#id_mensaje").text("Descripción de servicio");	
 
 		$('#registroModal').modal({
 			backdrop : 'static',

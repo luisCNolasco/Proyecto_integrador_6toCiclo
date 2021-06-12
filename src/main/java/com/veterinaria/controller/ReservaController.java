@@ -15,7 +15,9 @@ import com.veterinaria.entity.ProductoHasBoleta;
 import com.veterinaria.entity.ProductoHasBoletaPK;
 import com.veterinaria.entity.Reserva;
 import com.veterinaria.entity.Seleccion;
+import com.veterinaria.entity.SeleccionReserva;
 import com.veterinaria.entity.ServicioHasReserva;
+import com.veterinaria.entity.ServicioHasReservaPK;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.ReservaService;
 import com.veterinaria.service.ServicioService;
@@ -33,6 +35,45 @@ public class ReservaController {
 	
 	@Autowired
 	private ReservaService reservaService;
+
+	private List<SeleccionReserva> seleccionadosR = new ArrayList<SeleccionReserva>();	
+	
+	@RequestMapping("/reser")
+	public String reser() {
+		return "reser";
+	}
+	
+	@RequestMapping("/agregarSeleccionReserva")
+	@ResponseBody
+	public List<SeleccionReserva> agregarReserva(SeleccionReserva obj) {
+		for (SeleccionReserva x : seleccionadosR) {
+			if (x.getCod_ser() == obj.getCod_ser()) {
+				return seleccionadosR;
+			}
+			
+		}
+			
+		seleccionadosR.add(obj);
+		return seleccionadosR;
+	}
+	
+	@RequestMapping("/listaSeleccionReserva")
+	@ResponseBody
+	public List<SeleccionReserva> lista(){
+		return seleccionadosR;
+	}
+	
+	@RequestMapping("/eliminaSeleccionReserva")
+	@ResponseBody
+	public List<SeleccionReserva> eliminar(int cod_ser) {
+		for (SeleccionReserva x : seleccionadosR) {
+			if (x.getCod_ser() == cod_ser) {
+				seleccionadosR.remove(x);
+				break;
+			}
+		}
+		return seleccionadosR;
+	}
 	
 	@RequestMapping("/cargarReservaxCodUsuario")
 	@ResponseBody
@@ -47,26 +88,19 @@ public class ReservaController {
 		int estadoReserva = 1;
 
 		List<ServicioHasReserva> detalles = new ArrayList<ServicioHasReserva>();
-		/*for (Seleccion x : seleccionados) {
-			ProductoHasBoletaPK pk = new ProductoHasBoletaPK();
+		for (SeleccionReserva x : seleccionadosR) {
+			ServicioHasReservaPK pk = new ServicioHasReservaPK();
 			
-			pk.setCod_pro(x.getCod_pro());
+			pk.setCod_ser(x.getCod_ser());
 			
-			ProductoHasBoleta phb = new ProductoHasBoleta();
+			ServicioHasReserva shr = new ServicioHasReserva();
 			
-			phb.setPrecio(x.getPrecio());
-			phb.setCantidad(x.getCantidad());
-			phb.setProductoHasBoletaPK(pk);//num_boleta y cod_pro
+			shr.setPrecio(x.getPrecio());
+			shr.setFecha(x.getFecha());
+			shr.setServicioHasReservaPK(pk);
 			
-			System.out.println("Price: "+phb.getPrecio());
-			System.out.println("Cantidad: "+phb.getCantidad());
-			System.out.println("Detalle Num: "+phb.getProductoHasBoletaPK().getNum_boleta());
-			System.out.println("Detalle Cod_pro: "+phb.getProductoHasBoletaPK().getCod_pro());
-			
-			
-			detalles.add(phb);
-			
-		}*/
+			detalles.add(shr);
+		}
 		
 		Reserva obj = new Reserva();
 		obj.setUsuario(objUsuario.getCod_usu());
@@ -80,17 +114,17 @@ public class ReservaController {
 		if (objIns != null) {
 			salida = "Se generó la reserva con código N° : " + objIns.getNum_reserva() + "<br><br>";
 			salida += "Cliente: " + objUsuario.getNombreCompleto() + "<br><br>";
-			salida += "<table class=\"table\"><tr><td>Servicio</td><td>Precio</td><td>Descripción</td><td>Subtotal</td></tr>";
+			salida += "<table class=\"table\"><tr><td>Servicio</td><td>Precio</td><td>Descripción</td></tr>";
 			double monto = 0;
-			/*for (Seleccion x : seleccionados) {
-				salida += "<tr><td>"  + x.getNombre() + "</td><td>" + x.getPrecio() + "</td><td>" + x.getCantidad()
-						+ "</td><td>" + x.getTotalParcial() + "</td></tr>";
-				monto += x.getCantidad() * x.getPrecio();
-			}*/
+			for (SeleccionReserva x : seleccionadosR) {
+				salida += "<tr><td>"  + x.getNombre() + "</td><td>" + x.getPrecio() + "</td><td>" + x.getFecha()
+						+ "</td></tr>";
+				monto += x.getPrecio();
+			}
 			salida += "</table><br>";
 			salida += "Monto a pagar : " + monto;
 
-			//seleccionados.clear();
+			seleccionadosR.clear();
 		}
 
 		Mensaje objMensaje = new Mensaje();

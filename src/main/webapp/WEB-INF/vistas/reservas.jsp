@@ -52,8 +52,7 @@
 											<tr>
 												<th style="width: 30%">Servicio</th>
 												<th style="width: 20%">Precio</th>
-												<th style="width: 10%">Detalle</th>
-												<th style="width: 10%">Subtotal</th>
+												<th style="width: 20%">Detalle</th>
 												<th style="width: 5%"></th>
 											</tr>
 										</thead>
@@ -64,12 +63,46 @@
 					</table>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" onclick="agregarReserva()">Registrar</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetBtn">Cerrar</button>
+					<p id="Total">Total: </>					
+				</div>
+				</div>
+			</div>
+		<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+			aria-labelledby="id_mensaje" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" id="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h3>Editar Estado de Reserva</h3>
 					</div>
+					<div class="modal-body">
+					<div class="row">
+								<input name="num_reserva" id="num_reserva" value="" type="hidden">
+								
+								<div class="form-group col-md-5">
+								<label>Estado</label><br> 
+								<select class="form-control" name="estado" id="estado">
+									<option value="1">Reservado</option>
+									<option value="2">Realizado</option>
+									<option value="3">Cancelado</option>
+								</select>
+								</div>
+
+					</div>
+					
+					
+					
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="registroRe()">Registrar</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetBtn">Cerrar</button>
+				</div>
 				</div>
 			</div>
 		</div>
+		
 	</div>
 </body>
 <script type="text/javascript">

@@ -39,6 +39,9 @@
 				<p class="mb-0 d-flex align-items-center text-light">
 				<a href="carrito" target="miFrame" class="d-flex align-items-center justify-content-center"><span class="fa fa-shopping-cart"><i class="sr-only"></i></span></a>
 				</p>
+				<p class="mb-0 d-flex align-items-center text-light">
+				<a href="reser" target="miFrame" class="d-flex align-items-center justify-content-center"><span class="fas fa-bookmark"><i class="sr-only"></i></span></a>
+				</p>
 					<div class="drop-list">
 				    <div id="dropdown" class="dropdown dropright">				    
 				   <p class="mb-0 d-flex align-items-center text-light sam-login dropdown-toggle" data-toggle="dropdown">				   
