@@ -46,11 +46,39 @@
 				    <span>Bienvenido Sr(a): ${sessionScope.objUsuario.nombreCompleto}</span>
 				  </p>
 				      <div class="dropdown-menu">
-				        <a class="dropdown-item" target="miFrame" href="#">Mi Perfil</a>
-				        <a class="dropdown-item" target="miFrame" href="verCrudPedido">Mis pedidos</a>
-				        <a class="dropdown-item" target="miFrame" href="verCrudReserva">Mis reservas</a>
-				        <a class="dropdown-item" target="miFrame" href="logout">Cerrar Sesión</a>
-				      </div>
+				      <c:forEach var="tipoUsuario" items="${sessionScope.objTipoUsuario}">
+				      	
+				      	<c:if test="${tipoUsuario.cod_tip_usu == 1}">
+             			
+				        <a class="dropdown-item" href="logout">Cerrar Sesión</a>
+				       
+	          		    </c:if> 
+				      
+			                         
+			             <c:if test="${tipoUsuario.cod_tip_usu == 3}">
+				         <c:forEach var="e" items="${sessionScope.objInterfaz}">
+             			 <c:choose>
+             			 
+             			<c:when test="${e.cod_int == 10}">     			    
+				        <a class="dropdown-item" target="miFrame" href="${e.url_int}">Mi Perfil</a>
+				       	</c:when>	
+				       	
+				       <c:when test="${e.cod_int == 14}">
+				        <a class="dropdown-item" target="miFrame" href="${e.url_int}">Mis pedidos</a>
+				       </c:when> 
+				        
+				        <c:when test="${e.cod_int == 15}">
+				        <a class="dropdown-item" target="miFrame" href="${e.url_int}">Mis reservas</a>
+				        </c:when> 
+				        
+				        <c:when  test="${e.cod_int == 16}">
+				        <a class="dropdown-item" href="${e.url_int}">Cerrar Sesión</a>
+				        </c:when>
+				        
+				        </c:choose>
+	          			</c:forEach>
+	          		    </c:if>    	       
+	         		</c:forEach>			
 				    </div>
 				</div>
 				</div>
@@ -101,6 +129,10 @@
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Incidencias</a></li>
               </c:when>
               
+              <c:when test="${x.cod_int == 8}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Reservas</a></li>
+              </c:when>
+              
               </c:choose>
 	          </c:forEach>
 	         	
@@ -119,19 +151,19 @@
               <c:forEach var="x" items="${sessionScope.objInterfaz}">
               <c:choose>         
               
-              <c:when test="${x.cod_int == 8}">            
+              <c:when test="${x.cod_int == 9}">            
               <li class="nav-item"><a href="${x.url_int}" class="nav-link">Inicio</a></li>
               </c:when>
               
-              <c:when test="${x.cod_int == 9}">
+              <c:when test="${x.cod_int == 11}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Productos</a></li>
               </c:when>
               
-              <c:when test="${x.cod_int == 10}">
+              <c:when test="${x.cod_int == 12}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Servicios</a></li>
               </c:when>
               
-              <c:when test="${x.cod_int == 11}">
+              <c:when test="${x.cod_int == 13}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Mascotas</a></li>
               </c:when>
               

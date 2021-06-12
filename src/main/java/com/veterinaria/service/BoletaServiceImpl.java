@@ -31,22 +31,20 @@ public class BoletaServiceImpl implements BoletaService{
 		}
 		return cabecera;
 	}
-	/*@Override
-	@Transactional
-	public Boleta insertaBoletaServicio(Boleta obj) {
-		Boleta cabecera = boletaRepository.save(obj);
-		for (ServicioHasBoleta s : cabecera.getServicioBoleta()) {
-			s.getServicioHasBoletaPK().setNum_boleta(cabecera.getNum_boleta());
-			servicioRepository.save(s);
-			
-		}
-		
-		return cabecera;
-	}*/
-
+    
 	@Override
 	public List<Boleta> buscarPorCodUsuario(int cod_usu) {
 		return boletaRepository.buscarPorCodUsuario(cod_usu);
+	}
+	
+	@Override
+	public List<Boleta> listaPedido() {
+		return boletaRepository.findAll();
+	}
+
+	@Override
+	public int actualizarEstadoPedido(Integer estado, Integer num_boleta) {
+		return boletaRepository.actualizarEstadoPedido(estado, num_boleta);
 	}
 
 }

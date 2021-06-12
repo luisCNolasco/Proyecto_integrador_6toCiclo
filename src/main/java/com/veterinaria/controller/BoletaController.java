@@ -36,22 +36,9 @@ public class BoletaController {
 	@RequestMapping("/agregarSeleccion")
 	@ResponseBody
 	public List<Seleccion> agregar(Seleccion obj) {
-		
-		/*Producto pro = new Producto();  
-		Map<String, Object> salida = new HashMap<>();*/
 		for (Seleccion x : seleccionados) {
 			if (x.getCod_pro() == obj.getCod_pro()) {
-				x.setCantidad(x.getCantidad()+obj.getCantidad());
-				/*int cant = x.getCantidad();
-				pro = productoService.buscaPorCodigo(obj.getCod_pro());
-				int stock_actual = Integer.parseInt(pro.getStock_pro());
-				System.out.println("50:"+stock_actual);
-				if(cant > stock_actual) {
-					System.out.println("52:"+cant);
-					salida.put("mensaje_stock", Constantes.MENSAJE_REG_ERROR_STOCK);
-					break;
-				}
-				*/
+				x.setCantidad(x.getCantidad()+obj.getCantidad());				
 				return seleccionados;
 			}
 			
@@ -135,32 +122,27 @@ public class BoletaController {
 		objMensaje.setTexto(salida);
 
 		return objMensaje;
-	}
-	
-	/*@RequestMapping("/cargaCliente")
-	@ResponseBody
-	public List<Cliente> listaCliente(String filtro){
-		//Los parametros de la paginacion
-		int page = 0;
-		int size = 5;
-		Pageable paginacion = PageRequest.of(page, size);
-		return clienteService.listaCliente(filtro+"%",paginacion);
-	}*/
-	
-	/*@RequestMapping("/cargaProducto")
-	@ResponseBody
-	public List<Producto> listaProducto(String filtro) {
-		int page = 0;
-		int size = 5;
-		Pageable paginacion = PageRequest.of(page, size);
-		return productoService.listaproducto(filtro+"%", paginacion);
-	}*/
+	}	
 	
 	@RequestMapping("/cargarPedidosxCodUsuario")
 	@ResponseBody
 	public List<Boleta> cargarPedidosxCodUsuario(@RequestParam int cod_usu) {
 		return boletaService.buscarPorCodUsuario(cod_usu);
 	}
+	
+	@RequestMapping("/listaPedido")
+	@ResponseBody
+	public List<Boleta> listaPedido() {
+		return boletaService.listaPedido();
+	}
+	
+	@RequestMapping("/actualizarEstadoPedido")
+	@ResponseBody
+	public int actualizarEstadoPedido(@RequestParam int estado, @RequestParam int num_boleta) {
+		return boletaService.actualizarEstadoPedido(estado, num_boleta);
+	}
+	
+	
 	
 	
 }

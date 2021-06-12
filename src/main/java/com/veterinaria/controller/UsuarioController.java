@@ -137,7 +137,7 @@ public class UsuarioController {
 	
 	@RequestMapping("/logout")
 	public String logout() {
-		return "login";
+		return "index";
 	}	
 	
 	@RequestMapping("/index")
