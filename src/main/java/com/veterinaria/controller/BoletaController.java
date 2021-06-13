@@ -17,7 +17,6 @@ public class BoletaController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
 	@Autowired
 	private ProductoService productoService;
 	
