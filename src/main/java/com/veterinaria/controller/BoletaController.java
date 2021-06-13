@@ -17,6 +17,7 @@ public class BoletaController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
 	@Autowired
 	private ProductoService productoService;
 	
@@ -140,8 +141,5 @@ public class BoletaController {
 	public int actualizarEstadoPedido(@RequestParam int estado, @RequestParam int num_boleta) {
 		return boletaService.actualizarEstadoPedido(estado, num_boleta);
 	}
-	
-	
-	
 	
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.veterinaria.entity.Mascota;
-import com.veterinaria.entity.Producto;
 import com.veterinaria.entity.TipoMascota;
 import com.veterinaria.service.MascotaService;
 

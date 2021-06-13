@@ -1,6 +1,5 @@
 package com.veterinaria.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.veterinaria.entity.Distrito;
-import com.veterinaria.entity.Servicios;
 import com.veterinaria.entity.TipoUsuario;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.UsuarioService;
