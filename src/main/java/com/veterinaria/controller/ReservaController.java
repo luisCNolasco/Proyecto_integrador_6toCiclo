@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.veterinaria.entity.Boleta;
 import com.veterinaria.entity.Mensaje;
-import com.veterinaria.entity.ProductoHasBoleta;
-import com.veterinaria.entity.ProductoHasBoletaPK;
 import com.veterinaria.entity.Reserva;
 import com.veterinaria.entity.Seleccion;
 import com.veterinaria.entity.SeleccionReserva;
@@ -132,4 +129,17 @@ public class ReservaController {
 
 		return objMensaje;
 	}
+	
+	@RequestMapping("/listaReserva")
+	@ResponseBody
+	public List<Reserva> listaReserva() {
+		return reservaService.listaReserva();
+	}
+	
+	@RequestMapping("/actualizarEstadoReserva")
+	@ResponseBody
+	public int actualizarEstadoReserva(@RequestParam int estado, @RequestParam int num_reserva) {
+		return reservaService.actualizarEstadoReserva(estado, num_reserva);
+	}
+	
 }
