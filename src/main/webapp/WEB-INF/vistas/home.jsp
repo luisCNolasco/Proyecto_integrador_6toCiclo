@@ -159,8 +159,46 @@
               <!-- Tipo de Usuario ==== EMPLEADO -->
 			  <c:if test="${tipoUsuario.cod_tip_usu == 2}">
               
+              <c:forEach var="x" items="${sessionScope.objInterfaz}">
+              <c:choose>         
+              
+              <c:when test="${x.cod_int == 1}">            
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link">Inicio</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 2}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Productos</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 3}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Servicios</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 4}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Mascotas</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 5}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Usuarios</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 6}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Pedidos</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 7}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Incidencias</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 8}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Reservas</a></li>
+              </c:when>
+              
+              </c:choose>
+	          </c:forEach>
+              
               </c:if>
-			  <!-- FIN Tipo de Usuario ==== EMPLEADO -->
+			  <!-- FIN Tipo de Usuario ==== EMPLEADO --> 
 			  
 			  <!-- Tipo de Usuario ==== CLIENTE -->
 			  <c:if test="${tipoUsuario.cod_tip_usu == 3}">
