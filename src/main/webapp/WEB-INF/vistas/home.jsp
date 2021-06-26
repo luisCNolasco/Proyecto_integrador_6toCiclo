@@ -115,7 +115,7 @@
               <!-- Tipo de Usuario ==== ADMINISTRADOR --> 	              
               <c:if test="${tipoUsuario.cod_tip_usu == 1}">
               
-              <c:forEach var="x" items="${sessionScope.objInterfaz}">
+              <c:forEach var="x" items="${sessionScope.objInterfaz}"> 
               <c:choose>         
               
               <c:when test="${x.cod_int == 1}">            
