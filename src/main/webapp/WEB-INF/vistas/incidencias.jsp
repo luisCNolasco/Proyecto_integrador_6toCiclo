@@ -79,7 +79,7 @@
 						<div class="col-md-2">
 							<div class="form-group">
 								<label>Usuario</label><br>
-								<select class="form-control" id="usuario" name="usuario" >
+								<select class="form-control" id="usuario" name="usuario" value="${objUsuario.cod_usu}">
 									 <option selected disabled value="-1" >[SELECCIONE]</option>											
 								</select>
 							</div>
@@ -125,7 +125,27 @@
 	  </div>
 	</div>
 	
+<script type="text/javascript">
+
+$.getJSON("listaUsuariosIncidencias",{}, function(data){
+	$.each(data, function(i, item){
+		$("#usuario").append("<option value='"+item.cod_usu+"'>"+item.nom_usu+"</option>");
+	});
+});
+
+$("#usuario").change(function(){
+	var codUsu = $("#usuario").val();
+
+	$("#mascota").empty();
+	$("#mascota").append("<option value=' '>[Seleccione]</option>");
 	
+	$.getJSON("listaMascotaUsuarioIncidencias",{"codigoUsuario":codUsu}, function(data){
+		$.each(data, function(i, item){
+			$("#mascota").append("<option value='"+ item.cod_mas +"'>"+ item.nom_mas+"</option>");
+		});
+	});
+});
+</script>	
 <script type="text/javascript">
 function tablaIncidencias(){ 
 	$("#id_table").DataTable().destroy();
@@ -237,40 +257,6 @@ function registraIncidencia(){
 			  }
 			});
 	}
-	
-	/*$.getJSON("listaUsuario", {}, function(data) {
-		$.each(data, function(index, item) {
-			$("#usuario").append("<option value='"+item.cod_usu+"'>"+
-					 item.nom_usu+"</option>");
-			});
-		});
-	$.getJSON("cargarMascotas", {}, function(data) {
-		$.each(data, function(index, item) {
-			$("#mascota").append("<option value='"+item.codigoMascota+"'>"+
-					 item.nombreMascota+"</option>");
-			});
-		});*/
-		
-		
-		$.getJSON("listaUsuario",{}, function(data){
-			$.each(data, function(i, item){
-				$("#usuario").append("<option value='"+item.cod_usu+"'>"+
-						 item.nom_usu+"</option>");
-			});
-		});
-		
-		$("#usuario").change(function(){
-			var var_usu = $("#usuario").val();
-
-			$("#mascota").empty();
-			$("#mascota").append("<option value=' '>[Seleccione]</option>");
-			
-			$.getJSON("cargarMascotas",{"nom_usu":var_usu}, function(data){
-				$.each(data, function(i, item){
-					$("#mascota").append("<option value='"+ item +"'>"+ item+"</option>");
-				});
-			});
-		});
 	
 </script>
 

@@ -11,5 +11,6 @@ public interface MascotaService {
 	public abstract void insertaMascota(Mascota mas);
 	public abstract void eliminaMascota(int cod);
 	public List<Mascota> listarMascotasDeUsuario(Integer idUsuario);
-	
+	public List<Mascota> listaMxU(Integer codUsu);
+
 }

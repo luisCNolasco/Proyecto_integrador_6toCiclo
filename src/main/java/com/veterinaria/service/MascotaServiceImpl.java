@@ -36,4 +36,9 @@ public class MascotaServiceImpl  implements MascotaService{
 		return repository.listarMascotasXUsuario(idUsuario);
 	}
 
+	@Override
+	public List<Mascota> listaMxU(Integer codUsu) {
+		return repository.listaMxU(codUsu);
+	}
+
 }
