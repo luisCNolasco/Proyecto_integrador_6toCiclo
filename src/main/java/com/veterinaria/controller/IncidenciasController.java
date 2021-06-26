@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.veterinaria.entity.Incidencias;
@@ -28,6 +29,25 @@ public class IncidenciasController {
 
 	@Autowired
 	private IncidenciasService incidenciasService;
+	
+	@Autowired
+	private MascotaService mascotaService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@RequestMapping("/listaUsuariosIncidencias")
+	@ResponseBody
+	public List<Usuario> listaUsuariosInc(){
+		return usuarioService.listaUsuarios();
+	}
+	
+	@RequestMapping("/listaMascotaUsuarioIncidencias")
+	@ResponseBody
+	public List<Mascota> listaMascotaUsuarioInc(@RequestParam("codigoUsuario") int codUsu){
+		return mascotaService.listaMxU(codUsu);
+	}
+	
 	
 	@RequestMapping("/listaIncidencias")
 	@ResponseBody
