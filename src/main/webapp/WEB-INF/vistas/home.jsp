@@ -128,9 +128,7 @@
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Pedidos</a></li>
               </c:when>
               
-              <c:when test="${x.cod_int == 7}">
-              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Incidencias</a></li>
-              </c:when>
+              
               
               <c:when test="${x.cod_int == 8}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Reservas</a></li>
@@ -148,37 +146,24 @@
               <c:forEach var="x" items="${sessionScope.objInterfaz}">
               <c:choose>         
               
-              <c:when test="${x.cod_int == 1}">            
+              <c:when test="${x.cod_int == 17}">            
               <li class="nav-item"><a href="${x.url_int}" class="nav-link">Inicio</a></li>
               </c:when>
               
-              <c:when test="${x.cod_int == 2}">
-              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Productos</a></li>
-              </c:when>
               
-              <c:when test="${x.cod_int == 3}">
-              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Servicios</a></li>
-              </c:when>
               
-              <c:when test="${x.cod_int == 4}">
+              <c:when test="${x.cod_int == 18}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Mascotas</a></li>
               </c:when>
               
-              <c:when test="${x.cod_int == 5}">
-              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Usuarios</a></li>
-              </c:when>
+          
               
-              <c:when test="${x.cod_int == 6}">
-              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Pedidos</a></li>
-              </c:when>
               
-              <c:when test="${x.cod_int == 7}">
+              
+              <c:when test="${x.cod_int == 19}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Incidencias</a></li>
               </c:when>
-              
-              <c:when test="${x.cod_int == 8}">
-              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Reservas</a></li>
-              </c:when>
+                          
               
               </c:choose>
 	          </c:forEach>
