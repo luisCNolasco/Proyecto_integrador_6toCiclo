@@ -47,8 +47,8 @@
 															<th>Codigo</th>
 															<th>Usuario</th>
 															<th>Mascota</th>
-															<th>Descripción</th>
-															<th>Recomendación</th>
+															<th width="150">Descripción</th>
+															<th width="150">Recomendación</th>
 															<th>ELIMINAR</th>
 														</tr>
 												</thead>
@@ -94,20 +94,20 @@
 						</div>
 					</div>
 					<div class="row">	
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="form-group">
-								<label>Descripción</label>
-								<input type="text" class="form-control" id="desc_inc" name="desc_inc" placeholder="Ingrese descripción">
+								<label>Descripción</label>								
+								<textarea class="form-control" id="desc_inc" name="desc_inc" placeholder="Ingrese descripción"></textarea>
 							</div>
 						</div>							
 					</div>
 					
 					
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="form-group">
-								<label>Recomendación</label>
-								<input type="text" class="form-control" id="recom_inc" name="recom_inc" placeholder="Ingrese la recomendación">
+								<label>Recomendación</label>								
+								<textarea class="form-control"  id="recom_inc" name="recom_inc" placeholder="Ingrese la recomendación"></textarea>
 							</div>
 						</div>	
 					</div>
@@ -141,7 +141,7 @@ $("#usuario").change(function(){
 	
 	$.getJSON("listaMascotaUsuarioIncidencias",{"codigoUsuario":codUsu}, function(data){
 		$.each(data, function(i, item){
-			$("#mascota").append("<option value='"+ item.cod_mas +"'>"+ item.nom_mas+"</option>");
+			$("#mascota").append("<option value='"+ item.codigoMascota +"'>"+ item.nombreMascota+"</option>");
 		});
 	});
 });
@@ -157,10 +157,10 @@ function tablaIncidencias(){
 																									
 																								    
 			$("#id_table").append("<tr><td>"+item.cod_inc+"</td>"+
-											  "<td>"+item.usuario.cod_usu+"</td>"+
-											  "<td>"+item.mascota.codigoMascota+"</td>"+
-											  "<td>"+item.desc_inc+"</td>"+
-											  "<td>"+item.recom_inc+"</td>"+											  
+											  "<td>"+item.usuario.nombreCompleto+"</td>"+
+											  "<td>"+item.mascota.nombreMascota+"</td>"+
+											  "<td width='250'>"+item.desc_inc+"</td>"+
+											  "<td width='250'>"+item.recom_inc+"</td>"+											  
 											  "<td>"+eliminar+"</td>");
 		});
 		$("#id_table").DataTable().draw();
@@ -269,10 +269,49 @@ function registraIncidencia(){
 		 }); 
 	});
 </script>
-
-
-			
-	
-
+<script type="text/javascript">
+$('#id_registra').bootstrapValidator({
+ message: 'This value is not valid',
+ feedbackIcons: {
+     valid: 'glyphicon glyphicon-ok',
+     invalid: 'glyphicon glyphicon-remove',
+     validating: 'glyphicon glyphicon-refresh'
+ },
+ fields: {
+ 	"usuario":{
+     	 selector: "#usuario",
+          validators:{
+         	 notEmpty: {
+                  message: 'Seleccionar el usuario es obligatorio'
+             }
+          }
+     },
+    "mascota":{
+      	 selector: "#mascota",
+           validators:{
+         	  notEmpty: {
+                   message: 'Seleccionar la mascota es obligatorio'
+              }
+           }
+      },
+   "desc_inc":{
+  	 selector: "#desc_inc",
+       validators:{
+      	 notEmpty: {
+               message: 'La Descripción es obligatorio'
+          }
+       }
+  },
+   "recom_inc":{
+  	 selector: "#recom_inc",
+       validators:{
+      	 notEmpty: {
+               message: 'La Recomendación es obligatorio'
+          }
+       }
+  }
+ }   
+});
+</script>
 </body>
 </html>

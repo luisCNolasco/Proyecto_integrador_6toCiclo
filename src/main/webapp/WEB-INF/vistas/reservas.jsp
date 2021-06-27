@@ -196,15 +196,16 @@ function detalleReserva (num_reserva){
 	$("#id_mensaje").empty();		
 	$("#id_table_detallereserva_body").empty();	
 	$ .getJSON("detalleReserva",{'num_reserva' : num_reserva},
-	        function(data) {		        
-		        $("#id_mensaje").append("<h3> Nro de Reserva "+data[0].reserva.num_reserva+"</h3>");
-	            $ .each(data,function(index,item) {				
+	        function(data) {		
+        		console.log(data);	        
+        		$("#id_mensaje").append("<h3> Nro de Reserva "+data[0].reserva.num_reserva+"</h3>");
+	            $ .each(data,function(index,item) {						
 	            	$('#id_table_detallereserva_body').append("<tr><td>"
 	                        + item.servicio.nom_ser + "</td><td>"
 	                        + item.precio + "</td><td>"
 	                        + item.fecha + "</td></tr>");
 		
-	            });	           
+	            });	      
 	        }
 	
 	    );

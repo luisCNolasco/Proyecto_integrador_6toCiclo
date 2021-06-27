@@ -70,6 +70,12 @@
 				        <a class="dropdown-item" href="logout">Cerrar Sesión</a>
 				       
 	          		    </c:if> 
+	          		    
+	          		    <c:if test="${tipoUsuario.cod_tip_usu == 2}">
+             			
+				        <a class="dropdown-item" href="logout">Cerrar Sesión</a>
+				       
+	          		    </c:if> 
 				      
 			                         
 			             <c:if test="${tipoUsuario.cod_tip_usu == 3}">
@@ -100,6 +106,7 @@
 				</div>
 				</div>
 			</div>
+		</div>
 		</div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -142,8 +149,6 @@
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Pedidos</a></li>
               </c:when>
               
-              
-              
               <c:when test="${x.cod_int == 8}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Reservas</a></li>
               </c:when>
@@ -164,20 +169,9 @@
               <li class="nav-item"><a href="${x.url_int}" class="nav-link">Inicio</a></li>
               </c:when>
               
-              
-              
               <c:when test="${x.cod_int == 18}">
-              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Mascotas</a></li>
-              </c:when>
-              
-          
-              
-              
-              
-              <c:when test="${x.cod_int == 19}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Incidencias</a></li>
               </c:when>
-                          
               
               </c:choose>
 	          </c:forEach>
