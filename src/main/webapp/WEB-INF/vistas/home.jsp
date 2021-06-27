@@ -23,6 +23,20 @@
     <link rel="stylesheet" href="css/style.css">        
     <link rel="stylesheet" href="css/sam.css">
 
+<script>            
+(function(b,c){
+	var e=document.createElement('link');
+	e.rel='stylesheet',e.type='text/css',e.href='https://chatboxlive.blahbox.net/static/css/main.css',document.getElementsByTagName('head')[0].appendChild(e);
+	var f=document.createElement('script');
+	f.onload=function(){
+		var g;
+		if(c)g='previewInit';
+		else{
+			var h=document.createElement('div');
+			g='cbinit',h.id='cbinit',document.body.append(h)
+			}            
+		console.log(document.querySelector('#'+g)),chatbox.initChat(document.querySelector('#'+g),b,c)},f.src='https://chatboxlive.blahbox.net/static/js/chat-lib.js',document.getElementsByTagName('head')[0].appendChild(f)})                ('beff5f1f1df29456967aaa5b273492eb', 0);          
+</script>
 </head>
 <body>
      <div class="wrap">
@@ -52,6 +66,12 @@
 				      <c:forEach var="tipoUsuario" items="${sessionScope.objTipoUsuario}">
 				      	
 				      	<c:if test="${tipoUsuario.cod_tip_usu == 1}">
+             			
+				        <a class="dropdown-item" href="logout">Cerrar Sesión</a>
+				       
+	          		    </c:if> 
+	          		    
+	          		    <c:if test="${tipoUsuario.cod_tip_usu == 2}">
              			
 				        <a class="dropdown-item" href="logout">Cerrar Sesión</a>
 				       
@@ -87,6 +107,7 @@
 				</div>
 			</div>
 		</div>
+		</div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
@@ -101,7 +122,7 @@
               <!-- Tipo de Usuario ==== ADMINISTRADOR --> 	              
               <c:if test="${tipoUsuario.cod_tip_usu == 1}">
               
-              <c:forEach var="x" items="${sessionScope.objInterfaz}">
+              <c:forEach var="x" items="${sessionScope.objInterfaz}"> 
               <c:choose>         
               
               <c:when test="${x.cod_int == 1}">            
@@ -128,10 +149,6 @@
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Pedidos</a></li>
               </c:when>
               
-              <c:when test="${x.cod_int == 7}">
-              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Incidencias</a></li>
-              </c:when>
-              
               <c:when test="${x.cod_int == 8}">
               <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Reservas</a></li>
               </c:when>
@@ -145,8 +162,22 @@
               <!-- Tipo de Usuario ==== EMPLEADO -->
 			  <c:if test="${tipoUsuario.cod_tip_usu == 2}">
               
+              <c:forEach var="x" items="${sessionScope.objInterfaz}">
+              <c:choose>         
+              
+              <c:when test="${x.cod_int == 17}">            
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link">Inicio</a></li>
+              </c:when>
+              
+              <c:when test="${x.cod_int == 18}">
+              <li class="nav-item"><a href="${x.url_int}" class="nav-link" target="miFrame">Incidencias</a></li>
+              </c:when>
+              
+              </c:choose>
+	          </c:forEach>
+              
               </c:if>
-			  <!-- FIN Tipo de Usuario ==== EMPLEADO -->
+			  <!-- FIN Tipo de Usuario ==== EMPLEADO --> 
 			  
 			  <!-- Tipo de Usuario ==== CLIENTE -->
 			  <c:if test="${tipoUsuario.cod_tip_usu == 3}">

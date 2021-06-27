@@ -20,6 +20,8 @@
 		<h2 class="text-center text-success" style="text-decoration:underline;"> Mis Reservas</h2>
 		<input type="hidden" class="form-control" id="cod_usu" name="cod_usu"
 			value="${objUsuario.cod_usu}"> <br>&nbsp;<br>
+			<input type="hidden" class="form-control" id="tiposuario" name="tiposuario"
+			value="${objUsuario.tipousuario.cod_tip_usu}"> <br>&nbsp;<br>	
 		<div id="divReserva">
 			<table id="id_table" class="table table-striped table-bordered">
 				<thead>
@@ -45,6 +47,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
+						<h3 id="id_mensaje"></h3>
 					</div>
 					<div class="modal-body">
 					<table id="id_table_detallereserva" class="table table-striped table-bordered">
@@ -53,7 +56,7 @@
 												<th style="width: 30%">Servicio</th>
 												<th style="width: 20%">Precio</th>
 												<th style="width: 20%">Detalle</th>
-												<th style="width: 5%"></th>
+												
 											</tr>
 										</thead>
 										<tbody id="id_table_detallereserva_body">
@@ -61,12 +64,12 @@
 										</tbody>
 										
 					</table>
-					</div>
-					<div class="modal-footer">
-					<p id="Total">Total: </>					
-				</div>
+					</div>					
 				</div>
 			</div>
+		</div>
+		
+		
 		<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 			aria-labelledby="id_mensaje" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -96,27 +99,28 @@
 					
 					</div>
 					<div class="modal-footer">
-					<button type="button" class="btn btn-primary" onclick="registroRe()">Registrar</button>
+					<button type="button" class="btn btn-primary" onclick="registro()">Registrar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetBtn">Cerrar</button>
 				</div>
 				</div>
 			</div>
 		</div>
-		
-	</div>
+	</div>	
+	
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
-    var cod_usu=$("#cod_usu").val();
-
-    $ .getJSON("cargarReservaxCodUsuario",
-            {
-            'cod_usu' : cod_usu
-        }
-
-        ,
+	listarReserva();
+});
+    
+function listarReserva(){
+	var tipUser = $("#tiposuario").val();
+	
+	if(tipUser == 3){	
+    var cod_usu = $("#cod_usu").val();
+	
+    $.getJSON("cargarReservaxCodUsuario",{'cod_usu' : cod_usu},
         function(data) {
-			console.log(data);
             $ .each(data,
                 function(index,
                     item) {
@@ -133,6 +137,7 @@ $(document).ready(function() {
                     else if (item.estado=='3') {
                         stat='Cancelado';
                     }
+                  
 
                     $('#id_table_reserva_body') .append("<tr><td>"
                         + item.num_reserva + "</td><td>"
@@ -146,31 +151,92 @@ $(document).ready(function() {
 
     );
 
+	}else {
+
+	    $.getJSON("listaReserva",{},
+	        function(data) {
+	        console.log(data);
+	            $ .each(data,
+	                function(index,
+	                    item) {
+	                    var stat="";
+
+	                    if (item.estado=='1') {
+	                        stat='Reservado';
+	                    }
+
+	                    else if (item.estado=='2') {
+	                        stat='Realizado';
+	                    }
+
+	                    else if (item.estado=='3') {
+	                        stat='Cancelado';
+	                    }
+
+	                    $('#id_table_reserva_body') .append("<tr><td>"
+	                        + item.num_reserva + "</td><td>"
+	                        + item.fecha + "</td><td>"
+	                        + stat + "</td><td><button type='button' onclick='detalleReserva("
+	                        + item.num_reserva + ");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> </button><button type='button' onclick='editarEstadoReserva("
+	                        + item.num_reserva +"," + item.estado +");' class='btn btn-default' aria-label='Left Align' ><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button></td></tr>");
+	                }
+
+	            );
+	        }
+
+	    );
+			
+	}
 }
 
-);
+
 
 function detalleReserva (num_reserva){
-	$('#registroModal').modal({backdrop: 'static', keyboard: false,show:true});  
-	 $ .getJSON("detalleReserva",{'num_reserva' : num_reserva},
-	        function(data) {
-		        console.log(data[0].reserva.num_reserva);
-		        $("#modal-header").append("<h3> Nro de reserva "+data[0].reserva.num_reserva+"</h3>");
-	            $ .each(data,function(index,item) {
-							
+	$('#registroModal').modal({backdrop: 'static', keyboard: false,show:true});
+	$("#id_mensaje").empty();		
+	$("#id_table_detallereserva_body").empty();	
+	$ .getJSON("detalleReserva",{'num_reserva' : num_reserva},
+	        function(data) {		
+        		console.log(data);	        
+        		$("#id_mensaje").append("<h3> Nro de Reserva "+data[0].reserva.num_reserva+"</h3>");
+	            $ .each(data,function(index,item) {						
 	            	$('#id_table_detallereserva_body').append("<tr><td>"
 	                        + item.servicio.nom_ser + "</td><td>"
 	                        + item.precio + "</td><td>"
 	                        + item.fecha + "</td></tr>");
-
-	            	
-
-	            });
-	           
+		
+	            });	      
 	        }
-
+	
 	    );
 
+}
+
+function editarEstadoReserva (num_reserva, estado){
+	console.log(num_reserva, estado);
+	$('#editModal').modal({backdrop: 'static', keyboard: false,show:true});
+	$("#num_reserva").val(num_reserva);	
+	$("#estado").val(estado);
+}
+
+function registro(){
+	  var estado = 	$("#estado").val();
+	  var num_reserva = $("#num_reserva").val();		
+	 	
+	  $.ajax({
+			url:'actualizarEstadoReserva',
+			type:'POST',
+			data:{estado:estado, num_reserva:num_reserva},
+			success: function(data){
+				$("#id_table_reserva_body").empty(); 
+				listarReserva();
+				swal("Sistema","Actualizo Estado...","success");
+			},
+			error: function (e) { 
+				swal("Sistema", "Disculpe, existió un problema "+e, "error");
+	    	}
+		});
+	
 }
 	
 </script>

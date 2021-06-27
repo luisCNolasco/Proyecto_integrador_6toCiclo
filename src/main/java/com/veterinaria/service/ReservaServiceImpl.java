@@ -36,4 +36,16 @@ public class ReservaServiceImpl implements ReservaService{
 		return ReservaRepository.buscarPorCodUsuario(cod_usu);
 	}
 
+
+	@Override
+	public List<Reserva> listaReserva() {
+		return ReservaRepository.findAll();
+	}
+
+
+	@Override
+	public int actualizarEstadoReserva(Integer estado, Integer num_reserva) {
+		return ReservaRepository.actualizarEstadoReserva(estado, num_reserva);
+	}
+
 }

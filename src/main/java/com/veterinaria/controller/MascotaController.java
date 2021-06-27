@@ -48,7 +48,7 @@ public class MascotaController {
 			Mascota mas = new Mascota();
 			
 			mas.setCodigoMascota(cod_mas);
-			mas.setNombreMascota(nom_mas);
+			mas.setNombreMascota(nom_mas); 
 			mas.setTipoMascota(mascota);
 			mas.setCodigoUsuario(codigoUsuario);
 			mas.setFoto1(foto.getBytes());
