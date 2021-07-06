@@ -110,7 +110,7 @@ input::placeholder{
 }
 /*CRUD SERVICIO*/
 .container-crudservicio{
-	background-image: url('../images/bg_9.png');
+	/*background-image: url('../images/bg_9.png');*/
 }
 
 .sam-table table tbody td,
@@ -121,4 +121,9 @@ input::placeholder{
 
 .sam-lout:hover{
 	background-color: rgba(0,0,0,.1);
+}
+
+/*MOSTRAR CONTENIDO AL DAR CLIC A HOME*/
+.home-div-click{
+	
 }
